@@ -5,7 +5,7 @@ import com.salesianos.triana.DoradoMoises_Ready2Ref.error.ActivationExpiredExcep
 import com.salesianos.triana.DoradoMoises_Ready2Ref.model.User;
 import com.salesianos.triana.DoradoMoises_Ready2Ref.model.UserRole;
 import com.salesianos.triana.DoradoMoises_Ready2Ref.repository.UserRepository;
-import com.salesianos.triana.DoradoMoises_Ready2Ref.util.SendGridMailSender;
+import com.salesianos.triana.DoradoMoises_Ready2Ref.util.MailService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.http.HttpStatus;
@@ -24,7 +24,7 @@ public class UserService {
 
     private final UserRepository userRepository;
     private final PasswordEncoder passwordEncoder;
-    private final SendGridMailSender mailSender;
+    private final MailService mailService;
 
     @Value("${activation.duration}")
     private int activationDuration;
@@ -39,7 +39,7 @@ public class UserService {
                 .build();
 
         try {
-            mailSender.sendMail(createUserRequest.email(), "Activación de cuenta", user.getActivationToken());
+            mailService.sendVerificationEmail(createUserRequest.email(), user.getActivationToken());
         } catch (Exception e) {
             throw new ResponseStatusException(HttpStatus.INTERNAL_SERVER_ERROR,"Error al enviar el email de activación");
         }
