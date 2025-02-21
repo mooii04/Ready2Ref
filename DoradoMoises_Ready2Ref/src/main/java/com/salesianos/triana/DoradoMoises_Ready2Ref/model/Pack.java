@@ -1,11 +1,11 @@
 package com.salesianos.triana.DoradoMoises_Ready2Ref.model;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.Id;
+import jakarta.persistence.*;
 import lombok.*;
 import lombok.experimental.SuperBuilder;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.UUID;
 
 @Getter
@@ -24,5 +24,8 @@ public class Pack {
     private String nombre;
     private String descripcion;
     private double precio;
+
+    @OneToMany(mappedBy = "pack")
+    private List<Recibo> listaArbitros;
 
 }

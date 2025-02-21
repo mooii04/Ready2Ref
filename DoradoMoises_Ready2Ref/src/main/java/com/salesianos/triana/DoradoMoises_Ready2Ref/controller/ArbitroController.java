@@ -15,11 +15,13 @@ import org.springframework.web.bind.annotation.RestController;
 @RequestMapping("/arbitro")
 public class ArbitroController {
 
+    /*
     private UserService userService;
 
     @PostMapping("/create")
     public ResponseEntity<GetArbitroDto> createArbitroUser(@RequestBody EditArbitroDto editUserDto) {
         return ResponseEntity.ok(GetArbitroDto.of(userService.createArbitroUser(editUserDto)));
     }
+     */
 
 }

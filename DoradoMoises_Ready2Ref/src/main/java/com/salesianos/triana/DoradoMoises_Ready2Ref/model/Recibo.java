@@ -1,8 +1,6 @@
 package com.salesianos.triana.DoradoMoises_Ready2Ref.model;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.Id;
+import jakarta.persistence.*;
 import lombok.*;
 import lombok.experimental.SuperBuilder;
 
@@ -25,5 +23,13 @@ public class Recibo {
     private String concepto;
     private String fechaPago;
     private MetodoPago metodoPago;
+
+    @ManyToOne
+    @JoinColumn(name = "arbitro_id", nullable = false)
+    private Arbitro arbitro;
+
+    @ManyToOne
+    @JoinColumn(name = "pack_id", nullable = false)
+    private Pack pack;
 
 }

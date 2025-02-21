@@ -1,8 +1,6 @@
 package com.salesianos.triana.DoradoMoises_Ready2Ref.model;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.Id;
+import jakarta.persistence.*;
 import lombok.*;
 import lombok.experimental.SuperBuilder;
 
@@ -20,7 +18,12 @@ public class Asistencia {
     @Id @GeneratedValue
     private UUID idAsistencia;
 
-    private Long idArbitro;
-    private Long idEntrenamiento;
+    @ManyToOne
+    @JoinColumn(name = "arbitro_id", nullable = false)
+    private Arbitro arbitro;
+
+    @ManyToOne
+    @JoinColumn(name = "entrenamiento_id", nullable = false)
+    private Entrenamiento entrenamiento;
 
 }

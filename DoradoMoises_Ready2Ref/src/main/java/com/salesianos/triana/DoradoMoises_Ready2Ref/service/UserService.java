@@ -63,6 +63,7 @@ public class UserService {
                 .orElseThrow(() -> new ActivationExpiredException("El código de activación no existe o ha caducado"));
     }
 
+    /*
     public Arbitro createArbitroUser (EditArbitroDto arbitroDto){
         Arbitro arbitro = Arbitro.builder()
                 .nombre(arbitroDto.nombre())
@@ -86,5 +87,6 @@ public class UserService {
 
         return userRepository.save(arbitro);
     }
+     */
 
 }
