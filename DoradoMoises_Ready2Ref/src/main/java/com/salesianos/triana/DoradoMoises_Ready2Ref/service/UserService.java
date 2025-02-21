@@ -1,9 +1,9 @@
 package com.salesianos.triana.DoradoMoises_Ready2Ref.service;
 
 import com.salesianos.triana.DoradoMoises_Ready2Ref.dto.CreateUserRequest;
+import com.salesianos.triana.DoradoMoises_Ready2Ref.dto.user.EditArbitroDto;
 import com.salesianos.triana.DoradoMoises_Ready2Ref.error.ActivationExpiredException;
-import com.salesianos.triana.DoradoMoises_Ready2Ref.model.User;
-import com.salesianos.triana.DoradoMoises_Ready2Ref.model.UserRole;
+import com.salesianos.triana.DoradoMoises_Ready2Ref.model.*;
 import com.salesianos.triana.DoradoMoises_Ready2Ref.repository.UserRepository;
 import com.salesianos.triana.DoradoMoises_Ready2Ref.util.MailService;
 import lombok.RequiredArgsConstructor;
@@ -61,6 +61,30 @@ public class UserService {
                     return userRepository.save(user);
                 })
                 .orElseThrow(() -> new ActivationExpiredException("El código de activación no existe o ha caducado"));
+    }
+
+    public Arbitro createArbitroUser (EditArbitroDto arbitroDto){
+        Arbitro arbitro = Arbitro.builder()
+                .nombre(arbitroDto.nombre())
+                .primerApellido(arbitroDto.primerApellido())
+                .segundoApellido(arbitroDto.segundoApellido())
+                .username(arbitroDto.username())
+                .email(arbitroDto.email())
+                .telefono(arbitroDto.telefono())
+                .password(passwordEncoder.encode(arbitroDto.password()))
+                .roles(Set.of(UserRole.USER))
+                .fechaNacimiento(arbitroDto.fechaNacimiento())
+                .edad(arbitroDto.edad())
+                .categoria(Categoria.valueOf(arbitroDto.categoria()))
+                .fechaInscripcion(arbitroDto.fechaInscripcion())
+                .tallaBotas(arbitroDto.tallaBotas())
+                .tallaCamiseta(Talla.valueOf(arbitroDto.tallaCamiseta()))
+                .tallaCalzonas(Talla.valueOf(arbitroDto.tallaCalzonas()))
+                .tallaChandal(Talla.valueOf(arbitroDto.tallaChandal()))
+                .foto(arbitroDto.foto())
+                .build();
+
+        return userRepository.save(arbitro);
     }
 
 }
