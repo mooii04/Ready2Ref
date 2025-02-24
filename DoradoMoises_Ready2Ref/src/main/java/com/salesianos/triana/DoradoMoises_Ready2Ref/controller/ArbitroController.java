@@ -23,4 +23,9 @@ public class ArbitroController {
         return ResponseEntity.ok(GetArbitroDto.of(arbitroService.createArbitroUser(editUserDto)));
     }
 
+    @PostMapping("/edit/user")
+    public ResponseEntity<GetArbitroDto> editUser(@RequestBody EditArbitroDto editUserDto) {
+        return ResponseEntity.ok(GetArbitroDto.of(arbitroService.editUser(editUserDto)));
+    }
+
 }

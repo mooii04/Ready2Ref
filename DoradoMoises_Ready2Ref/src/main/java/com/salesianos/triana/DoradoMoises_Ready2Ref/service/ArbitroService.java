@@ -1,6 +1,7 @@
 package com.salesianos.triana.DoradoMoises_Ready2Ref.service;
 
 import com.salesianos.triana.DoradoMoises_Ready2Ref.dto.user.EditArbitroDto;
+import com.salesianos.triana.DoradoMoises_Ready2Ref.dto.user.EditArbitroUserDto;
 import com.salesianos.triana.DoradoMoises_Ready2Ref.model.Arbitro;
 import com.salesianos.triana.DoradoMoises_Ready2Ref.model.Categoria;
 import com.salesianos.triana.DoradoMoises_Ready2Ref.model.Talla;
@@ -23,7 +24,7 @@ public class ArbitroService {
 
     @Transactional
     public Arbitro createArbitroUser (EditArbitroDto arbitroDto){
-        Arbitro arbitro = Arbitro.builder()
+        Arbitro arbitroNuevo = Arbitro.builder()
                 .nombre(arbitroDto.nombre())
                 .primerApellido(arbitroDto.primerApellido())
                 .segundoApellido(arbitroDto.segundoApellido())
@@ -43,7 +44,11 @@ public class ArbitroService {
                 .foto(arbitroDto.foto())
                 .build();
 
-        return arbitroRepository.save(arbitro);
+        return arbitroRepository.save(arbitroNuevo);
+    }
+
+    public Arbitro editArbitroUser (EditArbitroUserDto arbitroUserDto){
+        
     }
 
 }

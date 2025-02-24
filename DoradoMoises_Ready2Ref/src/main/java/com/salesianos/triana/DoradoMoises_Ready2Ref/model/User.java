@@ -42,9 +42,6 @@ public class User implements UserDetails {
     @ElementCollection(fetch = FetchType.EAGER)
     private Set<UserRole> roles;
 
-    @ManyToMany
-    private List<Mensaje> mensajes = new ArrayList<>();
-
     @Builder.Default
     private boolean enabled = false;
 

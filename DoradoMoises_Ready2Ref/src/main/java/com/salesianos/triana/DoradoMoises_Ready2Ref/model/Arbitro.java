@@ -6,7 +6,9 @@ import lombok.experimental.SuperBuilder;
 
 import java.time.LocalDate;
 import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 @Getter
 @Setter
@@ -49,5 +51,12 @@ public class Arbitro extends User{
     @JoinColumn(name = "arbitro_id", foreignKey = @ForeignKey(name = "fk_arbitro_asistencia"))
     private Pack pack;
 
+    @ManyToMany
+    @JoinTable(
+            name = "arbitro_mensaje",
+            joinColumns = @JoinColumn(name = "arbitro_id"),
+            inverseJoinColumns = @JoinColumn(name = "mensaje_id")
+    )
+    private Set<Mensaje> mensajes = new HashSet<>();
 
 }

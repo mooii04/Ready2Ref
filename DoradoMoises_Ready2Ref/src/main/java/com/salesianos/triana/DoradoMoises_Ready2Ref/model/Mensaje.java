@@ -5,9 +5,7 @@ import lombok.*;
 import lombok.experimental.SuperBuilder;
 
 import java.time.LocalDate;
-import java.util.ArrayList;
-import java.util.List;
-import java.util.UUID;
+import java.util.*;
 
 @Getter
 @Setter
@@ -26,7 +24,7 @@ public class Mensaje {
     private String contenido;
     private LocalDate fechaEnvio;
 
-    @ManyToMany
-    private List<User> usuarios = new ArrayList<>();
+    @ManyToMany(mappedBy = "mensajes")
+    private Set<Arbitro> arbitros = new HashSet<>();
 
 }
