@@ -7,6 +7,7 @@ import com.salesianos.triana.DoradoMoises_Ready2Ref.model.Talla;
 import com.salesianos.triana.DoradoMoises_Ready2Ref.model.UserRole;
 import com.salesianos.triana.DoradoMoises_Ready2Ref.repository.ArbitroRepository;
 import com.salesianos.triana.DoradoMoises_Ready2Ref.repository.UserRepository;
+import jakarta.transaction.Transactional;
 import lombok.RequiredArgsConstructor;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
@@ -20,6 +21,7 @@ public class ArbitroService {
     private final ArbitroRepository arbitroRepository;
     private final PasswordEncoder passwordEncoder;
 
+    @Transactional
     public Arbitro createArbitroUser (EditArbitroDto arbitroDto){
         Arbitro arbitro = Arbitro.builder()
                 .nombre(arbitroDto.nombre())
