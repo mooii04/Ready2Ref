@@ -1,13 +1,11 @@
 package com.salesianos.triana.DoradoMoises_Ready2Ref.service;
 
-import com.salesianos.triana.DoradoMoises_Ready2Ref.dto.user.EditArbitroDto;
-import com.salesianos.triana.DoradoMoises_Ready2Ref.dto.user.EditArbitroUserDto;
+import com.salesianos.triana.DoradoMoises_Ready2Ref.dto.user.create.EditArbitroDto;
 import com.salesianos.triana.DoradoMoises_Ready2Ref.model.Arbitro;
 import com.salesianos.triana.DoradoMoises_Ready2Ref.model.Categoria;
 import com.salesianos.triana.DoradoMoises_Ready2Ref.model.Talla;
 import com.salesianos.triana.DoradoMoises_Ready2Ref.model.UserRole;
 import com.salesianos.triana.DoradoMoises_Ready2Ref.repository.ArbitroRepository;
-import com.salesianos.triana.DoradoMoises_Ready2Ref.repository.UserRepository;
 import jakarta.transaction.Transactional;
 import lombok.RequiredArgsConstructor;
 import org.springframework.security.crypto.password.PasswordEncoder;

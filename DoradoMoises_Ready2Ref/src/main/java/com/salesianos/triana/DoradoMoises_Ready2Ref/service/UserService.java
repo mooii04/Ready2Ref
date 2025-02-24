@@ -1,7 +1,6 @@
 package com.salesianos.triana.DoradoMoises_Ready2Ref.service;
 
 import com.salesianos.triana.DoradoMoises_Ready2Ref.dto.CreateUserRequest;
-import com.salesianos.triana.DoradoMoises_Ready2Ref.dto.user.EditArbitroDto;
 import com.salesianos.triana.DoradoMoises_Ready2Ref.error.ActivationExpiredException;
 import com.salesianos.triana.DoradoMoises_Ready2Ref.model.*;
 import com.salesianos.triana.DoradoMoises_Ready2Ref.repository.UserRepository;
