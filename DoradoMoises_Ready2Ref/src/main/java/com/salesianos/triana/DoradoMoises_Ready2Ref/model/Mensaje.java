@@ -26,7 +26,4 @@ public class Mensaje {
     private String contenido;
     private LocalDate fechaEnvio;
 
-    @ManyToMany
-    private List<User> usuarios = new ArrayList<>();
-
 }
