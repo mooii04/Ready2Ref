@@ -1,8 +1,6 @@
 package com.salesianos.triana.DoradoMoises_Ready2Ref.model;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.Id;
+import jakarta.persistence.*;
 import lombok.*;
 import lombok.experimental.SuperBuilder;
 
@@ -24,6 +22,13 @@ public class Recibo {
     private double cantidad;
     private String concepto;
     private String fechaPago;
+
+    @Enumerated(EnumType.STRING)
     private MetodoPago metodoPago;
 
+    @OneToOne
+    private Arbitro arbitro;
+
+    @OneToOne
+    private Pack pack;
 }

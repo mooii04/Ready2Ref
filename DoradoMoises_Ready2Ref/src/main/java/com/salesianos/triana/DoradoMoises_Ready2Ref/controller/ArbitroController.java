@@ -2,6 +2,7 @@ package com.salesianos.triana.DoradoMoises_Ready2Ref.controller;
 
 import com.salesianos.triana.DoradoMoises_Ready2Ref.dto.user.EditArbitroDto;
 import com.salesianos.triana.DoradoMoises_Ready2Ref.dto.user.GetArbitroDto;
+import com.salesianos.triana.DoradoMoises_Ready2Ref.service.ArbitroService;
 import com.salesianos.triana.DoradoMoises_Ready2Ref.service.UserService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
@@ -15,11 +16,11 @@ import org.springframework.web.bind.annotation.RestController;
 @RequestMapping("/arbitro")
 public class ArbitroController {
 
-    private UserService userService;
+    private final ArbitroService arbitroService;
 
     @PostMapping("/create")
     public ResponseEntity<GetArbitroDto> createArbitroUser(@RequestBody EditArbitroDto editUserDto) {
-        return ResponseEntity.ok(GetArbitroDto.of(userService.createArbitroUser(editUserDto)));
+        return ResponseEntity.ok(GetArbitroDto.of(arbitroService.createArbitroUser(editUserDto)));
     }
 
 }
