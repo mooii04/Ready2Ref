@@ -1,9 +1,4 @@
-package com.salesianos.triana.DoradoMoises_Ready2Ref.dto.user;
-
-import com.salesianos.triana.DoradoMoises_Ready2Ref.model.UserRole;
-
-import java.time.LocalDate;
-import java.util.Set;
+package com.salesianos.triana.DoradoMoises_Ready2Ref.dto.user.create;
 
 public record EditArbitroUserDto(
         String nombre,

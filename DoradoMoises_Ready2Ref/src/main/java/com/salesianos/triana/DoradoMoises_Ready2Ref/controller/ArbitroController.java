@@ -1,9 +1,8 @@
 package com.salesianos.triana.DoradoMoises_Ready2Ref.controller;
 
-import com.salesianos.triana.DoradoMoises_Ready2Ref.dto.user.EditArbitroDto;
-import com.salesianos.triana.DoradoMoises_Ready2Ref.dto.user.GetArbitroDto;
+import com.salesianos.triana.DoradoMoises_Ready2Ref.dto.user.create.EditArbitroDto;
+import com.salesianos.triana.DoradoMoises_Ready2Ref.dto.user.create.GetArbitroDto;
 import com.salesianos.triana.DoradoMoises_Ready2Ref.service.ArbitroService;
-import com.salesianos.triana.DoradoMoises_Ready2Ref.service.UserService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.PostMapping;

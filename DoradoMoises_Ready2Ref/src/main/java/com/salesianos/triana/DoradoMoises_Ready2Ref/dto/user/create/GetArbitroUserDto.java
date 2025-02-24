@@ -1,4 +1,4 @@
-package com.salesianos.triana.DoradoMoises_Ready2Ref.dto.user;
+package com.salesianos.triana.DoradoMoises_Ready2Ref.dto.user.create;
 
 import com.salesianos.triana.DoradoMoises_Ready2Ref.model.Arbitro;
 
