@@ -32,9 +32,25 @@ public class UserController {
     private final JwtService jwtService;
     private final RefreshTokenService refreshTokenService;
 
-    @PostMapping("/auth/register")
+    @PostMapping("/auth/register/user")
     public ResponseEntity<UserResponse> register(@RequestBody CreateUserRequest createUserRequest) {
         User user = userService.createUser(createUserRequest);
+
+        return ResponseEntity.status(HttpStatus.CREATED)
+                .body(UserResponse.of(user));
+    }
+
+    @PostMapping("/auth/register/admin")
+    public ResponseEntity<UserResponse> registerAdmin(@RequestBody CreateUserRequest createUserRequest) {
+        User user = userService.createAdmin(createUserRequest);
+
+        return ResponseEntity.status(HttpStatus.CREATED)
+                .body(UserResponse.of(user));
+    }
+
+    @PostMapping("/auth/register/entrenador")
+    public ResponseEntity<UserResponse> registerEntrenador(@RequestBody CreateUserRequest createUserRequest) {
+        User user = userService.createEntrenador(createUserRequest);
 
         return ResponseEntity.status(HttpStatus.CREATED)
                 .body(UserResponse.of(user));

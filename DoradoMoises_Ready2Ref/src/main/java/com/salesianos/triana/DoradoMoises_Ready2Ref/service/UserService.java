@@ -47,6 +47,42 @@ public class UserService {
         return userRepository.save(user);
     }
 
+    public User createAdmin(CreateUserRequest createUserRequest) {
+        User user = User.builder()
+                .username(createUserRequest.username())
+                .password(passwordEncoder.encode(createUserRequest.password()))
+                .email(createUserRequest.email())
+                .roles(Set.of(UserRole.ADMIN))
+                .activationToken(generateRandomActivationCode())
+                .build();
+
+        try {
+            mailService.sendVerificationEmail(createUserRequest.email(), user.getActivationToken());
+        } catch (Exception e) {
+            throw new ResponseStatusException(HttpStatus.INTERNAL_SERVER_ERROR,"Error al enviar el email de activación");
+        }
+
+        return userRepository.save(user);
+    }
+
+    public User createEntrenador(CreateUserRequest createUserRequest){
+        User user = User.builder()
+                .username(createUserRequest.username())
+                .password(passwordEncoder.encode(createUserRequest.password()))
+                .email(createUserRequest.email())
+                .roles(Set.of(UserRole.ENTRENADOR))
+                .activationToken(generateRandomActivationCode())
+                .build();
+
+        try {
+            mailService.sendVerificationEmail(createUserRequest.email(), user.getActivationToken());
+        } catch (Exception e) {
+            throw new ResponseStatusException(HttpStatus.INTERNAL_SERVER_ERROR,"Error al enviar el email de activación");
+        }
+
+        return userRepository.save(user);
+    }
+
     public String generateRandomActivationCode() {
         return UUID.randomUUID().toString();
     }
@@ -61,30 +97,6 @@ public class UserService {
                     return userRepository.save(user);
                 })
                 .orElseThrow(() -> new ActivationExpiredException("El código de activación no existe o ha caducado"));
-    }
-
-    public Arbitro createArbitroUser (EditArbitroDto arbitroDto){
-        Arbitro arbitro = Arbitro.builder()
-                .nombre(arbitroDto.nombre())
-                .primerApellido(arbitroDto.primerApellido())
-                .segundoApellido(arbitroDto.segundoApellido())
-                .username(arbitroDto.username())
-                .email(arbitroDto.email())
-                .telefono(arbitroDto.telefono())
-                .password(passwordEncoder.encode(arbitroDto.password()))
-                .roles(Set.of(UserRole.USER))
-                .fechaNacimiento(arbitroDto.fechaNacimiento())
-                .edad(arbitroDto.edad())
-                .categoria(Categoria.valueOf(arbitroDto.categoria()))
-                .fechaInscripcion(arbitroDto.fechaInscripcion())
-                .tallaBotas(arbitroDto.tallaBotas())
-                .tallaCamiseta(Talla.valueOf(arbitroDto.tallaCamiseta()))
-                .tallaCalzonas(Talla.valueOf(arbitroDto.tallaCalzonas()))
-                .tallaChandal(Talla.valueOf(arbitroDto.tallaChandal()))
-                .foto(arbitroDto.foto())
-                .build();
-
-        return userRepository.save(arbitro);
     }
 
 }

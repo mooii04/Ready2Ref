@@ -1,6 +1,9 @@
 package com.salesianos.triana.DoradoMoises_Ready2Ref.dto.user;
 
+import com.salesianos.triana.DoradoMoises_Ready2Ref.model.UserRole;
+
 import java.time.LocalDate;
+import java.util.Set;
 
 public record EditArbitroDto(
         String nombre,
@@ -10,7 +13,7 @@ public record EditArbitroDto(
         String email,
         String telefono,
         String password,
-        String roles,
+        Set<UserRole> roles,
         LocalDate fechaNacimiento,
         int edad,
         String categoria,

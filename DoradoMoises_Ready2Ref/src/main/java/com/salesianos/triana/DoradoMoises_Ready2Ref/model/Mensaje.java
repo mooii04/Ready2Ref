@@ -4,6 +4,7 @@ import jakarta.persistence.*;
 import lombok.*;
 import lombok.experimental.SuperBuilder;
 
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.UUID;
@@ -15,20 +16,17 @@ import java.util.UUID;
 @NoArgsConstructor
 @AllArgsConstructor
 @SuperBuilder
-public class Pack {
+public class Mensaje {
 
     @Id
-    @GeneratedValue
+    @GeneratedValue(strategy = GenerationType.UUID)
     private UUID id;
 
-    private String nombre;
-    private String descripcion;
-    private double precio;
+    private String asunto;
+    private String contenido;
+    private LocalDate fechaEnvio;
 
-    @OneToMany(mappedBy = "pack",
-            cascade = CascadeType.ALL,
-            fetch = FetchType.LAZY,
-            orphanRemoval = true)
-    private List<Arbitro> arbitros = new ArrayList<>();
+    @ManyToMany
+    private List<User> usuarios = new ArrayList<>();
 
 }
