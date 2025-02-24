@@ -65,8 +65,9 @@ public class SecurityConfig {
                 .accessDeniedHandler(accessDeniedHandler)
         );
         http.authorizeHttpRequests(authz -> authz
-                .requestMatchers(HttpMethod.POST, "/auth/register", "/auth/login", "/activate/account","/auth/refresh/token", "/error").permitAll()
-                .requestMatchers("/me/admin").hasRole("ADMIN")
+                .requestMatchers(HttpMethod.POST, "/auth/register/**", "/auth/login", "/activate/account","/auth/refresh/token", "/error").permitAll()
+                .requestMatchers("/me/admin", "/create").hasRole("ADMIN")
+                .requestMatchers("/auth/register/entrenador").hasRole("ENTRENADOR")
                 .requestMatchers("/h2-console/**").permitAll()
                 .anyRequest().authenticated());
 

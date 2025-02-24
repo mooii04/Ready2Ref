@@ -7,6 +7,7 @@ import com.salesianos.triana.DoradoMoises_Ready2Ref.model.*;
 import com.salesianos.triana.DoradoMoises_Ready2Ref.repository.UserRepository;
 import com.salesianos.triana.DoradoMoises_Ready2Ref.util.MailService;
 import lombok.RequiredArgsConstructor;
+import lombok.extern.java.Log;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.http.HttpStatus;
 import org.springframework.security.crypto.password.PasswordEncoder;
@@ -18,6 +19,7 @@ import java.time.temporal.ChronoUnit;
 import java.util.Set;
 import java.util.UUID;
 
+@Log
 @Service
 @RequiredArgsConstructor
 public class UserService {
@@ -44,6 +46,8 @@ public class UserService {
             throw new ResponseStatusException(HttpStatus.INTERNAL_SERVER_ERROR,"Error al enviar el email de activación");
         }
 
+        log.info("Activation token %s".formatted(user.getActivationToken()));
+
         return userRepository.save(user);
     }
 
@@ -62,6 +66,8 @@ public class UserService {
             throw new ResponseStatusException(HttpStatus.INTERNAL_SERVER_ERROR,"Error al enviar el email de activación");
         }
 
+        log.info("Activation token %s".formatted(user.getActivationToken()));
+
         return userRepository.save(user);
     }
 
@@ -79,6 +85,8 @@ public class UserService {
         } catch (Exception e) {
             throw new ResponseStatusException(HttpStatus.INTERNAL_SERVER_ERROR,"Error al enviar el email de activación");
         }
+
+        log.info("Activation token %s".formatted(user.getActivationToken()));
 
         return userRepository.save(user);
     }
