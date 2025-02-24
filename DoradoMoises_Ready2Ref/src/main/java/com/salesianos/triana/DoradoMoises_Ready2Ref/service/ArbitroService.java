@@ -47,8 +47,34 @@ public class ArbitroService {
         return arbitroRepository.save(arbitroNuevo);
     }
 
+    @Transactional
+    public Arbitro createArbitroAdmin (EditArbitroDto arbitroDto){
+        Arbitro arbitroNuevoAdmin = Arbitro.builder()
+                .nombre(arbitroDto.nombre())
+                .primerApellido(arbitroDto.primerApellido())
+                .segundoApellido(arbitroDto.segundoApellido())
+                .username(arbitroDto.username())
+                .email(arbitroDto.email())
+                .telefono(arbitroDto.telefono())
+                .password(passwordEncoder.encode(arbitroDto.password()))
+                .roles(Set.of(UserRole.ADMIN))
+                .fechaNacimiento(arbitroDto.fechaNacimiento())
+                .edad(arbitroDto.edad())
+                .categoria(Categoria.valueOf(arbitroDto.categoria()))
+                .fechaInscripcion(arbitroDto.fechaInscripcion())
+                .tallaBotas(arbitroDto.tallaBotas())
+                .tallaCamiseta(Talla.valueOf(arbitroDto.tallaCamiseta()))
+                .tallaCalzonas(Talla.valueOf(arbitroDto.tallaCalzonas()))
+                .tallaChandal(Talla.valueOf(arbitroDto.tallaChandal()))
+                .foto(arbitroDto.foto())
+                .build();
+
+        return arbitroRepository.save(arbitroNuevoAdmin);
+    }
+
+    /*
     public Arbitro editArbitroUser (EditArbitroUserDto arbitroUserDto){
         
-    }
+    }*/
 
 }

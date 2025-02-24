@@ -18,14 +18,22 @@ public class ArbitroController {
 
     private final ArbitroService arbitroService;
 
-    @PostMapping("/create")
+    @PostMapping("/create/user")
     public ResponseEntity<GetArbitroDto> createArbitroUser(@RequestBody EditArbitroDto editUserDto) {
         return ResponseEntity.ok(GetArbitroDto.of(arbitroService.createArbitroUser(editUserDto)));
     }
 
+    @PostMapping("/create/admin")
+    public ResponseEntity<GetArbitroDto> createArbitroAdmin(@RequestBody EditArbitroDto editUserDto) {
+        return ResponseEntity.ok(GetArbitroDto.of(arbitroService.createArbitroAdmin(editUserDto)));
+    }
+
+    /*
     @PostMapping("/edit/user")
     public ResponseEntity<GetArbitroDto> editUser(@RequestBody EditArbitroDto editUserDto) {
         return ResponseEntity.ok(GetArbitroDto.of(arbitroService.editUser(editUserDto)));
     }
+
+     */
 
 }
