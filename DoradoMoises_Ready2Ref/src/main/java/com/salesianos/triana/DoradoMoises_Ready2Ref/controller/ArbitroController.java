@@ -3,7 +3,9 @@ package com.salesianos.triana.DoradoMoises_Ready2Ref.controller;
 import com.salesianos.triana.DoradoMoises_Ready2Ref.dto.user.create.EditArbitroDto;
 import com.salesianos.triana.DoradoMoises_Ready2Ref.dto.user.create.GetArbitroDto;
 import com.salesianos.triana.DoradoMoises_Ready2Ref.dto.user.edit.EditArbitroAdminEDto;
+import com.salesianos.triana.DoradoMoises_Ready2Ref.dto.user.edit.EditArbitroUserEDto;
 import com.salesianos.triana.DoradoMoises_Ready2Ref.dto.user.edit.GetArbitroAdminEDto;
+import com.salesianos.triana.DoradoMoises_Ready2Ref.dto.user.edit.GetArbitroUserEDto;
 import com.salesianos.triana.DoradoMoises_Ready2Ref.model.Arbitro;
 import com.salesianos.triana.DoradoMoises_Ready2Ref.service.ArbitroService;
 import jakarta.validation.Valid;
@@ -30,19 +32,18 @@ public class ArbitroController {
         return ResponseEntity.ok(GetArbitroDto.of(arbitroService.createArbitroAdmin(editUserDto)));
     }
 
-    /*
-    @PostMapping("/edit/user")
-    public ResponseEntity<GetArbitroDto> editUser(@RequestBody EditArbitroDto editUserDto) {
-        return ResponseEntity.ok(GetArbitroDto.of(arbitroService.editUser(editUserDto)));
-    }
-
-     */
-
     @PutMapping("/edit/admin/me")
-    public GetArbitroAdminEDto editUser(@AuthenticationPrincipal Arbitro arbitro, @RequestBody @Valid EditArbitroAdminEDto editUserDto) {
+    public GetArbitroAdminEDto editAdmin(@AuthenticationPrincipal Arbitro arbitro, @RequestBody @Valid EditArbitroAdminEDto editUserDto) {
         Arbitro arbitroEdit = arbitroService.editArbitroAdmin(arbitro.getId(), editUserDto);
 
         return GetArbitroAdminEDto.of(arbitroEdit);
+    }
+
+    @PutMapping("/edit/user/me")
+    public GetArbitroUserEDto editUser(@AuthenticationPrincipal Arbitro arbitro, @RequestBody @Valid EditArbitroUserEDto editUserDto) {
+        Arbitro arbitroEdit = arbitroService.editArbitroUserPropio(arbitro.getId(), editUserDto);
+
+        return GetArbitroUserEDto.of(arbitroEdit);
     }
 
 }

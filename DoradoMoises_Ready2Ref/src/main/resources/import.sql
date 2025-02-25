@@ -14,17 +14,11 @@ INSERT INTO refresh_token (created_at, expire_at,  id, user_id) VALUES ('2025-02
 -- Inserción de entrenadores
 INSERT INTO entrenador (id) VALUES ((SELECT id FROM usuario WHERE username = 'lgarcia'));
 
--- Inserción de un entrenamiento
-INSERT INTO entrenamiento (id_entrenamiento, fecha, entrenador_id) VALUES (gen_random_uuid(), '2025-03-01', (SELECT id FROM entrenador WHERE id = (SELECT id FROM usuario WHERE username = 'lgarcia')));
-
 -- Inserción de un pack
 INSERT INTO pack (id, nombre, descripcion, precio) VALUES (gen_random_uuid(), 'Pack Básico', 'Incluye 5 entrenamientos', 200.00);
 
--- Inserción de un recibo
-INSERT INTO recibo (id, cantidad, concepto, fecha_pago, metodo_pago, arbitro_id, pack_id) VALUES (gen_random_uuid(), 100.50, 'Pago de arbitraje', '2025-03-01', 'TARJETA', (SELECT id FROM arbitro WHERE id = (SELECT id FROM usuario WHERE username = 'jperez')), (SELECT id FROM pack WHERE nombre = 'Pack Básico'));
-
--- Inserción de una asistencia
-INSERT INTO asistencia (id_asistencia, arbitro_id, entrenamiento_id) VALUES (gen_random_uuid(), (SELECT id FROM arbitro WHERE id = (SELECT id FROM usuario WHERE username = 'jperez')), (SELECT id_entrenamiento FROM entrenamiento WHERE fecha = '2025-03-01'));
+-- Inserción de un entrenamiento
+INSERT INTO entrenamiento (id_entrenamiento, fecha, entrenador_id) VALUES (gen_random_uuid(), '2025-03-01', (SELECT id FROM entrenador WHERE id = (SELECT id FROM usuario WHERE username = 'lgarcia')));
 
 -- Inserción de roles
 INSERT INTO user_roles (roles, user_id) VALUES (0, (SELECT id FROM arbitro WHERE id = (SELECT id FROM usuario WHERE username = 'jperez')));
