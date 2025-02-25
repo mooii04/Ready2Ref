@@ -1,7 +1,11 @@
 package com.salesianos.triana.DoradoMoises_Ready2Ref.service;
 
 import com.salesianos.triana.DoradoMoises_Ready2Ref.dto.user.create.EditEntrenadorDto;
+import com.salesianos.triana.DoradoMoises_Ready2Ref.dto.user.edit.EditArbitroUserEDto;
+import com.salesianos.triana.DoradoMoises_Ready2Ref.dto.user.edit.EditEntrenadorEDto;
+import com.salesianos.triana.DoradoMoises_Ready2Ref.model.Arbitro;
 import com.salesianos.triana.DoradoMoises_Ready2Ref.model.Entrenador;
+import com.salesianos.triana.DoradoMoises_Ready2Ref.model.Talla;
 import com.salesianos.triana.DoradoMoises_Ready2Ref.model.UserRole;
 import com.salesianos.triana.DoradoMoises_Ready2Ref.repository.EntrenadorRepository;
 import com.salesianos.triana.DoradoMoises_Ready2Ref.util.MailService;
@@ -53,6 +57,20 @@ public class EntrenadorService {
 
     public String generateRandomActivationCode() {
         return UUID.randomUUID().toString();
+    }
+
+    public Entrenador editEntrenadorPropio(UUID userId, EditEntrenadorEDto editEntrenadorEDto){
+        Entrenador entrenador = entrenadorRepository.findById(userId)
+                .orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND, "Entrenador no encontrado"));
+
+        entrenador.setNombre(editEntrenadorEDto.nombre());
+        entrenador.setPrimerApellido(editEntrenadorEDto.primerApellido());
+        entrenador.setSegundoApellido(editEntrenadorEDto.segundoApellido());
+        entrenador.setEmail(editEntrenadorEDto.email());
+        entrenador.setTelefono(editEntrenadorEDto.telefono());
+        entrenador.setEntrenamientos(entrenador.getEntrenamientos());
+
+        return entrenadorRepository.save(entrenador);
     }
 
 }

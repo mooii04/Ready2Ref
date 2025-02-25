@@ -22,6 +22,7 @@ public class Entrenador extends User{
             cascade = CascadeType.ALL,
             fetch = FetchType.LAZY,
             orphanRemoval = true)
+    @ToString.Exclude
     private List<Entrenamiento> entrenamientos = new ArrayList<>();
 
     // Métodos helpers para gestionar la relación bidireccional

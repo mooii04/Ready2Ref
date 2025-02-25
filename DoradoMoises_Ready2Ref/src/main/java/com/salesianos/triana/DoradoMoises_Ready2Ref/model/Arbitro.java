@@ -42,6 +42,7 @@ public class Arbitro extends User{
             cascade = CascadeType.ALL,
             fetch = FetchType.LAZY,
             orphanRemoval = true)
+    @ToString.Exclude
     private List<Asistencia> asistencias = new ArrayList<>();
 
     @OneToOne
