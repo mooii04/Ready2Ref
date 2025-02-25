@@ -1,6 +1,5 @@
 package com.salesianos.triana.DoradoMoises_Ready2Ref.service;
 
-import com.salesianos.triana.DoradoMoises_Ready2Ref.dto.pack.GetDtoPack;
 import com.salesianos.triana.DoradoMoises_Ready2Ref.dto.user.create.EditArbitroDto;
 import com.salesianos.triana.DoradoMoises_Ready2Ref.dto.user.edit.EditArbitroAdminEDto;
 import com.salesianos.triana.DoradoMoises_Ready2Ref.dto.user.edit.EditArbitroUserEDto;
@@ -157,6 +156,59 @@ public class ArbitroService {
         arbitro.setFoto(editArbitroUserEDto.foto());
 
         return arbitroRepository.save(arbitro);
+    }
+
+    @Transactional
+    public Arbitro editUser(String username, EditArbitroAdminEDto editArbitroAdminEDto) {
+
+        return arbitroRepository.findByUsername(username)
+                .map(arbitro -> {
+                    if (editArbitroAdminEDto.email() != null) {
+                        arbitro.setEmail(editArbitroAdminEDto.email());
+                    }
+                    if (editArbitroAdminEDto.nombre() != null) {
+                        arbitro.setNombre(editArbitroAdminEDto.nombre());
+                    }
+                    if (editArbitroAdminEDto.primerApellido() != null) {
+                        arbitro.setPrimerApellido(editArbitroAdminEDto.primerApellido());
+                    }
+                    if (editArbitroAdminEDto.segundoApellido() != null) {
+                        arbitro.setSegundoApellido(editArbitroAdminEDto.segundoApellido());
+                    }
+                    if (editArbitroAdminEDto.telefono() != null) {
+                        arbitro.setTelefono(editArbitroAdminEDto.telefono());
+                    }
+                    if (editArbitroAdminEDto.categoria() != null) {
+                        arbitro.setCategoria(Categoria.valueOf(editArbitroAdminEDto.categoria()));
+                    }
+                    if (editArbitroAdminEDto.tallaBotas() != 0) {
+                        arbitro.setTallaBotas(editArbitroAdminEDto.tallaBotas());
+                    }
+                    if (editArbitroAdminEDto.tallaCamiseta() != null) {
+                        arbitro.setTallaCamiseta(Talla.valueOf(editArbitroAdminEDto.tallaCamiseta()));
+                    }
+                    if (editArbitroAdminEDto.tallaCalzonas() != null) {
+                        arbitro.setTallaCalzonas(Talla.valueOf(editArbitroAdminEDto.tallaCalzonas()));
+                    }
+                    if (editArbitroAdminEDto.tallaChandal() != null) {
+                        arbitro.setTallaChandal(Talla.valueOf(editArbitroAdminEDto.tallaChandal()));
+                    }
+                    if (editArbitroAdminEDto.foto() != null) {
+                        arbitro.setFoto(editArbitroAdminEDto.foto());
+                    }
+                    if (editArbitroAdminEDto.pack() != null) {
+                        Pack pack = Pack.builder()
+                                .nombre(editArbitroAdminEDto.pack().nombre())
+                                .descripcion(editArbitroAdminEDto.pack().descripcion())
+                                .precio(editArbitroAdminEDto.pack().precio())
+                                .build();
+                        packRepository.save(pack);
+                        arbitro.setPack(pack);
+                    }
+
+                    return arbitro;
+                })
+                .orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND, "Usuario no encontrado"));
     }
 
 }
