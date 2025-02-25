@@ -2,10 +2,7 @@ package com.salesianos.triana.DoradoMoises_Ready2Ref.controller;
 
 import com.salesianos.triana.DoradoMoises_Ready2Ref.dto.user.create.EditArbitroDto;
 import com.salesianos.triana.DoradoMoises_Ready2Ref.dto.user.create.GetArbitroDto;
-import com.salesianos.triana.DoradoMoises_Ready2Ref.dto.user.edit.EditArbitroAdminEDto;
-import com.salesianos.triana.DoradoMoises_Ready2Ref.dto.user.edit.EditArbitroUserEDto;
-import com.salesianos.triana.DoradoMoises_Ready2Ref.dto.user.edit.GetArbitroAdminEDto;
-import com.salesianos.triana.DoradoMoises_Ready2Ref.dto.user.edit.GetArbitroUserEDto;
+import com.salesianos.triana.DoradoMoises_Ready2Ref.dto.user.edit.*;
 import com.salesianos.triana.DoradoMoises_Ready2Ref.model.Arbitro;
 import com.salesianos.triana.DoradoMoises_Ready2Ref.service.ArbitroService;
 import jakarta.validation.Valid;
