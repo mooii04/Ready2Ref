@@ -13,6 +13,7 @@ public record EditArbitroDto(
         String email,
         String telefono,
         String password,
+        String verifyPassword,
         LocalDate fechaNacimiento,
         int edad,
         String categoria,

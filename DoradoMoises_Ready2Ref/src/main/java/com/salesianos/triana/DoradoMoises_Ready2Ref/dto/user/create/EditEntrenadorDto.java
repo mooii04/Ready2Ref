@@ -7,6 +7,7 @@ public record EditEntrenadorDto (
         String username,
         String email,
         String telefono,
-        String password
+        String password,
+        String verifyPassword
 ){
 }
