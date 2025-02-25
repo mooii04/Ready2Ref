@@ -1,19 +1,15 @@
 package com.salesianos.triana.DoradoMoises_Ready2Ref.dto.user.edit;
 
-import com.salesianos.triana.DoradoMoises_Ready2Ref.dto.pack.GetDtoPack;
-
-public record EditArbitroAdminEDto(
+public record EditArbitroUserEDto(
         String nombre,
         String primerApellido,
         String segundoApellido,
         String email,
         String telefono,
-        String categoria,
         int tallaBotas,
         String tallaCamiseta,
         String tallaCalzonas,
         String tallaChandal,
-        String foto,
-        GetDtoPack pack
+        String foto
 ) {
 }

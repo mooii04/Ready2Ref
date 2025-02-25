@@ -3,6 +3,7 @@ package com.salesianos.triana.DoradoMoises_Ready2Ref.service;
 import com.salesianos.triana.DoradoMoises_Ready2Ref.dto.pack.GetDtoPack;
 import com.salesianos.triana.DoradoMoises_Ready2Ref.dto.user.create.EditArbitroDto;
 import com.salesianos.triana.DoradoMoises_Ready2Ref.dto.user.edit.EditArbitroAdminEDto;
+import com.salesianos.triana.DoradoMoises_Ready2Ref.dto.user.edit.EditArbitroUserEDto;
 import com.salesianos.triana.DoradoMoises_Ready2Ref.model.*;
 import com.salesianos.triana.DoradoMoises_Ready2Ref.repository.ArbitroRepository;
 import com.salesianos.triana.DoradoMoises_Ready2Ref.repository.PackRepository;
@@ -117,17 +118,43 @@ public class ArbitroService {
         arbitro.setEmail(editArbitroAdminEDto.email());
         arbitro.setTelefono(editArbitroAdminEDto.telefono());
         arbitro.setCategoria(Categoria.valueOf(editArbitroAdminEDto.categoria()));
-        arbitro.setTallaBotas(Integer.parseInt(editArbitroAdminEDto.tallaBotas()));
+        arbitro.setTallaBotas(editArbitroAdminEDto.tallaBotas());
         arbitro.setTallaCamiseta(Talla.valueOf(editArbitroAdminEDto.tallaCamiseta()));
         arbitro.setTallaCalzonas(Talla.valueOf(editArbitroAdminEDto.tallaCalzonas()));
         arbitro.setTallaChandal(Talla.valueOf(editArbitroAdminEDto.tallaChandal()));
         arbitro.setFoto(editArbitroAdminEDto.foto());
+
+        if(arbitro.getPack() == null){
+            Pack pack = Pack.builder()
+                    .nombre(editArbitroAdminEDto.pack().nombre())
+                    .descripcion(editArbitroAdminEDto.pack().descripcion())
+                    .precio(editArbitroAdminEDto.pack().precio())
+                    .build();
+            packRepository.save(pack);
+        }
 
         Pack pack = packRepository.findByNombre(editArbitroAdminEDto.pack().nombre())
                 .orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND, "Pack no encontrado"));
 
         arbitro.setPack(pack);
 
+        return arbitroRepository.save(arbitro);
+    }
+
+    public Arbitro editArbitroUserPropio(UUID userId, EditArbitroUserEDto editArbitroUserEDto){
+        Arbitro arbitro = arbitroRepository.findById(userId)
+                .orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND, "Arbitro no encontrado"));
+
+        arbitro.setNombre(editArbitroUserEDto.nombre());
+        arbitro.setPrimerApellido(editArbitroUserEDto.primerApellido());
+        arbitro.setSegundoApellido(editArbitroUserEDto.segundoApellido());
+        arbitro.setEmail(editArbitroUserEDto.email());
+        arbitro.setTelefono(editArbitroUserEDto.telefono());
+        arbitro.setTallaBotas(editArbitroUserEDto.tallaBotas());
+        arbitro.setTallaCamiseta(Talla.valueOf(editArbitroUserEDto.tallaCamiseta()));
+        arbitro.setTallaCalzonas(Talla.valueOf(editArbitroUserEDto.tallaCalzonas()));
+        arbitro.setTallaChandal(Talla.valueOf(editArbitroUserEDto.tallaChandal()));
+        arbitro.setFoto(editArbitroUserEDto.foto());
 
         return arbitroRepository.save(arbitro);
     }
