@@ -28,6 +28,7 @@ public class Entrenamiento {
             cascade = CascadeType.ALL,
             fetch = FetchType.LAZY,
             orphanRemoval = true)
+    @ToString.Exclude
     private List<Asistencia> asistencias = new ArrayList<>();
 
     @ManyToOne
