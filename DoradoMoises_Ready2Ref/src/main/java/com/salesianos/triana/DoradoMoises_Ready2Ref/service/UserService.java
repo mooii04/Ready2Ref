@@ -63,4 +63,13 @@ public class UserService {
         return userRepository.save(user);
     }
 
+    public User deleteUser(String username) {
+        User user = userRepository.findFirstByUsername(username)
+                .orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND, "Usuario no encontrado"));
+
+        userRepository.delete(user);
+
+        return user;
+    }
+
 }

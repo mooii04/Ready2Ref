@@ -66,7 +66,7 @@ public class SecurityConfig {
         );
         http.authorizeHttpRequests(authz -> authz
                 .requestMatchers(HttpMethod.POST, "/auth/login", "/activate/account","/auth/refresh/token", "/error", "/edit/**").permitAll()
-                .requestMatchers("/me/admin", "/arbitro/create/**", "/entrenador/create", "/arbitro/edit/admin/**", "/arbitro/search/").hasRole("ADMIN")
+                .requestMatchers("/me/admin", "/arbitro/create/**", "/entrenador/create", "/arbitro/edit/admin/**", "/arbitro/search/", "/delete/**").hasRole("ADMIN")
                 .requestMatchers("/entrenador/**", "/upload").hasRole("ENTRENADOR")
                 .requestMatchers("/me/user", "/arbitro/edit/user/me").hasRole("USER")
                 .requestMatchers("/h2-console/**").permitAll()
