@@ -9,4 +9,6 @@ import java.util.UUID;
 public interface ArbitroRepository extends JpaRepository<Arbitro, Long> {
 
     Optional<Arbitro> findById(UUID id);
+
+    Optional<Arbitro> findByUsername(String username);
 }

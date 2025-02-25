@@ -46,4 +46,11 @@ public class ArbitroController {
         return GetArbitroUserEDto.of(arbitroEdit);
     }
 
+    @PutMapping("/edit/admin/{username}")
+    public GetArbitroAdminEDto updateUser(@PathVariable String username, @RequestBody @Valid EditArbitroAdminEDto editArbitroAdminEDto) {
+
+        Arbitro updateArbitro = arbitroService.editUser(username, editArbitroAdminEDto);
+        return GetArbitroAdminEDto.of(updateArbitro);
+    }
+
 }
