@@ -1,7 +1,6 @@
 package com.salesianos.triana.DoradoMoises_Ready2Ref.controller;
 
 import com.salesianos.triana.DoradoMoises_Ready2Ref.dto.ActivateAccountRequest;
-import com.salesianos.triana.DoradoMoises_Ready2Ref.dto.CreateUserRequest;
 import com.salesianos.triana.DoradoMoises_Ready2Ref.dto.LoginRequest;
 import com.salesianos.triana.DoradoMoises_Ready2Ref.dto.UserResponse;
 import com.salesianos.triana.DoradoMoises_Ready2Ref.model.User;
@@ -31,30 +30,6 @@ public class UserController {
     private final AuthenticationManager authenticationManager;
     private final JwtService jwtService;
     private final RefreshTokenService refreshTokenService;
-
-    @PostMapping("/auth/register/user")
-    public ResponseEntity<UserResponse> register(@RequestBody CreateUserRequest createUserRequest) {
-        User user = userService.createUser(createUserRequest);
-
-        return ResponseEntity.status(HttpStatus.CREATED)
-                .body(UserResponse.of(user));
-    }
-
-    @PostMapping("/auth/register/admin")
-    public ResponseEntity<UserResponse> registerAdmin(@RequestBody CreateUserRequest createUserRequest) {
-        User user = userService.createAdmin(createUserRequest);
-
-        return ResponseEntity.status(HttpStatus.CREATED)
-                .body(UserResponse.of(user));
-    }
-
-    @PostMapping("/auth/register/entrenador")
-    public ResponseEntity<UserResponse> registerEntrenador(@RequestBody CreateUserRequest createUserRequest) {
-        User user = userService.createEntrenador(createUserRequest);
-
-        return ResponseEntity.status(HttpStatus.CREATED)
-                .body(UserResponse.of(user));
-    }
 
     @PostMapping("/auth/login")
     public ResponseEntity<?> login(@RequestBody LoginRequest loginRequest) {
