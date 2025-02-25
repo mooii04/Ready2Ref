@@ -3,6 +3,7 @@ package com.salesianos.triana.DoradoMoises_Ready2Ref.service;
 import com.salesianos.triana.DoradoMoises_Ready2Ref.dto.user.create.EditArbitroDto;
 import com.salesianos.triana.DoradoMoises_Ready2Ref.dto.user.edit.EditArbitroAdminEDto;
 import com.salesianos.triana.DoradoMoises_Ready2Ref.dto.user.edit.EditArbitroUserEDto;
+import com.salesianos.triana.DoradoMoises_Ready2Ref.dto.user.edit.EditContraseniaDto;
 import com.salesianos.triana.DoradoMoises_Ready2Ref.model.*;
 import com.salesianos.triana.DoradoMoises_Ready2Ref.repository.ArbitroRepository;
 import com.salesianos.triana.DoradoMoises_Ready2Ref.repository.PackRepository;
