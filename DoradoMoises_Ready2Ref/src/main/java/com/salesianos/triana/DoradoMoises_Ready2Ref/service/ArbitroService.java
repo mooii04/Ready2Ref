@@ -2,23 +2,19 @@ package com.salesianos.triana.DoradoMoises_Ready2Ref.service;
 
 import com.salesianos.triana.DoradoMoises_Ready2Ref.dto.user.create.EditArbitroDto;
 import com.salesianos.triana.DoradoMoises_Ready2Ref.dto.user.create.EditArbitroUserDto;
-import com.salesianos.triana.DoradoMoises_Ready2Ref.model.Arbitro;
-import com.salesianos.triana.DoradoMoises_Ready2Ref.model.Categoria;
-import com.salesianos.triana.DoradoMoises_Ready2Ref.model.Talla;
-import com.salesianos.triana.DoradoMoises_Ready2Ref.model.UserRole;
+import com.salesianos.triana.DoradoMoises_Ready2Ref.model.*;
 import com.salesianos.triana.DoradoMoises_Ready2Ref.repository.ArbitroRepository;
 import com.salesianos.triana.DoradoMoises_Ready2Ref.specification.ArbitroUserSpecification;
 import com.salesianos.triana.DoradoMoises_Ready2Ref.specification.SearchCriteria;
-import jakarta.persistence.EntityNotFoundException;
 import jakarta.transaction.Transactional;
 import lombok.RequiredArgsConstructor;
 import org.springframework.data.jpa.domain.Specification;
+import org.springframework.http.HttpStatus;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
+import org.springframework.web.server.ResponseStatusException;
 
-import javax.swing.text.html.Option;
 import java.util.List;
-import java.util.Optional;
 import java.util.Set;
 
 @Service
@@ -86,29 +82,50 @@ public class ArbitroService {
         return arbitroRepository.save(arbitroNuevoAdmin);
     }
 
-    public Arbitro editArbitroUser (String username, EditArbitroUserDto arbitroUserDto){
-        Optional<Arbitro> arbitroOptional = Optional.ofNullable(arbitroRepository.findArbitroByUsername(username));
+    @Transactional
+    public Arbitro editArbitroUser(Arbitro arbitroUser, EditArbitroUserDto arbitroUserDto){
+        return arbitroRepository.findFirstByUsername(arbitroUser.getUsername())
+                .map(arbitro -> {
+                    if(arbitroUserDto.password() != null){
+                        arbitro.setPassword(passwordEncoder.encode(arbitroUserDto.password()));
+                    }
+                    if(arbitroUserDto.email() != null){
+                        arbitro.setEmail(arbitroUserDto.email());
+                    }
+                    if(arbitroUserDto.telefono() != null){
+                        arbitro.setTelefono(arbitroUserDto.telefono());
+                    }
+                    if (arbitroUserDto.username() != null){
+                        arbitro.setUsername(arbitroUserDto.username());
+                    }
+                    if(arbitroUserDto.nombre() != null){
+                        arbitro.setNombre(arbitroUserDto.nombre());
+                    }
+                    if(arbitroUserDto.primerApellido() != null){
+                        arbitro.setPrimerApellido(arbitroUserDto.primerApellido());
+                    }
+                    if(arbitroUserDto.segundoApellido() != null){
+                        arbitro.setSegundoApellido(arbitroUserDto.segundoApellido());
+                    }
+                    if(arbitroUserDto.tallaCamiseta() != null){
+                        arbitro.setTallaCamiseta(Talla.valueOf(arbitroUserDto.tallaCamiseta()));
+                    }
+                    if(arbitroUserDto.tallaCalzonas() != null){
+                        arbitro.setTallaCalzonas(Talla.valueOf(arbitroUserDto.tallaCalzonas()));
+                    }
+                    if(arbitroUserDto.tallaChandal() != null){
+                        arbitro.setTallaChandal(Talla.valueOf(arbitroUserDto.tallaChandal()));
+                    }
+                    if(arbitroUserDto.foto() != null){
+                        arbitro.setFoto(arbitroUserDto.foto());
+                    }
+                    if(arbitroUserDto.tallaBotas() != 0){
+                        arbitro.setTallaBotas(arbitroUserDto.tallaBotas());
+                    }
 
-        //PONER BIEN EL MENSAJE DE ERROR
-        if(arbitroOptional.isEmpty())
-            throw new EntityNotFoundException("No se ha encontrado el árbitro con username: " + username);
-
-        Arbitro arbitro = arbitroOptional.get();
-
-        arbitro.setNombre(arbitroUserDto.nombre());
-        arbitro.setPrimerApellido(arbitroUserDto.primerApellido());
-        arbitro.setSegundoApellido(arbitroUserDto.segundoApellido());
-        arbitro.setEmail(arbitroUserDto.email());
-        arbitro.setTelefono(arbitroUserDto.telefono());
-        arbitro.setPassword(passwordEncoder.encode(arbitroUserDto.password()));
-        arbitro.setEdad(arbitroUserDto.edad());
-        arbitro.setTallaBotas(arbitroUserDto.tallaBotas());
-        arbitro.setTallaCamiseta(Talla.valueOf(arbitroUserDto.tallaCamiseta()));
-        arbitro.setTallaCalzonas(Talla.valueOf(arbitroUserDto.tallaCalzonas()));
-        arbitro.setTallaChandal(Talla.valueOf(arbitroUserDto.tallaChandal()));
-        arbitro.setFoto(arbitroUserDto.foto());
-
-        return arbitroRepository.save(arbitro);
+                    return arbitroRepository.save(arbitro);
+                })
+                .orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND, "Arbitro no encontrado"));
     }
 
 }

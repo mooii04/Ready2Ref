@@ -4,6 +4,7 @@ import com.salesianos.triana.DoradoMoises_Ready2Ref.dto.ActivateAccountRequest;
 import com.salesianos.triana.DoradoMoises_Ready2Ref.dto.CreateUserRequest;
 import com.salesianos.triana.DoradoMoises_Ready2Ref.dto.LoginRequest;
 import com.salesianos.triana.DoradoMoises_Ready2Ref.dto.UserResponse;
+import com.salesianos.triana.DoradoMoises_Ready2Ref.model.Arbitro;
 import com.salesianos.triana.DoradoMoises_Ready2Ref.model.User;
 import com.salesianos.triana.DoradoMoises_Ready2Ref.security.jwt.access.JwtService;
 import com.salesianos.triana.DoradoMoises_Ready2Ref.security.jwt.refresh.RefreshToken;

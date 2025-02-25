@@ -7,9 +7,11 @@ import com.salesianos.triana.DoradoMoises_Ready2Ref.dto.user.edit.GetArbitroUser
 import com.salesianos.triana.DoradoMoises_Ready2Ref.model.Arbitro;
 import com.salesianos.triana.DoradoMoises_Ready2Ref.service.ArbitroService;
 import com.salesianos.triana.DoradoMoises_Ready2Ref.specification.SearchCriteria;
+import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.java.Log;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.ArrayList;
@@ -53,9 +55,10 @@ public class ArbitroController {
         return ResponseEntity.ok(GetArbitroDto.of(arbitroService.createArbitroAdmin(editUserDto)));
     }
 
-    @PutMapping("/edit/user/{username}")
-    public GetArbitroUserEDto editUser(@RequestBody EditArbitroUserDto editUserDto, @PathVariable String username) {
-        return GetArbitroUserEDto.of(arbitroService.editArbitroUser(username, editUserDto));
-    }
+    @PutMapping("/edit/user/me")
+    public GetArbitroUserEDto editUser(@AuthenticationPrincipal Arbitro arbitro, @RequestBody @Valid EditArbitroUserDto editUserDto) {
+        Arbitro arbitroEdit = arbitroService.editArbitroUser(arbitro, editUserDto);
 
+        return GetArbitroUserEDto.of(arbitroEdit);
+    }
 }
