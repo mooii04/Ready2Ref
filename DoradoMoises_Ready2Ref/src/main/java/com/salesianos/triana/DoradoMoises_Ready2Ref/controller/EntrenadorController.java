@@ -19,7 +19,7 @@ public class EntrenadorController {
     private final EntrenadorService entrenadorService;
 
     @PostMapping("/create")
-    public ResponseEntity<GetEntrenadorDto> createEntrenador(@RequestBody EditEntrenadorDto editEntrenadorDto) {
+    public ResponseEntity<GetEntrenadorDto> createEntrenador(@RequestBody @Valid EditEntrenadorDto editEntrenadorDto) {
         return ResponseEntity.ok(GetEntrenadorDto.of(entrenadorService.createEntrenador(editEntrenadorDto)));
     }
 
