@@ -7,6 +7,14 @@ import com.salesianos.triana.DoradoMoises_Ready2Ref.dto.user.search.GetSearchArb
 import com.salesianos.triana.DoradoMoises_Ready2Ref.model.Arbitro;
 import com.salesianos.triana.DoradoMoises_Ready2Ref.service.ArbitroService;
 import com.salesianos.triana.DoradoMoises_Ready2Ref.specification.SearchCriteria;
+import io.swagger.v3.oas.annotations.Operation;
+import io.swagger.v3.oas.annotations.media.ArraySchema;
+import io.swagger.v3.oas.annotations.media.Content;
+import io.swagger.v3.oas.annotations.media.ExampleObject;
+import io.swagger.v3.oas.annotations.media.Schema;
+import io.swagger.v3.oas.annotations.responses.ApiResponse;
+import io.swagger.v3.oas.annotations.responses.ApiResponses;
+import io.swagger.v3.oas.annotations.tags.Tag;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.java.Log;
@@ -24,13 +32,56 @@ import java.util.regex.Pattern;
 @RestController
 @RequiredArgsConstructor
 @RequestMapping("/arbitro")
+
+@Tag(name = "Árbitro", description = "Operaciones relacionadas con los árbitros")
 public class ArbitroController {
 
     private final ArbitroService arbitroService;
 
+
+    @Operation(summary = "Crea un árbitro como usuario")
+    @ApiResponses(value = {
+            @ApiResponse(responseCode = "200",
+                    description = "Árbitro creado correctamente",
+                    content = {@Content(mediaType = "application/json",
+                            array = @ArraySchema(schema = @Schema(implementation = GetArbitroDto.class)),
+                            examples = {@ExampleObject(
+                                    value = """
+                                                {
+                                                                        "nombre": "Moisés",
+                                                                        "primerApellido": "Dorado",
+                                                                        "segundoApellido": "Gutiérrez",
+                                                                        "username": "username1234",
+                                                                        "email": "dorado.gumoi24@triana.salesianos.edu",
+                                                                        "telefono": "654 832 999",
+                                                                        "password": "12345678",
+                                                                        "fechaNacimiento": "2003-01-01",
+                                                                        "edad": 20,
+                                                                        "categoria": "DIVISION_HONOR",
+                                                                        "fechaInscripcion": "2023-10-01",
+                                                                        "tallaBotas": 44,
+                                                                        "tallaCamiseta": "S",
+                                                                        "tallaCalzonas": "S",
+                                                                        "tallaChandal": "M",
+                                                                        "foto": "fotomooii04.png"
+                                                }
+                                            """
+                            )}
+                    )}),
+            @ApiResponse(responseCode = "404",
+                    description = "No se ha encontrado ningúna incidencia",
+                    content = @Content),
+    })
     @PostMapping("/create/user")
-    public ResponseEntity<GetArbitroDto> createArbitroUser(@RequestBody @Valid EditArbitroDto editUserDto) {
-        return ResponseEntity.status(HttpStatus.CREATED).body(GetArbitroDto.of(arbitroService.createArbitroUser(editUserDto)));
+    public ResponseEntity<GetArbitroDto> createArbitroUser(@io.swagger.v3.oas.annotations.parameters.RequestBody(
+            description = "Cuerpo del árbitro user", required = true,
+            content = @Content(mediaType = "application/json",
+                    schema = @Schema(implementation = Arbitro.class),
+                    examples = @ExampleObject(value = """
+                            //creo que aqui va el ejemplo de la respuesta y el de abajo es el que pongo yo en el postman
+                            """))) @RequestBody @Valid EditArbitroDto editUserDto) {
+        return ResponseEntity.status(HttpStatus.CREATED)
+                .body(GetArbitroDto.of(arbitroService.createArbitroUser(editUserDto)));
     }
 
     @PostMapping("/create/admin")
