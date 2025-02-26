@@ -3,7 +3,7 @@ package com.salesianos.triana.DoradoMoises_Ready2Ref.controller;
 import com.salesianos.triana.DoradoMoises_Ready2Ref.dto.user.create.EditArbitroDto;
 import com.salesianos.triana.DoradoMoises_Ready2Ref.dto.user.create.GetArbitroDto;
 import com.salesianos.triana.DoradoMoises_Ready2Ref.dto.user.edit.*;
-import com.salesianos.triana.DoradoMoises_Ready2Ref.dto.user.search.GetSearchDto;
+import com.salesianos.triana.DoradoMoises_Ready2Ref.dto.user.search.GetSearchArbitroDto;
 import com.salesianos.triana.DoradoMoises_Ready2Ref.model.Arbitro;
 import com.salesianos.triana.DoradoMoises_Ready2Ref.service.ArbitroService;
 import com.salesianos.triana.DoradoMoises_Ready2Ref.specification.SearchCriteria;
@@ -60,7 +60,7 @@ public class ArbitroController {
     }
 
     @GetMapping("/search/")
-    public List<GetSearchDto> buscar(@RequestParam(value="search", required = false) String search) {
+    public List<GetSearchArbitroDto> buscar(@RequestParam(value="search", required = false) String search) {
         log.info(search);
         List<SearchCriteria> params = new ArrayList<SearchCriteria>();
         if (search != null) {

@@ -5,9 +5,8 @@ import com.salesianos.triana.DoradoMoises_Ready2Ref.dto.pack.GetDtoPack;
 import com.salesianos.triana.DoradoMoises_Ready2Ref.model.Arbitro;
 
 import java.time.LocalDate;
-import java.util.stream.Collectors;
 
-public record GetSearchDto (
+public record GetSearchArbitroDto(
         String nombre,
         String primerApellido,
         String segundoApellido,
@@ -28,8 +27,8 @@ public record GetSearchDto (
         GetDtoPack pack
 ){
 
-    public static GetSearchDto of (Arbitro a) {
-        return new GetSearchDto(
+    public static GetSearchArbitroDto of (Arbitro a) {
+        return new GetSearchArbitroDto(
                 a.getNombre(),
                 a.getPrimerApellido(),
                 a.getSegundoApellido(),

@@ -3,7 +3,7 @@ package com.salesianos.triana.DoradoMoises_Ready2Ref.service;
 import com.salesianos.triana.DoradoMoises_Ready2Ref.dto.user.create.EditArbitroDto;
 import com.salesianos.triana.DoradoMoises_Ready2Ref.dto.user.edit.EditArbitroAdminEDto;
 import com.salesianos.triana.DoradoMoises_Ready2Ref.dto.user.edit.EditArbitroUserEDto;
-import com.salesianos.triana.DoradoMoises_Ready2Ref.dto.user.search.GetSearchDto;
+import com.salesianos.triana.DoradoMoises_Ready2Ref.dto.user.search.GetSearchArbitroDto;
 import com.salesianos.triana.DoradoMoises_Ready2Ref.model.*;
 import com.salesianos.triana.DoradoMoises_Ready2Ref.repository.ArbitroRepository;
 import com.salesianos.triana.DoradoMoises_Ready2Ref.repository.PackRepository;
@@ -211,13 +211,13 @@ public class ArbitroService {
                 .orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND, "Usuario no encontrado"));
     }
 
-    public List<GetSearchDto> buscarArbitros(List<SearchCriteria> criterios) {
+    public List<GetSearchArbitroDto> buscarArbitros(List<SearchCriteria> criterios) {
         ArbitroUserSpecification specification = new ArbitroUserSpecification(criterios);
 
         Specification<Arbitro> where = specification.build();
 
         return arbitroRepository.findAll(where).stream()
-                .map(GetSearchDto::of)
+                .map(GetSearchArbitroDto::of)
                 .toList();
     }
 
