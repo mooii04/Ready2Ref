@@ -3,18 +3,23 @@ package com.salesianos.triana.DoradoMoises_Ready2Ref.service;
 import com.salesianos.triana.DoradoMoises_Ready2Ref.dto.user.create.EditArbitroDto;
 import com.salesianos.triana.DoradoMoises_Ready2Ref.dto.user.edit.EditArbitroAdminEDto;
 import com.salesianos.triana.DoradoMoises_Ready2Ref.dto.user.edit.EditArbitroUserEDto;
+import com.salesianos.triana.DoradoMoises_Ready2Ref.dto.user.search.GetSearchDto;
 import com.salesianos.triana.DoradoMoises_Ready2Ref.model.*;
 import com.salesianos.triana.DoradoMoises_Ready2Ref.repository.ArbitroRepository;
 import com.salesianos.triana.DoradoMoises_Ready2Ref.repository.PackRepository;
+import com.salesianos.triana.DoradoMoises_Ready2Ref.specification.ArbitroUserSpecification;
+import com.salesianos.triana.DoradoMoises_Ready2Ref.specification.SearchCriteria;
 import com.salesianos.triana.DoradoMoises_Ready2Ref.util.MailService;
 import jakarta.transaction.Transactional;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.java.Log;
+import org.springframework.data.jpa.domain.Specification;
 import org.springframework.http.HttpStatus;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.web.server.ResponseStatusException;
 
+import java.util.List;
 import java.util.Set;
 import java.util.UUID;
 
@@ -101,13 +106,8 @@ public class ArbitroService {
         return arbitroRepository.save(arbitroNuevoAdmin);
     }
 
-    /*
-    public Arbitro editArbitroUser (EditArbitroUserDto arbitroUserDto){
-        
-    }*/
-
-    public Arbitro editArbitroAdmin(UUID userId, EditArbitroAdminEDto editArbitroAdminEDto) {
-        Arbitro arbitro = arbitroRepository.findById(userId)
+    public Arbitro editArbitroAdmin(String username, EditArbitroAdminEDto editArbitroAdminEDto) {
+        Arbitro arbitro = arbitroRepository.findByUsername(username)
                 .orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND, "Arbitro no encontrado"));
 
         // Actualizar los campos del usuario
@@ -209,6 +209,16 @@ public class ArbitroService {
                     return arbitro;
                 })
                 .orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND, "Usuario no encontrado"));
+    }
+
+    public List<GetSearchDto> buscarArbitros(List<SearchCriteria> criterios) {
+        ArbitroUserSpecification specification = new ArbitroUserSpecification(criterios);
+
+        Specification<Arbitro> where = specification.build();
+
+        return arbitroRepository.findAll(where).stream()
+                .map(GetSearchDto::of)
+                .toList();
     }
 
 }

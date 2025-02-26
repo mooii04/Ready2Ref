@@ -3,12 +3,15 @@ package com.salesianos.triana.DoradoMoises_Ready2Ref.controller;
 import com.salesianos.triana.DoradoMoises_Ready2Ref.dto.ActivateAccountRequest;
 import com.salesianos.triana.DoradoMoises_Ready2Ref.dto.LoginRequest;
 import com.salesianos.triana.DoradoMoises_Ready2Ref.dto.UserResponse;
+import com.salesianos.triana.DoradoMoises_Ready2Ref.dto.user.edit.EditContraseniaDto;
+import com.salesianos.triana.DoradoMoises_Ready2Ref.dto.user.edit.GetContraseniaDto;
 import com.salesianos.triana.DoradoMoises_Ready2Ref.model.User;
 import com.salesianos.triana.DoradoMoises_Ready2Ref.security.jwt.access.JwtService;
 import com.salesianos.triana.DoradoMoises_Ready2Ref.security.jwt.refresh.RefreshToken;
 import com.salesianos.triana.DoradoMoises_Ready2Ref.security.jwt.refresh.RefreshTokenRequest;
 import com.salesianos.triana.DoradoMoises_Ready2Ref.security.jwt.refresh.RefreshTokenService;
 import com.salesianos.triana.DoradoMoises_Ready2Ref.service.UserService;
+import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -17,10 +20,9 @@ import org.springframework.security.authentication.UsernamePasswordAuthenticatio
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.security.core.context.SecurityContextHolder;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
+
+import java.util.UUID;
 
 @RestController
 @RequiredArgsConstructor
@@ -79,6 +81,19 @@ public class UserController {
     @GetMapping("/me/admin")
     public User adminMe(@AuthenticationPrincipal User user) {
         return user;
+    }
+
+    @PutMapping("/edit/contrasenia")
+    public GetContraseniaDto updateUserPassword(@AuthenticationPrincipal User user, @RequestBody @Valid EditContraseniaDto editContraseniaDto) {
+        User userUpdated = userService.updateUserPassword(user.getId(), editContraseniaDto);
+
+        return GetContraseniaDto.of(userUpdated);
+    }
+
+    @DeleteMapping("/delete/{username}")
+    public ResponseEntity<?> deleteUser(@PathVariable String username) {
+        userService.deleteUser(username);
+        return ResponseEntity.noContent().build();
     }
 
 }

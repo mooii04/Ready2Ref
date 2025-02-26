@@ -24,7 +24,10 @@ public class Mensaje {
     private String contenido;
     private LocalDate fechaEnvio;
 
-    @ManyToMany(mappedBy = "mensajes")
+    @ManyToMany(mappedBy = "mensajesArbitro")
     private Set<Arbitro> arbitros = new HashSet<>();
+
+    @ManyToMany(mappedBy = "mensajesEntrenador")
+    private Set<Entrenador> entrenadores = new HashSet<>();
 
 }

@@ -58,4 +58,7 @@ public class RefreshTokenService {
 
     }
 
+    public void deleteAllByUser(User user) {
+        refreshTokenRepository.deleteByUser(user);
+    }
 }

@@ -1,10 +1,13 @@
 package com.salesianos.triana.DoradoMoises_Ready2Ref.service;
 
 import com.salesianos.triana.DoradoMoises_Ready2Ref.dto.CreateUserRequest;
+import com.salesianos.triana.DoradoMoises_Ready2Ref.dto.user.edit.EditContraseniaDto;
 import com.salesianos.triana.DoradoMoises_Ready2Ref.error.ActivationExpiredException;
 import com.salesianos.triana.DoradoMoises_Ready2Ref.model.*;
 import com.salesianos.triana.DoradoMoises_Ready2Ref.repository.UserRepository;
+import com.salesianos.triana.DoradoMoises_Ready2Ref.security.jwt.refresh.RefreshTokenService;
 import com.salesianos.triana.DoradoMoises_Ready2Ref.util.MailService;
+import jakarta.transaction.Transactional;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.java.Log;
 import org.springframework.beans.factory.annotation.Value;
@@ -26,6 +29,7 @@ public class UserService {
     private final UserRepository userRepository;
     private final PasswordEncoder passwordEncoder;
     private final MailService mailService;
+    private final RefreshTokenService refreshTokenService;
 
     @Value("${activation.duration}")
     private int activationDuration;
@@ -40,6 +44,43 @@ public class UserService {
                     return userRepository.save(user);
                 })
                 .orElseThrow(() -> new ActivationExpiredException("El código de activación no existe o ha caducado"));
+    }
+
+    public User updateUserPassword(UUID userId, EditContraseniaDto editContraseniaDto) {
+        User user = userRepository.findById(userId)
+                .orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND, "Usuario no encontrado"));
+
+        //Verificar que las contraseñas coinciden
+        if (!editContraseniaDto.password().equals(editContraseniaDto.verifyPassword())) {
+            throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "Las contraseñas no coinciden");
+        }
+
+        // Verificar que la contraseña antigua es correcta
+        if (!passwordEncoder.matches(editContraseniaDto.oldPassword(), user.getPassword())) {
+            throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "Contraseña antigua incorrecta");
+        }
+
+        // Actualizar la contraseña
+        user.setPassword(passwordEncoder.encode(editContraseniaDto.password()));
+
+        return userRepository.save(user);
+    }
+
+    @Transactional
+    public void deleteUser(String username) {
+        User user = userRepository.findFirstByUsername(username)
+                .orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND, "Usuario no encontrado"));
+
+        if (user.getRoles().stream()
+                .filter(role -> role.name().equals("ADMIN"))
+                .findFirst()
+                .isPresent()) {
+            throw new ResponseStatusException(HttpStatus.FORBIDDEN, "No puedes borrar un usuario administrador");
+        }
+
+        refreshTokenService.deleteAllByUser(user);
+
+        userRepository.delete(user);
     }
 
 }
