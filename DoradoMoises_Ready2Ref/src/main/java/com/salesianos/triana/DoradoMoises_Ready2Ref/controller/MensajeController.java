@@ -29,6 +29,8 @@ public class MensajeController {
         return ResponseEntity.ok(GetMensajeDto.of(mensajeService.save(editMensajeDto)));
     }
 
+
+
     @GetMapping("/search")
     public List<GetMensajeDto> buscar(@RequestParam(value="search", required = false) String search) {
         log.info(search);

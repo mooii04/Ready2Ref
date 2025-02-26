@@ -31,4 +31,27 @@ public class Mensaje {
     @ManyToMany(mappedBy = "mensajesEntrenador")
     private Set<Entrenador> entrenadores = new HashSet<>();
 
+    // Métodos helpers para gestionar la relación bidireccional
+    public void addArbitro(Arbitro arbitro) {
+        arbitros.add(arbitro);
+        arbitro.getMensajesArbitro().add(this);
+    }
+
+    public void removeArbitro(Arbitro arbitro) {
+        arbitros.remove(arbitro);
+        arbitro.getMensajesArbitro().remove(this);
+    }
+
+    public void addEntrenador(Set<Entrenador> entrenadores) {
+        entrenadores.addAll(entrenadores);
+        for (Entrenador entrenador : entrenadores) {
+            entrenador.getMensajesEntrenador().add(this);
+        }
+    }
+
+    public void removeEntrenador(Entrenador entrenador) {
+        entrenadores.remove(entrenador);
+        entrenador.getMensajesEntrenador().remove(this);
+    }
+
 }

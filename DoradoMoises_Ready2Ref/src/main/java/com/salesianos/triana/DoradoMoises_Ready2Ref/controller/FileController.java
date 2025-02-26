@@ -2,6 +2,7 @@ package com.salesianos.triana.DoradoMoises_Ready2Ref.controller;
 
 import com.salesianos.triana.DoradoMoises_Ready2Ref.dto.file.FileResponse;
 import com.salesianos.triana.DoradoMoises_Ready2Ref.model.FileMetadata;
+import com.salesianos.triana.DoradoMoises_Ready2Ref.service.MensajeService;
 import com.salesianos.triana.DoradoMoises_Ready2Ref.util.MimeTypeDetector;
 import com.salesianos.triana.DoradoMoises_Ready2Ref.service.files.StorageService;
 import lombok.RequiredArgsConstructor;
@@ -13,6 +14,7 @@ import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
 import java.net.URI;
+import java.util.UUID;
 
 @RestController
 @RequiredArgsConstructor
@@ -20,13 +22,15 @@ public class FileController {
 
     private final StorageService storageService;
     private final MimeTypeDetector mimeTypeDetector;
-
+    private final MensajeService mensajeService;
 
 
     @PostMapping("/upload")
     public ResponseEntity<?> upload(@RequestPart("file") MultipartFile file) {
 
         FileResponse response = uploadFile(file);
+
+        mensajeService.enviarMensajeEntrenoSubido();
 
         return ResponseEntity.created(URI.create(response.uri())).body(response);
     }
