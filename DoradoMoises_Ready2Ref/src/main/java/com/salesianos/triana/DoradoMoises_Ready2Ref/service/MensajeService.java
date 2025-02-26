@@ -28,7 +28,7 @@ public class MensajeService {
         Mensaje mensaje = Mensaje.builder()
                 .asunto(editMensajeDto.asunto())
                 .contenido(editMensajeDto.contenido())
-                .fechaEnvio(editMensajeDto.fechaEnvio())
+                .fechaEnvio(LocalDate.now())
                 .leido(false)
                 .build();
 
