@@ -29,25 +29,25 @@ public class ArbitroController {
     private final ArbitroService arbitroService;
 
     @PostMapping("/create/user")
-    public ResponseEntity<GetArbitroDto> createArbitroUser(@RequestBody EditArbitroDto editUserDto) {
+    public ResponseEntity<GetArbitroDto> createArbitroUser(@RequestBody @Valid EditArbitroDto editUserDto) {
         return ResponseEntity.status(HttpStatus.CREATED).body(GetArbitroDto.of(arbitroService.createArbitroUser(editUserDto)));
     }
 
     @PostMapping("/create/admin")
-    public ResponseEntity<GetArbitroDto> createArbitroAdmin(@RequestBody EditArbitroDto editUserDto) {
+    public ResponseEntity<GetArbitroDto> createArbitroAdmin(@RequestBody @Valid EditArbitroDto editUserDto) {
         return ResponseEntity.ok(GetArbitroDto.of(arbitroService.createArbitroAdmin(editUserDto)));
     }
 
     @PutMapping("/edit/admin/me")
-    public GetArbitroAdminEDto editAdmin(@AuthenticationPrincipal Arbitro arbitro, @RequestBody @Valid EditArbitroAdminEDto editUserDto) {
-        Arbitro arbitroEdit = arbitroService.editArbitroAdmin(arbitro.getId(), editUserDto);
+    public GetArbitroAdminEDto editAdmin(@AuthenticationPrincipal Arbitro arbitro, @RequestBody EditArbitroAdminEDto editArbitroAdminEDto) {
+        Arbitro arbitroEdit = arbitroService.editArbitroAdmin(arbitro.getUsername(), editArbitroAdminEDto);
 
         return GetArbitroAdminEDto.of(arbitroEdit);
     }
 
     @PutMapping("/edit/user/me")
-    public GetArbitroUserEDto editUser(@AuthenticationPrincipal Arbitro arbitro, @RequestBody @Valid EditArbitroUserEDto editUserDto) {
-        Arbitro arbitroEdit = arbitroService.editArbitroUserPropio(arbitro.getId(), editUserDto);
+    public GetArbitroUserEDto editUser(@AuthenticationPrincipal Arbitro arbitro, @RequestBody @Valid EditArbitroUserEDto editArbitroUserEDto) {
+        Arbitro arbitroEdit = arbitroService.editArbitroUserPropio(arbitro.getId(), editArbitroUserEDto);
 
         return GetArbitroUserEDto.of(arbitroEdit);
     }

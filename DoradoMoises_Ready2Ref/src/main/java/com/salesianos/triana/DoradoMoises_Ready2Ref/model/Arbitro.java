@@ -50,6 +50,7 @@ public class Arbitro extends User{
 
     @ManyToOne
     @JoinColumn(name = "arbitro_id", foreignKey = @ForeignKey(name = "fk_arbitro_asistencia"))
+    @ToString.Exclude
     private Pack pack;
 
     @ManyToMany
@@ -58,6 +59,7 @@ public class Arbitro extends User{
             joinColumns = @JoinColumn(name = "arbitro_id"),
             inverseJoinColumns = @JoinColumn(name = "mensaje_id")
     )
-    private Set<Mensaje> mensajes = new HashSet<>();
+    @ToString.Exclude
+    private Set<Mensaje> mensajesArbitro = new HashSet<>();
 
 }

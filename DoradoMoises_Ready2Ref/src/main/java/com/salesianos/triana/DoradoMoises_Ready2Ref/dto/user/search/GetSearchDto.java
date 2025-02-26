@@ -47,7 +47,7 @@ public record GetSearchDto (
                 a.getTallaChandal().toString(),
                 a.getFoto(),
                 a.getAsistencias().stream().map(GetAsistenciaDto::of).findFirst().orElse(null),
-                GetDtoPack.fromPack(a.getPack())
+                a.getPack() == null ? null : GetDtoPack.fromPack(a.getPack())
         );
     }
 

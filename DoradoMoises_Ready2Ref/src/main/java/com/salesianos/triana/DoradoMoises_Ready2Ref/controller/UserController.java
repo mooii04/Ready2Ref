@@ -11,6 +11,7 @@ import com.salesianos.triana.DoradoMoises_Ready2Ref.security.jwt.refresh.Refresh
 import com.salesianos.triana.DoradoMoises_Ready2Ref.security.jwt.refresh.RefreshTokenRequest;
 import com.salesianos.triana.DoradoMoises_Ready2Ref.security.jwt.refresh.RefreshTokenService;
 import com.salesianos.triana.DoradoMoises_Ready2Ref.service.UserService;
+import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -83,7 +84,7 @@ public class UserController {
     }
 
     @PutMapping("/edit/contrasenia")
-    public GetContraseniaDto updateUserPassword(@AuthenticationPrincipal User user, @RequestBody EditContraseniaDto editContraseniaDto) {
+    public GetContraseniaDto updateUserPassword(@AuthenticationPrincipal User user, @RequestBody @Valid EditContraseniaDto editContraseniaDto) {
         User userUpdated = userService.updateUserPassword(user.getId(), editContraseniaDto);
 
         return GetContraseniaDto.of(userUpdated);

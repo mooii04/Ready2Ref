@@ -106,13 +106,8 @@ public class ArbitroService {
         return arbitroRepository.save(arbitroNuevoAdmin);
     }
 
-    /*
-    public Arbitro editArbitroUser (EditArbitroUserDto arbitroUserDto){
-        
-    }*/
-
-    public Arbitro editArbitroAdmin(UUID userId, EditArbitroAdminEDto editArbitroAdminEDto) {
-        Arbitro arbitro = arbitroRepository.findById(userId)
+    public Arbitro editArbitroAdmin(String username, EditArbitroAdminEDto editArbitroAdminEDto) {
+        Arbitro arbitro = arbitroRepository.findByUsername(username)
                 .orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND, "Arbitro no encontrado"));
 
         // Actualizar los campos del usuario
