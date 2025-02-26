@@ -5,7 +5,9 @@ import com.salesianos.triana.DoradoMoises_Ready2Ref.dto.user.edit.EditContraseni
 import com.salesianos.triana.DoradoMoises_Ready2Ref.error.ActivationExpiredException;
 import com.salesianos.triana.DoradoMoises_Ready2Ref.model.*;
 import com.salesianos.triana.DoradoMoises_Ready2Ref.repository.UserRepository;
+import com.salesianos.triana.DoradoMoises_Ready2Ref.security.jwt.refresh.RefreshTokenService;
 import com.salesianos.triana.DoradoMoises_Ready2Ref.util.MailService;
+import jakarta.transaction.Transactional;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.java.Log;
 import org.springframework.beans.factory.annotation.Value;
@@ -27,6 +29,7 @@ public class UserService {
     private final UserRepository userRepository;
     private final PasswordEncoder passwordEncoder;
     private final MailService mailService;
+    private final RefreshTokenService refreshTokenService;
 
     @Value("${activation.duration}")
     private int activationDuration;
@@ -63,13 +66,21 @@ public class UserService {
         return userRepository.save(user);
     }
 
-    public User deleteUser(String username) {
+    @Transactional
+    public void deleteUser(String username) {
         User user = userRepository.findFirstByUsername(username)
                 .orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND, "Usuario no encontrado"));
 
-        userRepository.delete(user);
+        if (user.getRoles().stream()
+                .filter(role -> role.name().equals("ADMIN"))
+                .findFirst()
+                .isPresent()) {
+            throw new ResponseStatusException(HttpStatus.FORBIDDEN, "No puedes borrar un usuario administrador");
+        }
 
-        return user;
+        refreshTokenService.deleteAllByUser(user);
+
+        userRepository.delete(user);
     }
 
 }
