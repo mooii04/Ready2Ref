@@ -67,3 +67,10 @@ INSERT INTO user_roles (roles, user_id) VALUES (0, (SELECT id FROM arbitro WHERE
 INSERT INTO user_roles (roles, user_id) VALUES (0, (SELECT id FROM arbitro WHERE id = (SELECT id FROM usuario WHERE username = 'sfernandez')));
 INSERT INTO user_roles (roles, user_id) VALUES (0, (SELECT id FROM arbitro WHERE id = (SELECT id FROM usuario WHERE username = 'msanchez')));
 INSERT INTO user_roles (roles, user_id) VALUES (0, (SELECT id FROM arbitro WHERE id = (SELECT id FROM usuario WHERE username = 'ndiaz')));
+
+-- Inserción de mensajes
+INSERT INTO mensaje (id, asunto, contenido, fecha_envio, leido, ) VALUES (gen_random_uuid(), 'Entrenamiento Semana 23-29 Diciembre', 'Buenas tardes compañeros, el entreno de esta semana próxima ya esta subido a la plataforma', '2025-02-25', false);
+
+
+-- Inserción de arbitro_meensaje
+INSERT INTO arbitro_mensaje (arbitro_id, mensaje_id) VALUES ((SELECT id FROM arbitro WHERE id = (SELECT id FROM usuario WHERE username = 'alopez')), (SELECT id FROM mensaje WHERE id = (SELECT id FROM mensaje WHERE asunto = 'Entrenamiento Semana 23-29 Diciembre')));

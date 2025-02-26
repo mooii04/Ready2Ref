@@ -17,22 +17,23 @@ import java.util.List;
 @RequiredArgsConstructor
 public class MensajeService {
 
-    private MensajeRepository mensajeRepository;
+    private final MensajeRepository mensajeRepository;
 
     public Mensaje save(EditMensajeDto editMensajeDto) {
         Mensaje mensaje = Mensaje.builder()
                 .asunto(editMensajeDto.asunto())
                 .contenido(editMensajeDto.contenido())
                 .fechaEnvio(editMensajeDto.fechaEnvio())
+                .leido(false)
                 .build();
 
         return mensajeRepository.save(mensaje);
     }
 
     public List<GetMensajeDto> buscarMensajes(List<SearchCriteria> criterios) {
-        MensajeSpecification spec = new MensajeSpecification(criterios);
+        MensajeSpecification specification = new MensajeSpecification(criterios);
 
-        Specification<Mensaje> where = spec.build();
+        Specification<Mensaje> where = specification.build();
 
         return mensajeRepository.findAll(where).stream()
                 .map(GetMensajeDto::of)

@@ -7,14 +7,16 @@ import java.time.LocalDate;
 public record GetMensajeDto(
         String asunto,
         String contenido,
-        LocalDate fechaEnvio
+        LocalDate fechaEnvio,
+        boolean leido
 ) {
 
     public static GetMensajeDto of(Mensaje m) {
         return new GetMensajeDto(
                 m.getAsunto(),
                 m.getContenido(),
-                m.getFechaEnvio()
+                m.getFechaEnvio(),
+                m.isLeido()
         );
     }
 
