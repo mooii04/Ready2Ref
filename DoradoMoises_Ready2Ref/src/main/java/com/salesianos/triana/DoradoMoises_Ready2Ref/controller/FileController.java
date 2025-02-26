@@ -24,7 +24,6 @@ public class FileController {
     private final MimeTypeDetector mimeTypeDetector;
     private final MensajeService mensajeService;
 
-
     @PostMapping("/upload")
     public ResponseEntity<?> upload(@RequestPart("file") MultipartFile file) {
 
