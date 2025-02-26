@@ -11,6 +11,7 @@ public record EditMensajeDto(
         @NotBlank(message = "El contenido no puede estar vacío")
         String contenido,
 
-        LocalDate fechaEnvio
+        LocalDate fechaEnvio,
+        boolean leido
 ) {
 }

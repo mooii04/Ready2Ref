@@ -23,6 +23,7 @@ public class Mensaje {
     private String asunto;
     private String contenido;
     private LocalDate fechaEnvio;
+    private boolean leido;
 
     @ManyToMany(mappedBy = "mensajesArbitro")
     private Set<Arbitro> arbitros = new HashSet<>();
