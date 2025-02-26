@@ -21,6 +21,8 @@ import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.UUID;
+
 @RestController
 @RequiredArgsConstructor
 public class UserController {
@@ -85,6 +87,12 @@ public class UserController {
         User userUpdated = userService.updateUserPassword(user.getId(), editContraseniaDto);
 
         return GetContraseniaDto.of(userUpdated);
+    }
+
+    @DeleteMapping("/delete/{username}")
+    public ResponseEntity<?> deleteUser(@PathVariable String username) {
+        userService.deleteUser(username);
+        return ResponseEntity.noContent().build();
     }
 
 }
