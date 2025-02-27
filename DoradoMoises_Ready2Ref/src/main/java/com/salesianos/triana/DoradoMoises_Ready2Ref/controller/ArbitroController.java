@@ -18,6 +18,9 @@ import io.swagger.v3.oas.annotations.tags.Tag;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.java.Log;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
@@ -390,48 +393,215 @@ public class ArbitroController {
                             examples = {@ExampleObject(
                                     value =
                                         """
-                                                [
-                                                    {
-                                                        "nombre": "María",
-                                                        "primerApellido": "Hernández",
-                                                        "segundoApellido": "Díaz",
-                                                        "username": "mhernandez",
-                                                        "email": "mhernandez@example.com",
-                                                        "telefono": "600222333",
-                                                        "password": "{bcrypt}$2a$12$cIYPIMkHiCd.qakhyfrCXeqltzKwoTSRAK9I/aFCo2z4qyNX1bVwy",
-                                                        "fechaNacimiento": "1997-01-01",
-                                                        "edad": 28,
-                                                        "categoria": "PRIMERA",
-                                                        "fechaInscripcion": "2020-01-01",
-                                                        "tallaBotas": 41,
-                                                        "tallaCamiseta": "M",
-                                                        "tallaCalzonas": "M",
-                                                        "tallaChandal": "M",
-                                                        "foto": "https://www.example.com/foto4.jpg",
-                                                        "asistencias": null,
-                                                        "pack": null
-                                                    },
-                                                    {
-                                                        "nombre": "Pedro",
-                                                        "primerApellido": "Torres",
-                                                        "segundoApellido": "Gómez",
-                                                        "username": "ptorres",
-                                                        "email": "ptorres@example.com",
-                                                        "telefono": "600333444",
-                                                        "password": "{bcrypt}$2a$12$cIYPIMkHiCd.qakhyfrCXeqltzKwoTSRAK9I/aFCo2z4qyNX1bVwy",
-                                                        "fechaNacimiento": "1993-01-01",
-                                                        "edad": 32,
-                                                        "categoria": "SEGUNDA",
-                                                        "fechaInscripcion": "2020-01-01",
-                                                        "tallaBotas": 43,
-                                                        "tallaCamiseta": "L",
-                                                        "tallaCalzonas": "L",
-                                                        "tallaChandal": "L",
-                                                        "foto": "https://www.example.com/foto5.jpg",
-                                                        "asistencias": null,
-                                                        "pack": null
-                                                    }
-                                                ]
+                                                {
+                                                            "content": [
+                                                                {
+                                                                    "nombre": "Juan",
+                                                                    "primerApellido": "PÃ©rez",
+                                                                    "segundoApellido": "GÃ³mez",
+                                                                    "username": "jperez",
+                                                                    "email": "jperez@example.com",
+                                                                    "telefono": "600123456",
+                                                                    "password": "{bcrypt}$2a$12$cIYPIMkHiCd.qakhyfrCXeqltzKwoTSRAK9I/aFCo2z4qyNX1bVwy",
+                                                                    "fechaNacimiento": "1995-01-01",
+                                                                    "edad": 30,
+                                                                    "categoria": "OFICIAL",
+                                                                    "fechaInscripcion": "2020-01-01",
+                                                                    "tallaBotas": 42,
+                                                                    "tallaCamiseta": "M",
+                                                                    "tallaCalzonas": "M",
+                                                                    "tallaChandal": "M",
+                                                                    "foto": "https://www.example.com/foto1.jpg",
+                                                                    "asistencias": null,
+                                                                    "pack": null
+                                                                },
+                                                                {
+                                                                    "nombre": "Ana",
+                                                                    "primerApellido": "LÃ³pez",
+                                                                    "segundoApellido": "MartÃ­nez",
+                                                                    "username": "alopez",
+                                                                    "email": "alopez@example.com",
+                                                                    "telefono": "600654321",
+                                                                    "password": "{bcrypt}$2a$12$cIYPIMkHiCd.qakhyfrCXeqltzKwoTSRAK9I/aFCo2z4qyNX1bVwy",
+                                                                    "fechaNacimiento": "2000-01-01",
+                                                                    "edad": 25,
+                                                                    "categoria": "PROVINCIAL",
+                                                                    "fechaInscripcion": "2020-01-01",
+                                                                    "tallaBotas": 40,
+                                                                    "tallaCamiseta": "S",
+                                                                    "tallaCalzonas": "S",
+                                                                    "tallaChandal": "S",
+                                                                    "foto": "https://www.example.com/foto2.jpg",
+                                                                    "asistencias": null,
+                                                                    "pack": null
+                                                                },
+                                                                {
+                                                                    "nombre": "MarÃ­a",
+                                                                    "primerApellido": "HernÃ¡ndez",
+                                                                    "segundoApellido": "DÃ­az",
+                                                                    "username": "mhernandez",
+                                                                    "email": "mhernandez@example.com",
+                                                                    "telefono": "600222333",
+                                                                    "password": "{bcrypt}$2a$12$cIYPIMkHiCd.qakhyfrCXeqltzKwoTSRAK9I/aFCo2z4qyNX1bVwy",
+                                                                    "fechaNacimiento": "1997-01-01",
+                                                                    "edad": 28,
+                                                                    "categoria": "PRIMERA",
+                                                                    "fechaInscripcion": "2020-01-01",
+                                                                    "tallaBotas": 41,
+                                                                    "tallaCamiseta": "M",
+                                                                    "tallaCalzonas": "M",
+                                                                    "tallaChandal": "M",
+                                                                    "foto": "https://www.example.com/foto4.jpg",
+                                                                    "asistencias": null,
+                                                                    "pack": null
+                                                                },
+                                                                {
+                                                                    "nombre": "Pedro",
+                                                                    "primerApellido": "Torres",
+                                                                    "segundoApellido": "GÃ³mez",
+                                                                    "username": "ptorres",
+                                                                    "email": "ptorres@example.com",
+                                                                    "telefono": "600333444",
+                                                                    "password": "{bcrypt}$2a$12$cIYPIMkHiCd.qakhyfrCXeqltzKwoTSRAK9I/aFCo2z4qyNX1bVwy",
+                                                                    "fechaNacimiento": "1993-01-01",
+                                                                    "edad": 32,
+                                                                    "categoria": "SEGUNDA",
+                                                                    "fechaInscripcion": "2020-01-01",
+                                                                    "tallaBotas": 43,
+                                                                    "tallaCamiseta": "L",
+                                                                    "tallaCalzonas": "L",
+                                                                    "tallaChandal": "L",
+                                                                    "foto": "https://www.example.com/foto5.jpg",
+                                                                    "asistencias": null,
+                                                                    "pack": null
+                                                                },
+                                                                {
+                                                                    "nombre": "Laura",
+                                                                    "primerApellido": "MartÃ­n",
+                                                                    "segundoApellido": "JimÃ©nez",
+                                                                    "username": "lmartin",
+                                                                    "email": "lmartin@example.com",
+                                                                    "telefono": "600444555",
+                                                                    "password": "{bcrypt}$2a$12$cIYPIMkHiCd.qakhyfrCXeqltzKwoTSRAK9I/aFCo2z4qyNX1bVwy",
+                                                                    "fechaNacimiento": "1998-01-01",
+                                                                    "edad": 27,
+                                                                    "categoria": "ASISTENTE_PRIMERA",
+                                                                    "fechaInscripcion": "2020-01-01",
+                                                                    "tallaBotas": 40,
+                                                                    "tallaCamiseta": "S",
+                                                                    "tallaCalzonas": "S",
+                                                                    "tallaChandal": "S",
+                                                                    "foto": "https://www.example.com/foto6.jpg",
+                                                                    "asistencias": null,
+                                                                    "pack": null
+                                                                },
+                                                                {
+                                                                    "nombre": "Javier",
+                                                                    "primerApellido": "GÃ³mez",
+                                                                    "segundoApellido": "Ruiz",
+                                                                    "username": "jgomez",
+                                                                    "email": "jgomez@example.com",
+                                                                    "telefono": "600555666",
+                                                                    "password": "{bcrypt}$2a$12$cIYPIMkHiCd.qakhyfrCXeqltzKwoTSRAK9I/aFCo2z4qyNX1bVwy",
+                                                                    "fechaNacimiento": "1996-01-01",
+                                                                    "edad": 29,
+                                                                    "categoria": "ASISTENTE_SEGUNDA",
+                                                                    "fechaInscripcion": "2020-01-01",
+                                                                    "tallaBotas": 41,
+                                                                    "tallaCamiseta": "M",
+                                                                    "tallaCalzonas": "M",
+                                                                    "tallaChandal": "M",
+                                                                    "foto": "https://www.example.com/foto7.jpg",
+                                                                    "asistencias": null,
+                                                                    "pack": null
+                                                                },
+                                                                {
+                                                                    "nombre": "Sara",
+                                                                    "primerApellido": "FernÃ¡ndez",
+                                                                    "segundoApellido": "LÃ³pez",
+                                                                    "username": "sfernandez",
+                                                                    "email": "sfernandez@example.com",
+                                                                    "telefono": "600666777",
+                                                                    "password": "{bcrypt}$2a$12$cIYPIMkHiCd.qakhyfrCXeqltzKwoTSRAK9I/aFCo2z4qyNX1bVwy",
+                                                                    "fechaNacimiento": "1994-01-01",
+                                                                    "edad": 31,
+                                                                    "categoria": "ASISTENTE_3RFEF",
+                                                                    "fechaInscripcion": "2020-01-01",
+                                                                    "tallaBotas": 42,
+                                                                    "tallaCamiseta": "L",
+                                                                    "tallaCalzonas": "L",
+                                                                    "tallaChandal": "L",
+                                                                    "foto": "https://www.example.com/foto8.jpg",
+                                                                    "asistencias": null,
+                                                                    "pack": null
+                                                                },
+                                                                {
+                                                                    "nombre": "Miguel",
+                                                                    "primerApellido": "SÃ¡nchez",
+                                                                    "segundoApellido": "PÃ©rez",
+                                                                    "username": "msanchez",
+                                                                    "email": "msanchez@example.com",
+                                                                    "telefono": "600777888",
+                                                                    "password": "{bcrypt}$2a$12$cIYPIMkHiCd.qakhyfrCXeqltzKwoTSRAK9I/aFCo2z4qyNX1bVwy",
+                                                                    "fechaNacimiento": "1992-01-01",
+                                                                    "edad": 33,
+                                                                    "categoria": "OFICIAL",
+                                                                    "fechaInscripcion": "2020-01-01",
+                                                                    "tallaBotas": 43,
+                                                                    "tallaCamiseta": "M",
+                                                                    "tallaCalzonas": "M",
+                                                                    "tallaChandal": "M",
+                                                                    "foto": "https://www.example.com/foto9.jpg",
+                                                                    "asistencias": null,
+                                                                    "pack": null
+                                                                },
+                                                                {
+                                                                    "nombre": "Natalia",
+                                                                    "primerApellido": "DÃ­az",
+                                                                    "segundoApellido": "MartÃ­nez",
+                                                                    "username": "ndiaz",
+                                                                    "email": "ndiaz@example.com",
+                                                                    "telefono": "600888999",
+                                                                    "password": "{bcrypt}$2a$12$cIYPIMkHiCd.qakhyfrCXeqltzKwoTSRAK9I/aFCo2z4qyNX1bVwy",
+                                                                    "fechaNacimiento": "1999-01-01",
+                                                                    "edad": 26,
+                                                                    "categoria": "PROVINCIAL",
+                                                                    "fechaInscripcion": "2020-01-01",
+                                                                    "tallaBotas": 40,
+                                                                    "tallaCamiseta": "S",
+                                                                    "tallaCalzonas": "S",
+                                                                    "tallaChandal": "S",
+                                                                    "foto": "https://www.example.com/foto10.jpg",
+                                                                    "asistencias": null,
+                                                                    "pack": null
+                                                                }
+                                                            ],
+                                                            "pageable": {
+                                                                "pageNumber": 0,
+                                                                "pageSize": 10,
+                                                                "sort": {
+                                                                    "empty": true,
+                                                                    "sorted": false,
+                                                                    "unsorted": true
+                                                                },
+                                                                "offset": 0,
+                                                                "paged": true,
+                                                                "unpaged": false
+                                                            },
+                                                            "last": true,
+                                                            "totalElements": 9,
+                                                            "totalPages": 1,
+                                                            "first": true,
+                                                            "numberOfElements": 9,
+                                                            "size": 10,
+                                                            "number": 0,
+                                                            "sort": {
+                                                                "empty": true,
+                                                                "sorted": false,
+                                                                "unsorted": true
+                                                            },
+                                                            "empty": false
+                                                        }
                                         """
                             )}
                     )}),
@@ -449,21 +619,27 @@ public class ArbitroController {
                     content = @Content)
     })
     @GetMapping("/search/")
-    public List<GetSearchArbitroDto> buscar(@RequestParam(value="search", required = false) String search) {
-        log.info(search);
-        List<SearchCriteria> params = new ArrayList<SearchCriteria>();
+    public Page<GetSearchArbitroDto> buscar(
+            @RequestParam(value = "search", required = false) String search,
+            @RequestParam(value = "pagina", defaultValue = "0") int pagina,
+            @RequestParam(value = "tamano", defaultValue = "10") int tamano) {
+
+        log.info("Criterios de búsqueda: " + search);
+
+        List<SearchCriteria> params = new ArrayList<>();
         if (search != null) {
             Pattern pattern = Pattern.compile("(\\w+?)(:|<|>)(\\w+?),");
             Matcher matcher = pattern.matcher(search + ",");
             while (matcher.find()) {
-                log.info(matcher.group(1));
-                log.info(matcher.group(2));
-                log.info(matcher.group(3));
+                log.info("Campo: " + matcher.group(1));
+                log.info("Operador: " + matcher.group(2));
+                log.info("Valor: " + matcher.group(3));
                 params.add(new SearchCriteria(matcher.group(1), matcher.group(2), matcher.group(3)));
             }
         }
 
-        return arbitroService.buscarArbitros(params);
+        Pageable pageable = PageRequest.of(pagina, tamano);
+        return arbitroService.buscarArbitros(params, pageable);
 
     }
 

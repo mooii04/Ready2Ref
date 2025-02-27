@@ -13,6 +13,8 @@ import com.salesianos.triana.DoradoMoises_Ready2Ref.util.MailService;
 import jakarta.transaction.Transactional;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.java.Log;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.domain.Specification;
 import org.springframework.http.HttpStatus;
 import org.springframework.security.crypto.password.PasswordEncoder;
@@ -211,14 +213,14 @@ public class ArbitroService {
                 .orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND, "Usuario no encontrado"));
     }
 
-    public List<GetSearchArbitroDto> buscarArbitros(List<SearchCriteria> criterios) {
+    public Page<GetSearchArbitroDto> buscarArbitros(List<SearchCriteria> criterios, Pageable pageable) {
         ArbitroUserSpecification specification = new ArbitroUserSpecification(criterios);
 
         Specification<Arbitro> where = specification.build();
 
-        return arbitroRepository.findAll(where).stream()
-                .map(GetSearchArbitroDto::of)
-                .toList();
+        return arbitroRepository.findAll(where, pageable)
+                .map(GetSearchArbitroDto::of);
     }
+
 
 }
