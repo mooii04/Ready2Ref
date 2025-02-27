@@ -10,6 +10,11 @@ INSERT INTO usuario (id, nombre, primer_apellido, segundo_apellido, username, em
 INSERT INTO usuario (id, nombre, primer_apellido, segundo_apellido, username, email, telefono, password, enabled) VALUES (gen_random_uuid(), 'Sara', 'Fernández', 'López', 'sfernandez', 'sfernandez@example.com', '600666777', '{bcrypt}$2a$12$cIYPIMkHiCd.qakhyfrCXeqltzKwoTSRAK9I/aFCo2z4qyNX1bVwy', true);
 INSERT INTO usuario (id, nombre, primer_apellido, segundo_apellido, username, email, telefono, password, enabled) VALUES (gen_random_uuid(), 'Miguel', 'Sánchez', 'Pérez', 'msanchez', 'msanchez@example.com', '600777888', '{bcrypt}$2a$12$cIYPIMkHiCd.qakhyfrCXeqltzKwoTSRAK9I/aFCo2z4qyNX1bVwy', true);
 INSERT INTO usuario (id, nombre, primer_apellido, segundo_apellido, username, email, telefono, password, enabled) VALUES (gen_random_uuid(), 'Natalia', 'Díaz', 'Martínez', 'ndiaz', 'ndiaz@example.com', '600888999', '{bcrypt}$2a$12$cIYPIMkHiCd.qakhyfrCXeqltzKwoTSRAK9I/aFCo2z4qyNX1bVwy', true);
+INSERT INTO usuario (id, nombre, primer_apellido, segundo_apellido, username, email, telefono, password, enabled) VALUES (gen_random_uuid(), 'Mario', 'Gómez', 'Martínez', 'mgomez', 'mgomez@example.com', '600999000', '{bcrypt}$2a$12$cIYPIMkHiCd.qakhyfrCXeqltzKwoTSRAK9I/aFCo2z4qyNX1bVwy', true);
+INSERT INTO usuario (id, nombre, primer_apellido, segundo_apellido, username, email, telefono, password, enabled) VALUES (gen_random_uuid(), 'Lucía', 'Milla', 'Gómez', 'lmilla', 'lmilla@example.com', '600000111', '{bcrypt}$2a$12$cIYPIMkHiCd.qakhyfrCXeqltzKwoTSRAK9I/aFCo2z4qyNX1bVwy', true);
+INSERT INTO usuario (id, nombre, primer_apellido, segundo_apellido, username, email, telefono, password, enabled) VALUES (gen_random_uuid(), 'Elena', 'Núñez', 'Santos', 'enunez', 'enunez@example.com', '600111333', '{bcrypt}$2a$12$cIYPIMkHiCd.qakhyfrCXeqltzKwoTSRAK9I/aFCo2z4qyNX1bVwy', true);
+INSERT INTO usuario (id, nombre, primer_apellido, segundo_apellido, username, email, telefono, password, enabled) VALUES (gen_random_uuid(), 'David', 'Ortiz', 'Ramírez', 'dortiz', 'dortiz@example.com', '600222444', '{bcrypt}$2a$12$cIYPIMkHiCd.qakhyfrCXeqltzKwoTSRAK9I/aFCo2z4qyNX1bVwy', true);
+INSERT INTO usuario (id, nombre, primer_apellido, segundo_apellido, username, email, telefono, password, enabled) VALUES (gen_random_uuid(), 'Isabel', 'Pérez', 'García', 'iperez', 'iperez@example.com', '600333555', '{bcrypt}$2a$12$cIYPIMkHiCd.qakhyfrCXeqltzKwoTSRAK9I/aFCo2z4qyNX1bVwy', true);
 
 -- Inserción de árbitros
 INSERT INTO arbitro (id, edad, categoria, fecha_inscripcion, talla_botas, talla_camiseta, talla_calzonas, talla_chandal, foto, fecha_nacimiento) VALUES ((SELECT id FROM usuario WHERE username = 'jperez'), 30, 'OFICIAL', '2020-01-01', 42, 'M', 'M', 'M', 'https://www.example.com/foto1.jpg', '1995-01-01');
@@ -21,6 +26,11 @@ INSERT INTO arbitro (id, edad, categoria, fecha_inscripcion, talla_botas, talla_
 INSERT INTO arbitro (id, edad, categoria, fecha_inscripcion, talla_botas, talla_camiseta, talla_calzonas, talla_chandal, foto, fecha_nacimiento) VALUES ((SELECT id FROM usuario WHERE username = 'sfernandez'), 31, 'ASISTENTE_3RFEF', '2020-01-01', 42, 'L', 'L', 'L', 'https://www.example.com/foto8.jpg', '1994-01-01');
 INSERT INTO arbitro (id, edad, categoria, fecha_inscripcion, talla_botas, talla_camiseta, talla_calzonas, talla_chandal, foto, fecha_nacimiento) VALUES ((SELECT id FROM usuario WHERE username = 'msanchez'), 33, 'OFICIAL', '2020-01-01', 43, 'M', 'M', 'M', 'https://www.example.com/foto9.jpg', '1992-01-01');
 INSERT INTO arbitro (id, edad, categoria, fecha_inscripcion, talla_botas, talla_camiseta, talla_calzonas, talla_chandal, foto, fecha_nacimiento) VALUES ((SELECT id FROM usuario WHERE username = 'ndiaz'), 26, 'PROVINCIAL', '2020-01-01', 40, 'S', 'S', 'S', 'https://www.example.com/foto10.jpg', '1999-01-01');
+INSERT INTO arbitro (id, edad, categoria, fecha_inscripcion, talla_botas, talla_camiseta, talla_calzonas, talla_chandal, foto, fecha_nacimiento) VALUES ((SELECT id FROM usuario WHERE username = 'mgomez'), 30, 'OFICIAL', '2020-01-01', 42, 'M', 'M', 'M', 'https://www.example.com/foto11.jpg', '1995-01-01');
+INSERT INTO arbitro (id, edad, categoria, fecha_inscripcion, talla_botas, talla_camiseta, talla_calzonas, talla_chandal, foto, fecha_nacimiento) VALUES ((SELECT id FROM usuario WHERE username = 'lmilla'), 25, 'PROVINCIAL', '2020-01-01', 40, 'S', 'S', 'S', 'https://www.example.com/foto12.jpg', '2000-01-01');
+INSERT INTO arbitro (id, edad, categoria, fecha_inscripcion, talla_botas, talla_camiseta, talla_calzonas, talla_chandal, foto, fecha_nacimiento) VALUES ((SELECT id FROM usuario WHERE username = 'enunez'), 28, 'PRIMERA', '2020-01-01', 41, 'M', 'M', 'M', 'https://www.example.com/foto13.jpg', '1997-01-01');
+INSERT INTO arbitro (id, edad, categoria, fecha_inscripcion, talla_botas, talla_camiseta, talla_calzonas, talla_chandal, foto, fecha_nacimiento) VALUES ((SELECT id FROM usuario WHERE username = 'dortiz'), 32, 'SEGUNDA', '2020-01-01', 43, 'L', 'L', 'L', 'https://www.example.com/foto14.jpg', '1993-01-01');
+INSERT INTO arbitro (id, edad, categoria, fecha_inscripcion, talla_botas, talla_camiseta, talla_calzonas, talla_chandal, foto, fecha_nacimiento) VALUES ((SELECT id FROM usuario WHERE username = 'iperez'), 27, 'ASISTENTE_PRIMERA', '2020-01-01', 40, 'S', 'S', 'S', 'https://www.example.com/foto15.jpg', '1998-01-01');
 
 INSERT INTO refresh_token (created_at, expire_at,  id, user_id) VALUES ('2025-02-25 18:08.309182+00', '2030-02-25 18:08.309182+00', gen_random_uuid(), (SELECT id FROM usuario WHERE username = 'jperez'));
 INSERT INTO refresh_token (created_at, expire_at,  id, user_id) VALUES ('2025-02-25 18:08.309182+00', '2030-02-25 18:08.309182+00', gen_random_uuid(), (SELECT id FROM usuario WHERE username = 'alopez'));
@@ -33,6 +43,11 @@ INSERT INTO refresh_token (created_at, expire_at,  id, user_id) VALUES ('2025-02
 INSERT INTO refresh_token (created_at, expire_at,  id, user_id) VALUES ('2025-02-25 18:08.309182+00', '2030-02-25 18:08.309182+00', gen_random_uuid(), (SELECT id FROM usuario WHERE username = 'sfernandez'));
 INSERT INTO refresh_token (created_at, expire_at,  id, user_id) VALUES ('2025-02-25 18:08.309182+00', '2030-02-25 18:08.309182+00', gen_random_uuid(), (SELECT id FROM usuario WHERE username = 'msanchez'));
 INSERT INTO refresh_token (created_at, expire_at,  id, user_id) VALUES ('2025-02-25 18:08.309182+00', '2030-02-25 18:08.309182+00', gen_random_uuid(), (SELECT id FROM usuario WHERE username = 'ndiaz'));
+INSERT INTO refresh_token (created_at, expire_at,  id, user_id) VALUES ('2025-02-25 18:08.309182+00', '2030-02-25 18:08.309182+00', gen_random_uuid(), (SELECT id FROM usuario WHERE username = 'mgomez'));
+INSERT INTO refresh_token (created_at, expire_at,  id, user_id) VALUES ('2025-02-25 18:08.309182+00', '2030-02-25 18:08.309182+00', gen_random_uuid(), (SELECT id FROM usuario WHERE username = 'lmilla'));
+INSERT INTO refresh_token (created_at, expire_at,  id, user_id) VALUES ('2025-02-25 18:08.309182+00', '2030-02-25 18:08.309182+00', gen_random_uuid(), (SELECT id FROM usuario WHERE username = 'enunez'));
+INSERT INTO refresh_token (created_at, expire_at,  id, user_id) VALUES ('2025-02-25 18:08.309182+00', '2030-02-25 18:08.309182+00', gen_random_uuid(), (SELECT id FROM usuario WHERE username = 'dortiz'));
+INSERT INTO refresh_token (created_at, expire_at,  id, user_id) VALUES ('2025-02-25 18:08.309182+00', '2030-02-25 18:08.309182+00', gen_random_uuid(), (SELECT id FROM usuario WHERE username = 'iperez'));
 
 -- Inserción de entrenadores
 INSERT INTO entrenador (id) VALUES ((SELECT id FROM usuario WHERE username = 'lgarcia'));
@@ -67,6 +82,11 @@ INSERT INTO user_roles (roles, user_id) VALUES (0, (SELECT id FROM arbitro WHERE
 INSERT INTO user_roles (roles, user_id) VALUES (0, (SELECT id FROM arbitro WHERE id = (SELECT id FROM usuario WHERE username = 'sfernandez')));
 INSERT INTO user_roles (roles, user_id) VALUES (0, (SELECT id FROM arbitro WHERE id = (SELECT id FROM usuario WHERE username = 'msanchez')));
 INSERT INTO user_roles (roles, user_id) VALUES (0, (SELECT id FROM arbitro WHERE id = (SELECT id FROM usuario WHERE username = 'ndiaz')));
+INSERT INTO user_roles (roles, user_id) VALUES (0, (SELECT id FROM arbitro WHERE id = (SELECT id FROM usuario WHERE username = 'mgomez')));
+INSERT INTO user_roles (roles, user_id) VALUES (0, (SELECT id FROM arbitro WHERE id = (SELECT id FROM usuario WHERE username = 'lmilla')));
+INSERT INTO user_roles (roles, user_id) VALUES (0, (SELECT id FROM arbitro WHERE id = (SELECT id FROM usuario WHERE username = 'enunez')));
+INSERT INTO user_roles (roles, user_id) VALUES (0, (SELECT id FROM arbitro WHERE id = (SELECT id FROM usuario WHERE username = 'dortiz')));
+INSERT INTO user_roles (roles, user_id) VALUES (0, (SELECT id FROM arbitro WHERE id = (SELECT id FROM usuario WHERE username = 'iperez')));
 
 -- Inserción de mensajes
 INSERT INTO mensaje (id, asunto, contenido, fecha_envio, leido) VALUES (gen_random_uuid(), 'Entrenamiento Semana 23-29 Diciembre', 'Buenas tardes compañeros, el entreno de esta semana próxima ya esta subido a la plataforma', '2025-02-25', false);
