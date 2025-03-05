@@ -14,4 +14,5 @@ public record EditMensajeDto(
         LocalDate fechaEnvio,
         boolean leido
 ) {
+
 }
