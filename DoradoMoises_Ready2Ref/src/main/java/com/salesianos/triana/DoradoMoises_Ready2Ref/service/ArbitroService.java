@@ -221,4 +221,7 @@ public class ArbitroService {
                 .toList();
     }
 
+    public Arbitro findByUsername(String username) {
+        return arbitroRepository.findByUsername(username).orElseThrow();
+    }
 }

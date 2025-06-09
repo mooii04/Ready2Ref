@@ -8,7 +8,5 @@ import java.util.List;
 import java.util.UUID;
 
 public interface AsistenciaRepository extends JpaRepository<Asistencia, UUID> {
-
-    List<Asistencia> findByUsuario(Arbitro arbitro);
-
+    List<Asistencia> findByArbitro(Arbitro arbitro);
 }

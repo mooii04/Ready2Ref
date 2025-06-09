@@ -1,9 +1,13 @@
 package com.salesianos.triana.DoradoMoises_Ready2Ref.service;
 
-import com.salesianos.triana.DoradoMoises_Ready2Ref.dto.user.asistencia.EditAsistenciaDto;
+import com.salesianos.triana.DoradoMoises_Ready2Ref.dto.asistencia.CreateAsistenciaDto;
+import com.salesianos.triana.DoradoMoises_Ready2Ref.dto.asistencia.GetAsistenciaDto;
 import com.salesianos.triana.DoradoMoises_Ready2Ref.model.Asistencia;
 import com.salesianos.triana.DoradoMoises_Ready2Ref.model.Arbitro;
+import com.salesianos.triana.DoradoMoises_Ready2Ref.model.Entrenamiento;
 import com.salesianos.triana.DoradoMoises_Ready2Ref.repository.AsistenciaRepository;
+import com.salesianos.triana.DoradoMoises_Ready2Ref.repository.ArbitroRepository;
+import com.salesianos.triana.DoradoMoises_Ready2Ref.repository.EntrenamientoRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
@@ -15,26 +19,32 @@ import java.util.UUID;
 public class AsistenciaService {
 
     private final AsistenciaRepository asistenciaRepository;
+    private final EntrenamientoRepository entrenamientoRepository;
+    private final ArbitroRepository arbitroRepository;
 
-    public Asistencia establecerAsistencia(EditAsistenciaDto editAsistenciaDto) {
-        Asistencia asistencia = new Asistencia().builder()
-                .idAsistencia(editAsistenciaDto.idAsistencia())
-
+    public Asistencia save(CreateAsistenciaDto dto) {
+        Entrenamiento entrenamiento = entrenamientoRepository.findById(dto.entrenamientoId()).orElseThrow();
+        Arbitro arbitro = arbitroRepository.findById(dto.arbitroId()).orElseThrow();
+        Asistencia asistencia = Asistencia.builder()
+                .entrenamiento(entrenamiento)
+                .arbitro(arbitro)
+                .asistio(dto.asistio())
                 .build();
-
         return asistenciaRepository.save(asistencia);
     }
 
-    public Asistencia save(Asistencia asistencia) {
-        return asistenciaRepository.save(asistencia);
+    public List<GetAsistenciaDto> findByArbitro(Arbitro arbitro) {
+        return asistenciaRepository.findByArbitro(arbitro)
+                .stream()
+                .map(GetAsistenciaDto::of)
+                .toList();
     }
 
-    public List<Asistencia> findByUsuario(Arbitro arbitro) {
-        return asistenciaRepository.findByUsuario(arbitro);
-    }
-
-    public List<Asistencia> findAll() {
-        return asistenciaRepository.findAll();
+    public List<GetAsistenciaDto> findAll() {
+        return asistenciaRepository.findAll()
+                .stream()
+                .map(GetAsistenciaDto::of)
+                .toList();
     }
 
     public Asistencia findById(UUID id) {

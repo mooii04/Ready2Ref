@@ -7,4 +7,9 @@ public record EditAsistenciaDto(
         GetArbitroAsistenciaDto arbitro,
         GetEntrenamientoDto entrenamiento
 ) {
+
+    public static EditAsistenciaDto of(UUID idAsistencia, GetArbitroAsistenciaDto arbitro, GetEntrenamientoDto entrenamiento) {
+        return new EditAsistenciaDto(idAsistencia, arbitro, entrenamiento);
+    }
+
 }

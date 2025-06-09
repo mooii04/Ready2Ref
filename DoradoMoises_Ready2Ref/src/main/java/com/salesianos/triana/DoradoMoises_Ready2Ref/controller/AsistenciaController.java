@@ -1,9 +1,10 @@
 package com.salesianos.triana.DoradoMoises_Ready2Ref.controller;
 
-import com.salesianos.triana.DoradoMoises_Ready2Ref.model.Asistencia;
+import com.salesianos.triana.DoradoMoises_Ready2Ref.dto.asistencia.CreateAsistenciaDto;
+import com.salesianos.triana.DoradoMoises_Ready2Ref.dto.asistencia.GetAsistenciaDto;
 import com.salesianos.triana.DoradoMoises_Ready2Ref.model.Arbitro;
+import com.salesianos.triana.DoradoMoises_Ready2Ref.service.ArbitroService;
 import com.salesianos.triana.DoradoMoises_Ready2Ref.service.AsistenciaService;
-import com.salesianos.triana.DoradoMoises_Ready2Ref.service.UsuarioService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.access.prepost.PreAuthorize;
@@ -11,7 +12,6 @@ import org.springframework.web.bind.annotation.*;
 
 import java.security.Principal;
 import java.util.List;
-import java.util.UUID;
 
 @RestController
 @RequestMapping("/asistencias")
@@ -21,25 +21,25 @@ public class AsistenciaController {
     private final AsistenciaService asistenciaService;
     private final ArbitroService arbitroService;
 
-    // Crear asistencia (añadir árbitro a entreno)
+    // Admin: Añadir asistencia para un árbitro a un entrenamiento
     @PostMapping("/")
-    public ResponseEntity<Asistencia> addAsistencia(@RequestBody Asistencia asistencia, Principal principal) {
-        Arbitro arbitro = arbitroService.findByUsername(principal.getName());
-        asistencia.setUsuario(arbitro);
-        return ResponseEntity.ok(asistenciaService.save(asistencia));
+    @PreAuthorize("hasRole('ADMIN')")
+    public ResponseEntity<?> addAsistencia(@RequestBody CreateAsistenciaDto dto) {
+        return ResponseEntity.ok(asistenciaService.save(dto));
     }
 
-    // Ver asistencias propias
+    // Árbitro: Ver sus asistencias
     @GetMapping("/me")
-    public ResponseEntity<List<Asistencia>> getMisAsistencias(Principal principal) {
+    @PreAuthorize("hasAnyRole('USER','ADMIN')")
+    public ResponseEntity<List<GetAsistenciaDto>> getMisAsistencias(Principal principal) {
         Arbitro arbitro = arbitroService.findByUsername(principal.getName());
-        return ResponseEntity.ok(asistenciaService.findByUsuario(arbitro));
+        return ResponseEntity.ok(asistenciaService.findByArbitro(arbitro));
     }
 
-    // Ver todas las asistencias (solo admin)
+    // Admin: Ver todas las asistencias
     @GetMapping("/")
     @PreAuthorize("hasRole('ADMIN')")
-    public ResponseEntity<List<Asistencia>> getAllAsistencias() {
+    public ResponseEntity<List<GetAsistenciaDto>> getAllAsistencias() {
         return ResponseEntity.ok(asistenciaService.findAll());
     }
 }
