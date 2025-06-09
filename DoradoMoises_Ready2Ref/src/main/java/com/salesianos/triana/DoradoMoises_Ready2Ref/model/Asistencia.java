@@ -18,6 +18,8 @@ public class Asistencia {
     @Id @GeneratedValue
     private UUID idAsistencia;
 
+    private boolean asistio;
+
     @ManyToOne
     @JoinColumn(name = "arbitro_id", foreignKey = @ForeignKey(name = "fk_arbitro_asistencia"))
     private Arbitro arbitro;
