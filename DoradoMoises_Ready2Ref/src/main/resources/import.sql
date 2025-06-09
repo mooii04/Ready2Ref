@@ -76,3 +76,8 @@ INSERT INTO mensaje (id, asunto, contenido, fecha_envio, leido) VALUES ('990e840
 
 -- Inserción de arbitro_mensaje
 INSERT INTO arbitro_mensaje (arbitro_id, mensaje_id) VALUES ('550e8400-e29b-41d4-a716-446655440001', '990e8400-e29b-41d4-a716-446655440000');
+
+-- Inserción de asistencias (arbitro_id, entrenamiento_id, asistio)
+INSERT INTO asistencia (id_asistencia, arbitro_id, entrenamiento_id, asistio) VALUES 
+('a10e8400-e29b-41d4-a716-446655440000', '550e8400-e29b-41d4-a716-446655440000', '880e8400-e29b-41d4-a716-446655440000', true),
+('a10e8400-e29b-41d4-a716-446655440001', '550e8400-e29b-41d4-a716-446655440001', '880e8400-e29b-41d4-a716-446655440001', false);

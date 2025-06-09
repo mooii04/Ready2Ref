@@ -884,7 +884,101 @@
 		},
 		{
 			"name": "asistencia",
-			"item": []
+			"item": [
+				{
+					"name": "Crear asistencia (ADMIN)",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{token_admin}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"entrenamientoId\": \"{{id_entreno}}\",\n    \"arbitroId\": \"<arbitro_id>\",\n    \"asistio\": true\n}"
+						},
+						"url": {
+							"raw": "{{BASEURL}}/asistencias/",
+							"host": [
+								"{{BASEURL}}"
+							],
+							"path": [
+								"asistencias",
+								""
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Ver mis asistencias (USER/ADMIN)",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{token_user}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{BASEURL}}/asistencias/me",
+							"host": [
+								"{{BASEURL}}"
+							],
+							"path": [
+								"asistencias",
+								"me"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Ver todas las asistencias (ADMIN)",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{token_admin}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{BASEURL}}/asistencias/",
+							"host": [
+								"{{BASEURL}}"
+							],
+							"path": [
+								"asistencias",
+								""
+							]
+						}
+					},
+					"response": []
+				}
+			]
 		},
 		{
 			"name": "entrenamiento",
