@@ -60,7 +60,7 @@ public class EntrenadorService {
     }
 
     public Entrenador editEntrenadorPropio(UUID userId, EditEntrenadorEDto editEntrenadorEDto){
-        Entrenador entrenador = entrenadorRepository.findById(userId)
+        Entrenador entrenador = entrenadorRepository.findByIdEntrenamiento(userId)
                 .orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND, "Entrenador no encontrado"));
 
         entrenador.setNombre(editEntrenadorEDto.nombre());

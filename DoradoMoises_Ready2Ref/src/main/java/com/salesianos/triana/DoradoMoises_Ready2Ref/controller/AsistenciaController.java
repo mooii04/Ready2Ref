@@ -5,6 +5,7 @@ import com.salesianos.triana.DoradoMoises_Ready2Ref.dto.asistencia.GetAsistencia
 import com.salesianos.triana.DoradoMoises_Ready2Ref.model.Arbitro;
 import com.salesianos.triana.DoradoMoises_Ready2Ref.service.ArbitroService;
 import com.salesianos.triana.DoradoMoises_Ready2Ref.service.AsistenciaService;
+import io.swagger.v3.oas.annotations.tags.Tag;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -15,6 +16,7 @@ import java.util.List;
 @RestController
 @RequestMapping("/asistencias")
 @RequiredArgsConstructor
+@Tag(name = "Asistencia", description = "Operaciones relacionadas con las asistencias de los árbitros a los entrenamientos")
 public class AsistenciaController {
 
     private final AsistenciaService asistenciaService;

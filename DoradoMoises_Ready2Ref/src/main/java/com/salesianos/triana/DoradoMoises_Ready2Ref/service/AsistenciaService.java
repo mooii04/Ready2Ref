@@ -23,7 +23,8 @@ public class AsistenciaService {
     private final ArbitroRepository arbitroRepository;
 
     public Asistencia save(CreateAsistenciaDto dto) {
-        Entrenamiento entrenamiento = entrenamientoRepository.findById(dto.entrenamientoId()).orElseThrow();
+        UUID entrenamientoUuid = UUID.fromString(String.valueOf(dto.entrenamientoId()));
+        Entrenamiento entrenamiento = entrenamientoRepository.findById(entrenamientoUuid).orElseThrow();
         Arbitro arbitro = arbitroRepository.findById(dto.arbitroId()).orElseThrow();
         Asistencia asistencia = Asistencia.builder()
                 .entrenamiento(entrenamiento)
