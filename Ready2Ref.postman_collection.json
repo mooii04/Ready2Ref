@@ -1,0 +1,1075 @@
+{
+	"info": {
+		"_postman_id": "517494ec-775a-4706-bfaf-22fcd7e0f7e2",
+		"name": "Ready2Ref",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "38617679"
+	},
+	"item": [
+		{
+			"name": "arbitroUser",
+			"item": [
+				{
+					"name": "EditArbitroUSERpropio",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{token_user}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"nombre\": \"Moisés\",\r\n    \"primerApellido\": \"Dorado\",\r\n    \"segundoApellido\": \"Gutiérrez\",\r\n    \"email\": \"moi04@gmail.com\",\r\n    \"telefono\": \"654 832 999\",\r\n    \"tallaBotas\": 44,\r\n    \"tallaCamiseta\": \"S\",\r\n    \"tallaCalzonas\": \"S\",\r\n    \"tallaChandal\": \"M\",\r\n    \"foto\": \"hola.png\" \r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{BASEURL}}/arbitro/edit/user/me",
+							"host": [
+								"{{BASEURL}}"
+							],
+							"path": [
+								"arbitro",
+								"edit",
+								"user",
+								"me"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "changeContrasenia",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{token_user}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"oldPassword\": \"password123\",\r\n    \"password\": \"12345678\",\r\n    \"verifyPassword\": \"12345678\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{BASEURL}}/edit/contrasenia",
+							"host": [
+								"{{BASEURL}}"
+							],
+							"path": [
+								"edit",
+								"contrasenia"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "arbitroAdmin",
+			"item": [
+				{
+					"name": "CreateArbtiroADMIN",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{token_admin}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"nombre\": \"Moisés\",\r\n    \"primerApellido\": \"Dorado\",\r\n    \"segundoApellido\": \"Gutiérrez\",\r\n    \"username\": \"username1\",\r\n    \"email\": \"dorado.gumoi24@triana.salesianos.edu\",\r\n    \"telefono\": \"654 832 999\",\r\n    \"password\": \"12345678\",\r\n    \"verifyPassword\": \"12345678\",\r\n    \"fechaNacimiento\": \"2003-01-01\",\r\n    \"edad\": 20,\r\n    \"categoria\": \"DIVISION_HONOR\",\r\n    \"fechaInscripcion\": \"2023-10-01\",\r\n    \"tallaBotas\": 44,\r\n    \"tallaCamiseta\": \"S\",\r\n    \"tallaCalzonas\": \"S\",\r\n    \"tallaChandal\": \"M\",\r\n    \"foto\": \"fotomooii04.png\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{BASEURL}}/arbitro/create/admin",
+							"host": [
+								"{{BASEURL}}"
+							],
+							"path": [
+								"arbitro",
+								"create",
+								"admin"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "BuscarArbitro",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{token_admin}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{BASEURL}}/arbitro/search/?search=nombre:María&pagina=0&tamano=10",
+							"host": [
+								"{{BASEURL}}"
+							],
+							"path": [
+								"arbitro",
+								"search",
+								""
+							],
+							"query": [
+								{
+									"key": "search",
+									"value": "nombre:María"
+								},
+								{
+									"key": "pagina",
+									"value": "0"
+								},
+								{
+									"key": "tamano",
+									"value": "10"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "EditArbitroADMIN",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{token_admin}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"nombre\": \"Moisés\",\r\n    \"primerApellido\": \"Dorado\",\r\n    \"segundoApellido\": \"Gutiérrez\",\r\n    \"email\": \"moi04@gmail.com\",\r\n    \"telefono\": \"654 832 999\",\r\n    \"tallaBotas\": 44,\r\n    \"tallaCamiseta\": \"S\",\r\n    \"tallaCalzonas\": \"S\",\r\n    \"tallaChandal\": \"M\",\r\n    \"foto\": \"hola.png\",\r\n    \"categoria\": \"OFICIAL\",\r\n    \"pack\": {\r\n        \"nombre\": \"Pack Básico\",\r\n        \"descripcion\": \"Incluye 5 entrenamientos\",\r\n        \"precio\": 200\r\n    }\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{BASEURL}}/arbitro/edit/admin/me",
+							"host": [
+								"{{BASEURL}}"
+							],
+							"path": [
+								"arbitro",
+								"edit",
+								"admin",
+								"me"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "EditArbitroAll",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{token_admin}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"nombre\": \"Moisés\",\r\n    \"primerApellido\": \"Dorado\",\r\n    \"segundoApellido\": \"Gutiérrez\",\r\n    \"email\": \"moi04@gmail.com\",\r\n    \"telefono\": \"654 832 999\",\r\n    \"tallaBotas\": 44,\r\n    \"tallaCamiseta\": \"S\",\r\n    \"tallaCalzonas\": \"S\",\r\n    \"tallaChandal\": \"M\",\r\n    \"foto\": \"hola.png\",\r\n    \"categoria\": \"OFICIAL\",\r\n    \"pack\": {\r\n        \"nombre\": \"Pack Básico\",\r\n        \"descripcion\": \"Incluye 5 entrenamientos\",\r\n        \"precio\": 200\r\n    }\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{BASEURL}}/arbitro/edit/admin/jperez",
+							"host": [
+								"{{BASEURL}}"
+							],
+							"path": [
+								"arbitro",
+								"edit",
+								"admin",
+								"jperez"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "changeContrasenia",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{token_admin}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"oldPassword\": \"password123\",\r\n    \"password\": \"12345678\",\r\n    \"verifyPassword\": \"12345678\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{BASEURL}}/edit/contrasenia",
+							"host": [
+								"{{BASEURL}}"
+							],
+							"path": [
+								"edit",
+								"contrasenia"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "DeleteUSER",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{token_admin}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "{{BASEURL}}/delete/sfernandez",
+							"host": [
+								"{{BASEURL}}"
+							],
+							"path": [
+								"delete",
+								"sfernandez"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "CreateENTRENADOR",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{token_admin}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"nombre\": \"Moisés\",\r\n    \"primerApellido\": \"Dorado\",\r\n    \"segundoApellido\": \"Gutiérrez\",\r\n    \"username\": \"entrenador1\",\r\n    \"email\": \"moi04@gmail.com\",\r\n    \"telefono\": \"654 832 999\",\r\n    \"password\": \"12345678\",\r\n    \"verifyPassword\": \"12345678\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{BASEURL}}/entrenador/create",
+							"host": [
+								"{{BASEURL}}"
+							],
+							"path": [
+								"entrenador",
+								"create"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "CreateArbitroUSER",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{token_admin}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"nombre\": \"Moisés\",\r\n    \"primerApellido\": \"Dorado\",\r\n    \"segundoApellido\": \"Gutiérrez\",\r\n    \"username\": \"username1234\",\r\n    \"email\": \"dorado.gumoi24@triana.salesianos.edu\",\r\n    \"telefono\": \"654 832 999\",\r\n    \"password\": \"12345678\",\r\n    \"verifyPassword\": \"12345678\",\r\n    \"fechaNacimiento\": \"2003-01-01\",\r\n    \"edad\": 20,\r\n    \"categoria\": \"DIVISION_HONOR\",\r\n    \"fechaInscripcion\": \"2023-10-01\",\r\n    \"tallaBotas\": 44,\r\n    \"tallaCamiseta\": \"S\",\r\n    \"tallaCalzonas\": \"S\",\r\n    \"tallaChandal\": \"M\",\r\n    \"foto\": \"fotomooii04.png\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{BASEURL}}/arbitro/create/user",
+							"host": [
+								"{{BASEURL}}"
+							],
+							"path": [
+								"arbitro",
+								"create",
+								"user"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "entrenador",
+			"item": [
+				{
+					"name": "EditENTRENADORpropio",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{token_entrenador}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"nombre\": \"Moisés\",\r\n    \"primerApellido\": \"Dorado\",\r\n    \"segundoApellido\": \"Gutiérrez\",\r\n    \"email\": \"moi04@gmail.com\",\r\n    \"telefono\": \"654 832 999\" \r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{BASEURL}}/entrenador/edit/me",
+							"host": [
+								"{{BASEURL}}"
+							],
+							"path": [
+								"entrenador",
+								"edit",
+								"me"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "uploadEntreno",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"var json = pm.response.json();\r",
+									"pm.collectionVariables.set(\"id_entreno\", json.id);"
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{token_entrenador}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "file",
+									"type": "file",
+									"src": "postman-cloud:///1eff3b1f-66aa-4580-95c4-69c3de676a50"
+								}
+							]
+						},
+						"url": {
+							"raw": "{{BASEURL}}/upload",
+							"host": [
+								"{{BASEURL}}"
+							],
+							"path": [
+								"upload"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "changeContrasenia",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{token_entrenador}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"oldPassword\": \"password123\",\r\n    \"password\": \"12345678\",\r\n    \"verifyPassword\": \"12345678\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{BASEURL}}/edit/contrasenia",
+							"host": [
+								"{{BASEURL}}"
+							],
+							"path": [
+								"edit",
+								"contrasenia"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "login",
+			"item": [
+				{
+					"name": "LoginADMIN",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"var json = pm.response.json();\r",
+									"pm.collectionVariables.set(\"token_admin\", json.token);\r",
+									"pm.collectionVariables.set(\"refreshToken_admin\", json.refreshToken)"
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"username\": \"alopez\",\n    \"password\": \"password123\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{BASEURL}}/auth/login",
+							"host": [
+								"{{BASEURL}}"
+							],
+							"path": [
+								"auth",
+								"login"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "ActivatedAccount",
+					"request": {
+						"auth": {
+							"type": "basic",
+							"basic": [
+								{
+									"key": "password",
+									"value": "12345678",
+									"type": "string"
+								},
+								{
+									"key": "username",
+									"value": "mooii04",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"token\": \"77720c2a-78cf-4a71-ad34-a9b23556e0b6\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{BASEURL}}/activate/account",
+							"host": [
+								"{{BASEURL}}"
+							],
+							"path": [
+								"activate",
+								"account"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "POST refresh token",
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"refreshToken\": \"f29cd4e5-e16e-4476-830b-3b34e7bd8abd\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{BASEURL}}/auth/refresh/token",
+							"host": [
+								"{{BASEURL}}"
+							],
+							"path": [
+								"auth",
+								"refresh",
+								"token"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "LoginUSER",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"var json = pm.response.json();\r",
+									"pm.collectionVariables.set(\"token_user\", json.token);\r",
+									"pm.collectionVariables.set(\"refreshToken_user\", json.refreshToken)"
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"username\": \"jperez\",\r\n    \"password\": \"password123\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{BASEURL}}/auth/login",
+							"host": [
+								"{{BASEURL}}"
+							],
+							"path": [
+								"auth",
+								"login"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "LoginENTRENADOR",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"var json = pm.response.json();\r",
+									"pm.collectionVariables.set(\"token_entrenador\", json.token);\r",
+									"pm.collectionVariables.set(\"refreshToken_entrenador\", json.refreshToken)"
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"username\": \"lgarcia\",\r\n    \"password\": \"password123\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{BASEURL}}/auth/login",
+							"host": [
+								"{{BASEURL}}"
+							],
+							"path": [
+								"auth",
+								"login"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "mensaje",
+			"item": [
+				{
+					"name": "BuscarMensajesUSER",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{token_user}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{BASEURL}}/mensaje/search?search",
+							"host": [
+								"{{BASEURL}}"
+							],
+							"path": [
+								"mensaje",
+								"search"
+							],
+							"query": [
+								{
+									"key": "search",
+									"value": null
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "BuscarMensajesADMIN",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{token_admin}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{BASEURL}}/mensaje/search?search",
+							"host": [
+								"{{BASEURL}}"
+							],
+							"path": [
+								"mensaje",
+								"search"
+							],
+							"query": [
+								{
+									"key": "search",
+									"value": null
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "BuscarMensajesENTRENADOR",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{token_entrenador}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{BASEURL}}/mensaje/search?search?",
+							"host": [
+								"{{BASEURL}}"
+							],
+							"path": [
+								"mensaje",
+								"search"
+							],
+							"query": [
+								{
+									"key": "search?",
+									"value": null
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "CreateMensaje",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{token_admin}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"asunto\": \"Cena de Navidad\",\r\n    \"contenido\": \"Buenas tardes a todos, en estos próximos días os iremos comentando más información de la cena de Navidad del día 22 de Diciembre\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{BASEURL}}/mensaje/create/admin",
+							"host": [
+								"{{BASEURL}}"
+							],
+							"path": [
+								"mensaje",
+								"create",
+								"admin"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "asistencia",
+			"item": []
+		},
+		{
+			"name": "entrenamiento",
+			"item": [
+				{
+					"name": "DownloadEntrenoUSER",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									""
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{token_user}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{BASEURL}}/download/{{id_entreno}}",
+							"host": [
+								"{{BASEURL}}"
+							],
+							"path": [
+								"download",
+								"{{id_entreno}}"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "DownloadEntrenoENTRENADOR",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{token_entrenador}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{BASEURL}}/download/{{id_entreno}}",
+							"host": [
+								"{{BASEURL}}"
+							],
+							"path": [
+								"download",
+								"{{id_entreno}}"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "DownloadEntrenoADMIN",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{token_admin}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{BASEURL}}/download/{{id_entreno}}",
+							"host": [
+								"{{BASEURL}}"
+							],
+							"path": [
+								"download",
+								"{{id_entreno}}"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "me",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "{{token_admin}}",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{BASEURL}}/me",
+					"host": [
+						"{{BASEURL}}"
+					],
+					"path": [
+						"me"
+					]
+				}
+			},
+			"response": []
+		}
+	],
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"type": "text/javascript",
+				"packages": {},
+				"exec": [
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"type": "text/javascript",
+				"packages": {},
+				"exec": [
+					""
+				]
+			}
+		}
+	],
+	"variable": [
+		{
+			"key": "BASEURL",
+			"value": "http://localhost:8080",
+			"type": "string"
+		},
+		{
+			"key": "token_admin",
+			"value": ""
+		},
+		{
+			"key": "refreshToken_admin",
+			"value": ""
+		},
+		{
+			"key": "token_user",
+			"value": ""
+		},
+		{
+			"key": "refreshToken_user",
+			"value": ""
+		},
+		{
+			"key": "token_entrenador",
+			"value": ""
+		},
+		{
+			"key": "refreshToken_entrenador",
+			"value": ""
+		},
+		{
+			"key": "id_entreno",
+			"value": ""
+		}
+	]
+}

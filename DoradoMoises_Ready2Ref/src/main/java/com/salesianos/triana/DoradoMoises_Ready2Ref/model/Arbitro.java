@@ -49,7 +49,7 @@ public class Arbitro extends User{
     private Recibo recibos;
 
     @ManyToOne
-    @JoinColumn(name = "arbitro_id", foreignKey = @ForeignKey(name = "fk_arbitro_asistencia"))
+    @JoinColumn(name = "arbitro_id", foreignKey = @ForeignKey(name = "fk_arbitro_pack"))
     @ToString.Exclude
     private Pack pack;
 
