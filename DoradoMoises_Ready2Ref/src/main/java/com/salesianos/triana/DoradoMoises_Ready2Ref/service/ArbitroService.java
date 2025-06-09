@@ -222,5 +222,8 @@ public class ArbitroService {
                 .map(GetSearchArbitroDto::of);
     }
 
+    public Arbitro findByUsername(String username) {
+        return arbitroRepository.findByUsername(username).orElseThrow();
+    }
 
 }

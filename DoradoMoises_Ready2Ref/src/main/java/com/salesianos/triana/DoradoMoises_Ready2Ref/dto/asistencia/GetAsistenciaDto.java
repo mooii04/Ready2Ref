@@ -1,20 +1,25 @@
 package com.salesianos.triana.DoradoMoises_Ready2Ref.dto.asistencia;
 
-import com.salesianos.triana.DoradoMoises_Ready2Ref.dto.entrenamiento.GetEntrenamientoDto;
-import com.salesianos.triana.DoradoMoises_Ready2Ref.dto.user.edit.GetArbitroUserEDto;
 import com.salesianos.triana.DoradoMoises_Ready2Ref.model.Asistencia;
 
+import java.time.LocalDate;
 import java.util.UUID;
 
 public record GetAsistenciaDto(
-        UUID idAsistencia,
-        GetEntrenamientoDto entrenamiento
+    UUID id,
+    LocalDate fechaEntrenamiento,
+    UUID arbitroId,
+    String arbitroNombre,
+    boolean asistio
 ) {
 
-    public static GetAsistenciaDto of(Asistencia a) {
+    public static GetAsistenciaDto of(Asistencia asistencia) {
         return new GetAsistenciaDto(
-                a.getIdAsistencia(),
-                GetEntrenamientoDto.of(a.getEntrenamiento())
+            asistencia.getIdAsistencia(),
+            asistencia.getEntrenamiento().getFecha(),
+            asistencia.getArbitro().getId(),
+            asistencia.getArbitro().getNombre(),
+            asistencia.isAsistio()
         );
     }
 
