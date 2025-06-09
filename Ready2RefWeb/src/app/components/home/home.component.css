@@ -1,0 +1,25 @@
+.home-bg {
+  background: linear-gradient(90deg, #eaf0f5 0%, #f5f8fa 100%);
+  padding: 0;
+}
+
+.home-logo {
+  height: 180px;
+}
+
+.login-link {
+  color: #23804c;
+  font-weight: bold;
+  text-decoration: none;
+}
+
+.home-title {
+  color: #23804c;
+  font-size: 2.8rem;
+  margin-left: 220px;
+  margin-top: -120px;
+}
+
+.home-nav {
+  background: #235c3c;
+}

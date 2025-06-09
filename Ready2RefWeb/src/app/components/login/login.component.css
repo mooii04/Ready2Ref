@@ -1,0 +1,36 @@
+.login-bg {
+  background: #fff;
+  min-height: 60vh;
+}
+
+.login-input {
+  background: #eaf6ee;
+  border: 1px solid #b7d9c7;
+  color: #235c3c;
+}
+
+.login-input:focus {
+  border-color: #23804c;
+  box-shadow: 0 0 0 0.2rem rgba(35, 128, 76, 0.1);
+}
+
+.login-btn {
+  background: #235c3c;
+  color: #fff;
+  font-weight: bold;
+  border: none;
+  border-radius: 4px;
+  padding: 0.75rem 0;
+  font-size: 1.1rem;
+  transition: background 0.2s;
+}
+
+.login-btn:disabled,
+.login-btn[disabled] {
+  background: #b7d9c7;
+  color: #fff;
+}
+
+.login-btn:hover:not(:disabled) {
+  background: #23804c;
+}
