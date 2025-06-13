@@ -1,0 +1,87 @@
+.r2r-header {
+  width: 100vw;
+  background: #121c21;
+  border-bottom: 1px solid #e5e8eb;
+  padding: 0;
+}
+.r2r-header-content {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 18px 40px;
+  max-width: 1440px;
+  margin: 0 auto;
+}
+.r2r-logo-area {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+}
+.r2r-logo {
+  width: 32px;
+  height: 32px;
+}
+.r2r-title {
+  color: #fff;
+  font-size: 22px;
+  font-weight: 700;
+  letter-spacing: 1px;
+}
+.r2r-nav {
+  display: flex;
+  align-items: center;
+  gap: 36px;
+}
+.r2r-nav-link {
+  color: #fff;
+  font-size: 16px;
+  font-weight: 500;
+  text-decoration: none;
+  transition: color 0.2s;
+}
+.r2r-nav-link:hover {
+  color: #91b2c9;
+}
+.r2r-login-btn {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  background: #243847;
+  color: #fff;
+  border-radius: 12px;
+  padding: 8px 16px;
+  font-size: 15px;
+  font-weight: 500;
+  text-decoration: none;
+  margin-left: 16px;
+  transition: background 0.2s;
+  cursor: pointer;
+}
+.r2r-login-btn:hover {
+  background: #1a2730;
+  color: #91b2c9;
+}
+.r2r-main {
+  width: 100vw;
+  min-height: calc(100vh - 70px);
+  background: #121c21;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 0 0 40px 0;
+}
+.r2r-welcome {
+  margin: 48px 0 24px 0;
+  text-align: center;
+}
+.r2r-welcome-title {
+  color: #fff;
+  font-size: 2.5rem;
+  font-weight: 700;
+  margin-bottom: 8px;
+}
+.r2r-welcome-desc {
+  color: #91b2c9;
+  font-size: 1.2rem;
+  font-weight: 400;
+}

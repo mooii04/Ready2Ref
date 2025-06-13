@@ -3,17 +3,21 @@ package com.salesianos.triana.DoradoMoises_Ready2Ref.controller;
 import com.salesianos.triana.DoradoMoises_Ready2Ref.dto.ActivateAccountRequest;
 import com.salesianos.triana.DoradoMoises_Ready2Ref.dto.LoginRequest;
 import com.salesianos.triana.DoradoMoises_Ready2Ref.dto.UserResponse;
+import com.salesianos.triana.DoradoMoises_Ready2Ref.dto.user.GetUserDto;
 import com.salesianos.triana.DoradoMoises_Ready2Ref.dto.user.create.GetArbitroDto;
 import com.salesianos.triana.DoradoMoises_Ready2Ref.dto.user.edit.EditContraseniaDto;
 import com.salesianos.triana.DoradoMoises_Ready2Ref.dto.user.edit.GetArbitroAdminEDto;
 import com.salesianos.triana.DoradoMoises_Ready2Ref.dto.user.edit.GetContraseniaDto;
+import com.salesianos.triana.DoradoMoises_Ready2Ref.dto.user.search.GetSearchArbitroDto;
 import com.salesianos.triana.DoradoMoises_Ready2Ref.model.Arbitro;
+import com.salesianos.triana.DoradoMoises_Ready2Ref.model.Entrenador;
 import com.salesianos.triana.DoradoMoises_Ready2Ref.model.User;
 import com.salesianos.triana.DoradoMoises_Ready2Ref.security.jwt.access.JwtService;
 import com.salesianos.triana.DoradoMoises_Ready2Ref.security.jwt.refresh.RefreshToken;
 import com.salesianos.triana.DoradoMoises_Ready2Ref.security.jwt.refresh.RefreshTokenRequest;
 import com.salesianos.triana.DoradoMoises_Ready2Ref.security.jwt.refresh.RefreshTokenService;
 import com.salesianos.triana.DoradoMoises_Ready2Ref.service.UserService;
+
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.media.ArraySchema;
 import io.swagger.v3.oas.annotations.media.Content;
@@ -23,6 +27,7 @@ import io.swagger.v3.oas.annotations.responses.ApiResponse;
 import io.swagger.v3.oas.annotations.responses.ApiResponses;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
+
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.authentication.AuthenticationManager;
@@ -33,6 +38,8 @@ import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.UUID;
+
+import com.salesianos.triana.DoradoMoises_Ready2Ref.dto.user.create.GetEntrenadorDto;
 
 @RestController
 @RequiredArgsConstructor
@@ -119,15 +126,27 @@ public class UserController {
                 .body(UserResponse.of(userService.activateAccount(token)));
     }
 
-    @GetMapping("/me")
-    public UserResponse me(@AuthenticationPrincipal User user) {
-        return UserResponse.of(user);
+    @GetMapping("/me/user")
+    public GetSearchArbitroDto meUser(@AuthenticationPrincipal User user) {
+        return GetSearchArbitroDto.of((Arbitro) user);
     }
 
     @GetMapping("/me/admin")
-    public User adminMe(@AuthenticationPrincipal User user) {
-        return user;
+    public GetSearchArbitroDto adminMe(@AuthenticationPrincipal User user) {
+        return GetSearchArbitroDto.of((Arbitro) user);
     }
+
+    @GetMapping("/me/entrenador")
+    public GetEntrenadorDto entrenadorMe(@AuthenticationPrincipal User user) {
+        return GetEntrenadorDto.of((Entrenador) user);
+    }
+
+    @GetMapping("/yo")
+public ResponseEntity<GetUserDto> me(@AuthenticationPrincipal User user) {
+        System.out.println("Entró a /yo");
+    return ResponseEntity.ok(GetUserDto.of(user));
+}
+
 
     @Operation(summary = "Edita tu contraseña")
     @ApiResponses(value = {

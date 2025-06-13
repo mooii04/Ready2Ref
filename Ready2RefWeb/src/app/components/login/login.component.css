@@ -1,3 +1,13 @@
+html, body {
+  width: 100vw;
+  min-height: 100vh;
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  background: #121c21;
+  font-family: 'Lexend', Arial, sans-serif;
+}
+
 .login-bg {
   background: #fff;
   min-height: 60vh;
@@ -33,4 +43,107 @@
 
 .login-btn:hover:not(:disabled) {
   background: #23804c;
+}
+
+.r2r-header {
+  width: 100vw;
+  background: #121c21;
+  border-bottom: 1px solid #e5e8eb;
+  padding: 0;
+}
+.r2r-header-content {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 18px 40px;
+  max-width: 1440px;
+  margin: 0 auto;
+}
+.r2r-logo-area {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+}
+.r2r-logo {
+  width: 32px;
+  height: 32px;
+}
+.r2r-title {
+  color: #fff;
+  font-size: 22px;
+  font-weight: 700;
+  letter-spacing: 1px;
+}
+.r2r-nav {
+  display: flex;
+  align-items: center;
+  gap: 36px;
+}
+.r2r-nav-link {
+  color: #fff;
+  font-size: 16px;
+  font-weight: 500;
+  text-decoration: none;
+  transition: color 0.2s;
+}
+.r2r-nav-link:hover {
+  color: #91b2c9;
+}
+.r2r-main {
+  width: 100vw;
+  min-height: calc(100vh - 70px);
+  background: #121c21;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 0 0 40px 0;
+}
+.r2r-welcome {
+  margin: 48px 0 24px 0;
+  text-align: center;
+}
+.r2r-welcome-title {
+  color: #fff;
+  font-size: 2.5rem;
+  font-weight: 700;
+  margin-bottom: 8px;
+}
+.r2r-welcome-desc {
+  color: #91b2c9;
+  font-size: 1.2rem;
+  font-weight: 400;
+}
+.r2r-login-form-section {
+  display: flex;
+  justify-content: center;
+  width: 100vw;
+}
+.r2r-login-form {
+  background: #243847;
+  border-radius: 16px;
+  padding: 32px 32px 24px 32px;
+  min-width: 320px;
+  max-width: 400px;
+  width: 100%;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.07);
+  margin: 0 auto;
+}
+@media (max-width: 600px) {
+  .r2r-header-content {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 10px;
+    padding: 10px 6px;
+  }
+  .r2r-main {
+    padding: 0 0 12px 0;
+  }
+  .r2r-welcome {
+    margin: 24px 0 12px 0;
+  }
+  .r2r-login-form {
+    padding: 16px 8px 12px 8px;
+    min-width: 0;
+    max-width: 100vw;
+  }
 }

@@ -1,0 +1,8 @@
+@import '../home/home.component.css';
+
+/* Puedes añadir estilos específicos para los botones si lo deseas */
+.r2r-welcome-title {
+  font-size: 2rem;
+  font-weight: 700;
+  margin-bottom: 1.5rem;
+}

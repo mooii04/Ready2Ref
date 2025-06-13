@@ -1,0 +1,35 @@
+<header class="r2r-header">
+  <div class="r2r-header-content">
+    <div class="r2r-logo-area">
+      <img src="assets/logo.png" alt="Ready2Ref" class="r2r-logo" />
+      <span class="r2r-title">Área Privada</span>
+    </div>
+    <nav class="r2r-nav">
+      <a class="r2r-nav-link" routerLink="/home-login">Inicio</a>
+      <a class="r2r-nav-link" (click)="logout()">Cerrar sesión</a>
+    </nav>
+  </div>
+</header>
+
+<main class="r2r-main">
+  <!-- Opcional, muestra nombre completo si tienes -->
+  <p *ngIf="userProfile">
+    Bienvenido, {{ userProfile.nombre }} {{ userProfile.primerApellido }} {{ userProfile.segundoApellido }} a Ready2Ref
+  </p>
+
+  <!-- Mostrar contenido según el rol -->
+  <div *ngIf="rol === 'ADMIN'">
+    <button (click)="gestionarUsuarios()">Gestionar Usuarios</button>
+    <button (click)="crearPack()">Crear Pack</button>
+  </div>
+
+  <div *ngIf="rol === 'USER'">
+    <button (click)="verPacks()">Ver Packs</button>
+    <button (click)="verMensajes()">Ver Mensajes</button>
+  </div>
+
+  <div *ngIf="rol === 'ENTRENADOR'">
+    <button (click)="verEntrenamientos()">Ver Entrenamientos</button>
+    <button (click)="crearEntrenamiento()">Crear Entrenamiento</button>
+  </div>
+</main>

@@ -71,14 +71,38 @@ public class SecurityConfig {
                 .authenticationEntryPoint(authenticationEntryPoint)
                 .accessDeniedHandler(accessDeniedHandler)
         );
-        http.authorizeHttpRequests(authz -> authz
-                .requestMatchers(HttpMethod.OPTIONS, "/**").permitAll()
-                .requestMatchers(HttpMethod.POST, "/auth/login", "/activate/account","/auth/refresh/token", "/error", "/download/**", "/edit/**", "/mensaje/search", "/swagger-ui/**").permitAll()
-                .requestMatchers("/me/admin", "/arbitro/create/**", "/entrenador/create", "/arbitro/edit/admin/**", "/arbitro/search/", "/delete/**", "/mensaje/create/**").hasRole("ADMIN")
-                .requestMatchers("/entrenador/**", "/upload").hasRole("ENTRENADOR")
-                .requestMatchers("/me/user", "/arbitro/edit/user/me").hasRole("USER")
-                .requestMatchers("/h2-console/**", "/swagger-ui/**").permitAll()
-                .anyRequest().authenticated());
+       http.authorizeHttpRequests(authz -> authz
+    .requestMatchers(HttpMethod.OPTIONS, "/**").permitAll()
+    .requestMatchers(HttpMethod.POST,
+        "/auth/login",
+        "/activate/account",
+        "/auth/refresh/token",
+        "/error",
+        "/download/**",
+        "/edit/**",
+        "/mensaje/search",
+        "/swagger-ui/**"
+    ).permitAll()
+
+    // Rutas protegidas por rol
+    .requestMatchers("/me/admin", "/arbitro/create/**", "/entrenador/create",
+        "/arbitro/edit/admin/**", "/arbitro/search/", "/delete/**", "/mensaje/create/**"
+    ).hasRole("ADMIN")
+
+    .requestMatchers("/entrenador/**", "/me/entrenador", "/upload").hasRole("ENTRENADOR")
+
+    .requestMatchers("/me/user", "/arbitro/edit/user/me").hasRole("USER")
+
+    // Rutas abiertas (H2 y Swagger)
+    .requestMatchers("/h2-console/**", "/swagger-ui/**").permitAll()
+
+    // Importante: proteger cualquier otro endpoint bajo /me/**
+    .requestMatchers("/yo/**").authenticated()
+
+    // Todo lo demás requiere autenticación
+    .anyRequest().authenticated()
+);
+
 
         http.addFilterBefore(jwtAuthenticationFilter, UsernamePasswordAuthenticationFilter.class);
 
@@ -92,7 +116,7 @@ public class SecurityConfig {
         CorsConfigurationSource corsConfigurationSource() {
                 CorsConfiguration configuration = new CorsConfiguration();
                 configuration.setAllowedOriginPatterns(
-                                List.of("http://localhost:4200/", "http://host.docker.internal:4200"));
+                                List.of("http://localhost:4200", "http://host.docker.internal:4200"));
                 configuration.setAllowedMethods(Arrays.asList("GET", "POST", "PUT", "DELETE", "OPTIONS"));
                 configuration.setAllowedHeaders(
                                 List.of("Authorization", "Content-Type", "content-type", "Accept", "X-Requested-With"));
