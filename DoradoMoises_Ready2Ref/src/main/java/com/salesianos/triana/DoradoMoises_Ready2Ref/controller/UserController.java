@@ -143,7 +143,6 @@ public class UserController {
 
     @GetMapping("/yo")
 public ResponseEntity<GetUserDto> me(@AuthenticationPrincipal User user) {
-        System.out.println("Entró a /yo");
     return ResponseEntity.ok(GetUserDto.of(user));
 }
 

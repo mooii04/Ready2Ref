@@ -97,7 +97,7 @@ public class SecurityConfig {
     .requestMatchers("/h2-console/**", "/swagger-ui/**").permitAll()
 
     // Importante: proteger cualquier otro endpoint bajo /me/**
-    .requestMatchers("/yo/**").authenticated()
+    .requestMatchers("/yo").authenticated()
 
     // Todo lo demás requiere autenticación
     .anyRequest().authenticated()

@@ -18,7 +18,7 @@ export class UserService {
   constructor(private http: HttpClient) { }
 
   fetchUserProfile(): Observable<UserProfile> {
-    return this.http.get<UserProfile>(`${this.apiUrl}/me`)
+    return this.http.get<UserProfile>(`${this.apiUrl}/yo`)
       .pipe(
         tap(profile => this.userProfileSubject.next(profile))
       );
