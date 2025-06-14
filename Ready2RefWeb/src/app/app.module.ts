@@ -14,6 +14,7 @@ import { PrivateAreaComponent } from './components/private-area/private-area.com
 import { HeaderPrivateComponent } from './components/header-private/header-private.component';
 import { HomeLoginComponent } from './components/home-login/home-login.component';
 import { TokenInterceptor } from './interceptors/token.interceptor';
+import { CreateArbitroComponent } from './components/create-arbitro/create-arbitro.component';
 
 @NgModule({
   declarations: [
@@ -23,7 +24,8 @@ import { TokenInterceptor } from './interceptors/token.interceptor';
     HeaderPrivateComponent,
     HeaderPublicComponent,
     PrivateAreaComponent,
-    HomeLoginComponent
+    HomeLoginComponent,
+    CreateArbitroComponent
   ],
   imports: [
     BrowserModule,

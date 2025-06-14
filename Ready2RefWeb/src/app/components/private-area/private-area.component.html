@@ -21,6 +21,9 @@
   <div *ngIf="rol === 'ADMIN'">
     <button (click)="gestionarUsuarios()">Gestionar Usuarios</button>
     <button (click)="crearPack()">Crear Pack</button>
+    <div class="crear-arbitro-section">
+    <button routerLink="/crear-arbitro" class="crear-arbitro-btn">Crear un árbitro</button>
+  </div>
   </div>
 
   <div *ngIf="rol === 'USER'">

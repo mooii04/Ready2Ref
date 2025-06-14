@@ -15,6 +15,7 @@ import { EntrenadorEntrenamientosComponent } from './components/entrenador-entre
 import { EntrenadorEntrenamientoSubirComponent } from './components/entrenador-entrenamiento-subir/entrenador-entrenamiento-subir.component';
 import { HomeLoginComponent } from './components/home-login/home-login.component';
 import { AuthGuard } from './guards/auth.guard';
+import { CreateArbitroComponent } from './components/create-arbitro/create-arbitro.component';
 
 const routes: Routes = [
   { path: '', component: HomeComponent },
@@ -30,14 +31,13 @@ const routes: Routes = [
   { path: 'entrenamientos', component: EntrenamientosComponent },
 
   // ADMIN
-  { path: 'admin/usuarios', component: AdminUsuariosComponent },
-  { path: 'admin/arbitro/crear', component: AdminArbitroCrearComponent },
-  { path: 'admin/entrenador/crear', component: AdminEntrenadorCrearComponent },
-  { path: 'admin/usuario/eliminar', component: AdminUsuarioEliminarComponent },
+  { path: 'arbitro/create/user', component: CreateArbitroComponent },
+  { path: 'arbitro/create/admin', component: CreateArbitroComponent },
 
   // ENTRENADOR
   { path: 'entrenador/entrenamientos', component: EntrenadorEntrenamientosComponent },
   { path: 'entrenador/entrenamiento/subir', component: EntrenadorEntrenamientoSubirComponent },
+  { path: 'crear-arbitro', component: CreateArbitroComponent },
 
   // ...otras rutas...
 ];

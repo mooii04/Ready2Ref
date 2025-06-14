@@ -1,0 +1,99 @@
+<div class="create-arbitro-container">
+  <h2>Crear un árbitro</h2>
+  <div *ngIf="!tipo" class="tipo-selector">
+    <button (click)="seleccionarTipo('USER')">Crear como USER</button>
+    <button (click)="seleccionarTipo('ADMIN')">Crear como ADMIN</button>
+  </div>
+  <form *ngIf="tipo" [formGroup]="arbitroForm" (ngSubmit)="onSubmit()">
+    <div class="form-row">
+      <label>Nombre</label>
+      <input formControlName="nombre" />
+    </div>
+    <div class="form-row">
+      <label>Primer Apellido</label>
+      <input formControlName="primerApellido" />
+    </div>
+    <div class="form-row">
+      <label>Segundo Apellido</label>
+      <input formControlName="segundoApellido" />
+    </div>
+    <div class="form-row">
+      <label>Username</label>
+      <input formControlName="username" />
+    </div>
+    <div class="form-row">
+      <label>Email</label>
+      <input formControlName="email" />
+    </div>
+    <div class="form-row">
+      <label>Teléfono</label>
+      <input formControlName="telefono" />
+    </div>
+    <div class="form-row">
+      <label>Password</label>
+      <input type="password" formControlName="password" />
+    </div>
+    <div class="form-row">
+      <label>Verificar Password</label>
+      <input type="password" formControlName="verifyPassword" />
+    </div>
+    <div class="form-row">
+      <label>Fecha Nacimiento</label>
+      <input type="date" formControlName="fechaNacimiento" />
+    </div>
+    <div class="form-row">
+      <label>Edad</label>
+      <input type="number" formControlName="edad" />
+    </div>
+    <div class="form-row">
+      <label>Categoría</label>
+      <select formControlName="categoria">
+        <option value="" disabled>Selecciona una categoría</option>
+        <option *ngFor="let cat of categorias" [value]="cat">{{ cat }}</option>
+      </select>
+    </div>
+    <div class="form-row">
+      <label>Fecha Inscripción</label>
+      <input type="date" formControlName="fechaInscripcion" />
+    </div>
+    <div class="form-row">
+      <label>Talla Botas</label>
+      <input type="number" formControlName="tallaBotas" />
+    </div>
+    <div class="form-row">
+      <label>Talla Camiseta</label>
+      <select formControlName="tallaCamiseta">
+        <option value="" disabled>Selecciona una talla</option>
+        <option *ngFor="let talla of tallas" [value]="talla">{{ talla }}</option>
+      </select>
+    </div>
+    <div class="form-row">
+      <label>Talla Calzonas</label>
+      <select formControlName="tallaCalzonas">
+        <option value="" disabled>Selecciona una talla</option>
+        <option *ngFor="let talla of tallas" [value]="talla">{{ talla }}</option>
+      </select>
+    </div>
+    <div class="form-row">
+      <label>Talla Chandal</label>
+      <select formControlName="tallaChandal">
+        <option value="" disabled>Selecciona una talla</option>
+        <option *ngFor="let talla of tallas" [value]="talla">{{ talla }}</option>
+      </select>
+    </div>
+    <div class="form-row">
+      <label>Foto</label>
+      <input formControlName="foto" />
+    </div>
+    <div class="form-row">
+      <label>Rol</label>
+      <input formControlName="roles" [disabled]="true" />
+    </div>
+    <div class="form-actions">
+      <button type="submit" [disabled]="loading">Crear Árbitro</button>
+      <button type="button" (click)="tipo = null">Volver</button>
+    </div>
+    <div *ngIf="error" class="error">{{ error }}</div>
+    <div *ngIf="success" class="success">{{ success }}</div>
+  </form>
+</div>
