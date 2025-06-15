@@ -29,8 +29,9 @@
   </div>
 
   <div *ngIf="rol === 'USER'">
-    <button (click)="verPacks()">Ver Packs</button>
-    <button (click)="verMensajes()">Ver Mensajes</button>
+    <div class="editar-datos-section">
+      <button routerLink="/user-edit" class="editar-datos-btn">Editar datos personales</button>
+    </div>
   </div>
 
   <div *ngIf="rol === 'ENTRENADOR'">

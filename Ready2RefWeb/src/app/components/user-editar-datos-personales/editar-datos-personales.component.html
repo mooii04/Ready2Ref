@@ -1,0 +1,60 @@
+<div class="editar-datos-container">
+  <h2>Editar datos personales</h2>
+  <div *ngIf="cargandoDatos">Cargando tus datos...</div>
+  <form *ngIf="!cargandoDatos" [formGroup]="datosForm" (ngSubmit)="onSubmit()">
+    <div class="form-row">
+      <label>Nombre</label>
+      <input formControlName="nombre" />
+    </div>
+    <div class="form-row">
+      <label>Primer Apellido</label>
+      <input formControlName="primerApellido" />
+    </div>
+    <div class="form-row">
+      <label>Segundo Apellido</label>
+      <input formControlName="segundoApellido" />
+    </div>
+    <div class="form-row">
+      <label>Email</label>
+      <input formControlName="email" />
+    </div>
+    <div class="form-row">
+      <label>Teléfono</label>
+      <input formControlName="telefono" />
+    </div>
+    <div class="form-row">
+      <label>Talla Botas</label>
+      <input type="number" formControlName="tallaBotas" />
+    </div>
+    <div class="form-row">
+      <label>Talla Camiseta</label>
+      <select formControlName="tallaCamiseta">
+        <option value="" disabled>Selecciona una talla</option>
+        <option *ngFor="let talla of tallas" [value]="talla">{{ talla }}</option>
+      </select>
+    </div>
+    <div class="form-row">
+      <label>Talla Calzonas</label>
+      <select formControlName="tallaCalzonas">
+        <option value="" disabled>Selecciona una talla</option>
+        <option *ngFor="let talla of tallas" [value]="talla">{{ talla }}</option>
+      </select>
+    </div>
+    <div class="form-row">
+      <label>Talla Chandal</label>
+      <select formControlName="tallaChandal">
+        <option value="" disabled>Selecciona una talla</option>
+        <option *ngFor="let talla of tallas" [value]="talla">{{ talla }}</option>
+      </select>
+    </div>
+    <div class="form-row">
+      <label>Foto</label>
+      <input formControlName="foto" />
+    </div>
+    <div class="form-actions">
+      <button type="submit" [disabled]="loading">Guardar cambios</button>
+    </div>
+    <div *ngIf="error" class="error">{{ error }}</div>
+    <div *ngIf="success" class="success">{{ success }}</div>
+  </form>
+</div>
