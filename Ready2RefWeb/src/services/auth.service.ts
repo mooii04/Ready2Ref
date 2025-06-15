@@ -54,4 +54,17 @@ export class AuthService {
   isLoggedIn(): boolean {
     return this.isAuthenticated() && !!this.getToken();
   }
+
+  refreshToken() {
+  const refreshToken = localStorage.getItem('refreshToken');
+  return this.http.post<any>('http://localhost:8080/auth/refresh/token', {
+    refreshToken: refreshToken
+  });
+}
+
+saveTokens(token: string, refreshToken: string) {
+  localStorage.setItem('accessToken', token);
+  localStorage.setItem('refreshToken', refreshToken);
+}
+
 }

@@ -1,0 +1,49 @@
+<!-- arbitros-registrados.component.html -->
+
+<div class="arbitros-registrados-container">
+  <h2>Árbitros Registrados</h2>
+
+  <!-- Filtros -->
+  <div class="filtros">
+    <input [(ngModel)]="filtroNombre" type="text" placeholder="Filtrar por nombre" />
+    <input [(ngModel)]="filtroCategoria" type="text" placeholder="Filtrar por categoría" />
+    <button (click)="cargarArbitros()">Buscar</button>
+    <button (click)="limpiarFiltros()">Limpiar</button>
+  </div>
+
+  <!-- Mensajes -->
+  <div *ngIf="loading">Cargando...</div>
+  <div *ngIf="error" class="error">{{ error }}</div>
+
+  <!-- Tabla de árbitros -->
+  <table *ngIf="!loading && arbitros.length > 0">
+    <thead>
+      <tr>
+        <th>Foto</th>
+        <th>Nombre</th>
+        <th>Usuario</th>
+        <th>Email</th>
+        <th>Teléfono</th>
+        <th>Categoría</th>
+        <th>Edad</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let a of arbitros">
+        <td>
+          <img [src]="'http://localhost:8080/uploads/' + a.foto"
+               alt="foto" width="50" height="50"
+               style="object-fit:cover;border-radius:50%;" />
+        </td>
+        <td>{{ a.nombre }} {{ a.primerApellido }} {{ a.segundoApellido }}</td>
+        <td>{{ a.username }}</td>
+        <td>{{ a.email }}</td>
+        <td>{{ a.telefono }}</td>
+        <td>{{ a.categoria }}</td>
+        <td>{{ a.edad }}</td>
+      </tr>
+    </tbody>
+  </table>
+
+  <div *ngIf="!loading && arbitros.length === 0">No hay árbitros registrados.</div>
+</div>

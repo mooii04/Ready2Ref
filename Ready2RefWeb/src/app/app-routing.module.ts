@@ -16,6 +16,7 @@ import { EntrenadorEntrenamientoSubirComponent } from './components/entrenador-e
 import { HomeLoginComponent } from './components/home-login/home-login.component';
 import { AuthGuard } from './guards/auth.guard';
 import { CreateArbitroComponent } from './components/create-arbitro/create-arbitro.component';
+import { ArbitrosRegistradosComponent } from './components/arbitros-registrados/arbitros-registrados.component';
 
 const routes: Routes = [
   { path: '', component: HomeComponent },
@@ -33,6 +34,7 @@ const routes: Routes = [
   // ADMIN
   { path: 'arbitro/create/user', component: CreateArbitroComponent },
   { path: 'arbitro/create/admin', component: CreateArbitroComponent },
+  { path: 'arbitros-registrados', component: ArbitrosRegistradosComponent },
 
   // ENTRENADOR
   { path: 'entrenador/entrenamientos', component: EntrenadorEntrenamientosComponent },

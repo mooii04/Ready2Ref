@@ -1,6 +1,5 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
-
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { provideAnimationsAsync } from '@angular/platform-browser/animations/async';
@@ -15,6 +14,7 @@ import { HeaderPrivateComponent } from './components/header-private/header-priva
 import { HomeLoginComponent } from './components/home-login/home-login.component';
 import { TokenInterceptor } from './interceptors/token.interceptor';
 import { CreateArbitroComponent } from './components/create-arbitro/create-arbitro.component';
+import { ArbitrosRegistradosComponent } from './components/arbitros-registrados/arbitros-registrados.component';
 
 @NgModule({
   declarations: [
@@ -25,7 +25,8 @@ import { CreateArbitroComponent } from './components/create-arbitro/create-arbit
     HeaderPublicComponent,
     PrivateAreaComponent,
     HomeLoginComponent,
-    CreateArbitroComponent
+    CreateArbitroComponent,
+    ArbitrosRegistradosComponent
   ],
   imports: [
     BrowserModule,
