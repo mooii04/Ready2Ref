@@ -15,6 +15,7 @@ import { HomeLoginComponent } from './components/home-login/home-login.component
 import { TokenInterceptor } from './interceptors/token.interceptor';
 import { CreateArbitroComponent } from './components/create-arbitro/create-arbitro.component';
 import { ArbitrosRegistradosComponent } from './components/arbitros-registrados/arbitros-registrados.component';
+import { CreateEntrenadorComponent } from './components/create-entrenador/create-entrenador.component';
 
 @NgModule({
   declarations: [
@@ -26,7 +27,8 @@ import { ArbitrosRegistradosComponent } from './components/arbitros-registrados/
     PrivateAreaComponent,
     HomeLoginComponent,
     CreateArbitroComponent,
-    ArbitrosRegistradosComponent
+    ArbitrosRegistradosComponent,
+    CreateEntrenadorComponent
   ],
   imports: [
     BrowserModule,
