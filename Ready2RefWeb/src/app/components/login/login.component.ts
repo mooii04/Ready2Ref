@@ -29,6 +29,7 @@ export class LoginComponent {
     this.loginError = null;
     if (this.loginForm.valid) {
       const body = this.loginForm.value;
+      console.log('Enviando login:', { username: body.username, password: body.password });
 
       this.authService.login(body.username, body.password).subscribe({
         next: (response: any) => {
