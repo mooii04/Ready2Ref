@@ -8,6 +8,7 @@ import { AuthGuard } from './guards/auth.guard';
 import { CreateArbitroComponent } from './components/create-arbitro/create-arbitro.component';
 import { ArbitrosRegistradosComponent } from './components/arbitros-registrados/arbitros-registrados.component';
 import { CreateEntrenadorComponent } from './components/create-entrenador/create-entrenador.component';
+import { EditarDatosPersonalesComponent } from './components/user-editar-datos-personales/editar-datos-personales.component';
 
 const routes: Routes = [
   { path: '', component: HomeComponent },
@@ -15,6 +16,8 @@ const routes: Routes = [
   { path: 'login', component: LoginComponent },
   { path: 'areaprivada', component: PrivateAreaComponent, canActivate: [AuthGuard] },
   { path: 'home-login', component: HomeLoginComponent },
+
+  { path : 'user-edit', component: EditarDatosPersonalesComponent},
 
   // ADMIN
   { path: 'arbitro/create/user', component: CreateArbitroComponent },

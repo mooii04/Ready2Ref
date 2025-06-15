@@ -16,6 +16,7 @@ import { TokenInterceptor } from './interceptors/token.interceptor';
 import { CreateArbitroComponent } from './components/create-arbitro/create-arbitro.component';
 import { ArbitrosRegistradosComponent } from './components/arbitros-registrados/arbitros-registrados.component';
 import { CreateEntrenadorComponent } from './components/create-entrenador/create-entrenador.component';
+import { EditarDatosPersonalesComponent } from './components/user-editar-datos-personales/editar-datos-personales.component';
 
 @NgModule({
   declarations: [
@@ -28,7 +29,8 @@ import { CreateEntrenadorComponent } from './components/create-entrenador/create
     HomeLoginComponent,
     CreateArbitroComponent,
     ArbitrosRegistradosComponent,
-    CreateEntrenadorComponent
+    CreateEntrenadorComponent,
+    EditarDatosPersonalesComponent
   ],
   imports: [
     BrowserModule,
