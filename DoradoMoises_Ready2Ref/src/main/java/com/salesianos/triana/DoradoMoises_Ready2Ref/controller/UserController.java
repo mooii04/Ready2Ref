@@ -17,6 +17,7 @@ import com.salesianos.triana.DoradoMoises_Ready2Ref.security.jwt.refresh.Refresh
 import com.salesianos.triana.DoradoMoises_Ready2Ref.security.jwt.refresh.RefreshTokenRequest;
 import com.salesianos.triana.DoradoMoises_Ready2Ref.security.jwt.refresh.RefreshTokenService;
 import com.salesianos.triana.DoradoMoises_Ready2Ref.service.UserService;
+import com.salesianos.triana.DoradoMoises_Ready2Ref.service.ArbitroService;
 
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.media.ArraySchema;
@@ -30,6 +31,7 @@ import lombok.RequiredArgsConstructor;
 
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.Authentication;
@@ -49,6 +51,7 @@ public class UserController {
     private final AuthenticationManager authenticationManager;
     private final JwtService jwtService;
     private final RefreshTokenService refreshTokenService;
+    private final ArbitroService arbitroService;
 
     @Operation(summary = "Registro de un usuario")
     @ApiResponses(value = {
@@ -135,6 +138,13 @@ public class UserController {
     public GetSearchArbitroDto adminMe(@AuthenticationPrincipal User user) {
         return GetSearchArbitroDto.of((Arbitro) user);
     }
+
+@GetMapping("/admin/{username}")
+public GetSearchArbitroDto getArbitroByUsername(@PathVariable String username) {
+    Arbitro arbitro = arbitroService.findByUsername(username);
+    return GetSearchArbitroDto.of(arbitro);
+}
+
 
     @GetMapping("/me/entrenador")
     public GetEntrenadorDto entrenadorMe(@AuthenticationPrincipal User user) {
