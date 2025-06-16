@@ -19,6 +19,7 @@ import { CreateEntrenadorComponent } from './components/create-entrenador/create
 import { EditarDatosPersonalesComponent } from './components/user-editar-datos-personales/editar-datos-personales.component';
 import { EditarEntrenadorDatosComponent } from './components/editar-entrenador-datos/editar-entrenador-datos.component';
 import { CambiarContraseniaComponent } from './components/cambiar-contrasenia/cambiar-contrasenia.component';
+import { EntrenamientosComponent } from './components/entrenamientos/entrenamientos.component';
 
 @NgModule({
   declarations: [
@@ -35,6 +36,7 @@ import { CambiarContraseniaComponent } from './components/cambiar-contrasenia/ca
     EditarDatosPersonalesComponent,
     EditarEntrenadorDatosComponent,
     CambiarContraseniaComponent,
+    EntrenamientosComponent,
   ],
   imports: [
     BrowserModule,
