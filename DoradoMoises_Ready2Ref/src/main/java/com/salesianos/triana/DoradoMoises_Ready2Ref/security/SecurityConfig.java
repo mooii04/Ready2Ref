@@ -81,7 +81,8 @@ public class SecurityConfig {
         "/download/**",
         "/edit/**",
         "/mensaje/search",
-        "/swagger-ui/**"
+        "/swagger-ui/**",
+        "/download/**"
     ).permitAll()
 
     // Rutas protegidas por rol
