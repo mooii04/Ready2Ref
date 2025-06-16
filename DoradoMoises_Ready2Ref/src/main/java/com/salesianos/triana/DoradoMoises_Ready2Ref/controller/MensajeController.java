@@ -2,9 +2,12 @@ package com.salesianos.triana.DoradoMoises_Ready2Ref.controller;
 
 import com.salesianos.triana.DoradoMoises_Ready2Ref.dto.mensaje.EditMensajeDto;
 import com.salesianos.triana.DoradoMoises_Ready2Ref.dto.mensaje.GetMensajeDto;
+import com.salesianos.triana.DoradoMoises_Ready2Ref.dto.mensaje.GetMensajeListadoDto;
 import com.salesianos.triana.DoradoMoises_Ready2Ref.dto.user.create.GetArbitroDto;
 import com.salesianos.triana.DoradoMoises_Ready2Ref.dto.user.search.GetSearchArbitroDto;
 import com.salesianos.triana.DoradoMoises_Ready2Ref.model.Arbitro;
+import com.salesianos.triana.DoradoMoises_Ready2Ref.model.Mensaje;
+import com.salesianos.triana.DoradoMoises_Ready2Ref.model.User;
 import com.salesianos.triana.DoradoMoises_Ready2Ref.service.MensajeService;
 import com.salesianos.triana.DoradoMoises_Ready2Ref.specification.SearchCriteria;
 import io.swagger.v3.oas.annotations.Operation;
@@ -19,10 +22,12 @@ import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.java.Log;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.UUID;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
@@ -113,7 +118,7 @@ public class MensajeController {
             @ApiResponse(responseCode = "403", description = "No tienes permisos para acceder a este recurso", content = @Content)
     })
     @GetMapping("/search")
-    public List<GetMensajeDto> buscar(@RequestParam(value="search", required = false) String search) {
+    public List<GetMensajeListadoDto> buscar(@RequestParam(value="search", required = false) String search) {
         log.info(search);
         List<SearchCriteria> params = new ArrayList<SearchCriteria>();
         if (search != null) {
@@ -129,6 +134,12 @@ public class MensajeController {
 
         return mensajeService.buscarMensajes(params);
 
+    }
+
+    @PutMapping("/{id}/leido")
+    public ResponseEntity<GetMensajeListadoDto> marcarComoLeido(@PathVariable UUID id, @AuthenticationPrincipal User user) {
+        Mensaje mensaje = mensajeService.marcarMensajeComoLeido(id, user);
+        return ResponseEntity.ok(GetMensajeListadoDto.of(mensaje));
     }
 
 }

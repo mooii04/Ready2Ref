@@ -13,6 +13,7 @@ import { EditarEntrenadorDatosComponent } from './components/editar-entrenador-d
 import { CambiarContraseniaComponent } from './components/cambiar-contrasenia/cambiar-contrasenia.component';
 import { EntrenamientosComponent } from './components/entrenamientos/entrenamientos.component';
 import { VistaMensajesComponent } from './components/vista-mensajes/vista-mensajes.component';
+import { CreateMensajesComponent } from './components/mensajes/create-mensajes.component';
 
 const routes: Routes = [
   { path: '', component: HomeComponent },
@@ -30,6 +31,8 @@ const routes: Routes = [
   { path: 'entrenamientos', component: EntrenamientosComponent },
 
   { path: 'vista-mensajes', component: VistaMensajesComponent },
+
+  { path: 'create-mensajes', component: CreateMensajesComponent },
 
   // ADMIN
   { path: 'arbitro/create/user', component: CreateArbitroComponent },
