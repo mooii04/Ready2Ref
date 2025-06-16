@@ -20,6 +20,7 @@ import { EditarDatosPersonalesComponent } from './components/user-editar-datos-p
 import { EditarEntrenadorDatosComponent } from './components/editar-entrenador-datos/editar-entrenador-datos.component';
 import { CambiarContraseniaComponent } from './components/cambiar-contrasenia/cambiar-contrasenia.component';
 import { EntrenamientosComponent } from './components/entrenamientos/entrenamientos.component';
+import { VistaMensajesComponent } from './components/vista-mensajes/vista-mensajes.component';
 
 @NgModule({
   declarations: [
@@ -37,6 +38,7 @@ import { EntrenamientosComponent } from './components/entrenamientos/entrenamien
     EditarEntrenadorDatosComponent,
     CambiarContraseniaComponent,
     EntrenamientosComponent,
+    VistaMensajesComponent,
   ],
   imports: [
     BrowserModule,

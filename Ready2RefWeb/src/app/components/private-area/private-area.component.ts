@@ -4,6 +4,7 @@ import { AuthService } from '../../../services/auth.service';
 import { UserService } from '../../../services/user.service';
 import { UserProfile, UserRole } from '../../../model/user.model';
 import { jwtDecode } from 'jwt-decode';
+import { HttpClient } from '@angular/common/http';
 
 @Component({
   selector: 'app-private-area',
@@ -14,11 +15,13 @@ export class PrivateAreaComponent implements OnInit {
 
   userProfile: UserProfile | null = null;
   rol: UserRole | null = null;
+  mensajesNoLeidos: number = 0;
 
   constructor(
     private authService: AuthService,
     private router: Router,
-    private userService: UserService
+    private userService: UserService,
+    private http: HttpClient
   ) {}
 
   ngOnInit(): void {
@@ -46,6 +49,8 @@ export class PrivateAreaComponent implements OnInit {
       this.router.navigate(['/login']);
     }
   });
+
+  this.cargarMensajesNoLeidos();
 }
 
   logout(): void {
@@ -81,5 +86,16 @@ export class PrivateAreaComponent implements OnInit {
   crearEntrenamiento(): void {
     console.log('Crear Entrenamiento');
     // this.router.navigate(['/entrenador/crear-entrenamiento']);
+  }
+
+  cargarMensajesNoLeidos() {
+    this.http.get<any[]>('http://localhost:8080/mensaje/search').subscribe({
+      next: (mensajes) => {
+        this.mensajesNoLeidos = mensajes.filter(m => !m.leido).length;
+      },
+      error: () => {
+        this.mensajesNoLeidos = 0;
+      }
+    });
   }
 }

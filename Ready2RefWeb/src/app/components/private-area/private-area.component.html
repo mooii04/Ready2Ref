@@ -27,14 +27,21 @@
       <button routerLink="/crear-entrenador" class="crear-entrenador-btn">Crear entrenador</button>
       <button routerLink="/contrasenia" class="contrasenia-btn">Cambiar contraseña</button>
     </div>
+    <button type="button" [routerLink]="['/vista-mensajes']">
+    Ver mensajes
+    <span *ngIf="mensajesNoLeidos > 0" class="badge">{{ mensajesNoLeidos }}</span>
+  </button>
   </div>
 
   <div *ngIf="rol === 'USER'">
     <div class="editar-datos-section">
       <button routerLink="/user-edit" class="editar-datos-btn">Editar datos personales</button>
-      
       <button routerLink="/contrasenia" class="contrasenia-btn">Cambiar contraseña</button>
     </div>
+    <button type="button" [routerLink]="['/vista-mensajes']">
+    Ver mensajes
+    <span *ngIf="mensajesNoLeidos > 0" class="badge">{{ mensajesNoLeidos }}</span>
+  </button>
   </div>
 
   <div *ngIf="rol === 'ENTRENADOR'">
@@ -42,4 +49,8 @@
       <button routerLink="/contrasenia" class="contrasenia-btn">Cambiar contraseña</button>
       <button routerLink="/entrenamientos" class="entrenamientos-btn">Subir entrenamientos</button>
   </div>
+  <button type="button" [routerLink]="['/vista-mensajes']">
+    Ver mensajes
+    <span *ngIf="mensajesNoLeidos > 0" class="badge">{{ mensajesNoLeidos }}</span>
+  </button>
 </main>
