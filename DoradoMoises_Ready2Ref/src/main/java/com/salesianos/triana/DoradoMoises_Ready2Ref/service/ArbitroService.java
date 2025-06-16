@@ -223,4 +223,9 @@ public class ArbitroService {
     }
 
 
+    public Arbitro findByUsername(String username) {
+        return arbitroRepository.findByUsername(username)
+                .orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND, "Arbitro no encontrado"));
+    }
+
 }

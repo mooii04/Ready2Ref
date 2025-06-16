@@ -86,8 +86,8 @@ public class SecurityConfig {
     ).permitAll()
 
     // Rutas protegidas por rol
-    .requestMatchers("/me/admin", "/arbitro/create/**", "/entrenador/create",
-        "/arbitro/edit/admin/**", "/arbitro/search/", "/delete/**", "/mensaje/create/**"
+    .requestMatchers("/me/admin", "/me/user", "/arbitro/create/**", "/entrenador/create",
+        "/arbitro/edit/admin/**", "/arbitro/search/", "/delete/**", "/mensaje/create/**", "/arbitro/admin/**"
     ).hasRole("ADMIN")
 
     .requestMatchers("/entrenador/**", "/me/entrenador", "/upload").hasRole("ENTRENADOR")

@@ -1,0 +1,61 @@
+<form [formGroup]="datosForm" (ngSubmit)="onSubmit()" class="edit-all-admin-form" *ngIf="!cargandoDatos">
+  <h2>Editar datos personales (Árbitro)</h2>
+  <label>
+    Nombre:
+    <input type="text" formControlName="nombre" required />
+  </label>
+  <label>
+    Primer Apellido:
+    <input type="text" formControlName="primerApellido" required />
+  </label>
+  <label>
+    Segundo Apellido:
+    <input type="text" formControlName="segundoApellido" required />
+  </label>
+  <label>
+    Email:
+    <input type="email" formControlName="email" required />
+  </label>
+  <label>
+    Teléfono:
+    <input type="text" formControlName="telefono" required />
+  </label>
+  <label>
+    Categoría:
+    <select formControlName="categoria" required>
+      <option *ngFor="let cat of categorias" [value]="cat">{{cat}}</option>
+    </select>
+  </label>
+  <label>
+    Talla Botas:
+    <input type="number" formControlName="tallaBotas" />
+  </label>
+  <label>
+    Talla Camiseta:
+    <select formControlName="tallaCamiseta">
+      <option *ngFor="let t of tallas" [value]="t">{{t}}</option>
+    </select>
+  </label>
+  <label>
+    Talla Calzonas:
+    <select formControlName="tallaCalzonas">
+      <option *ngFor="let t of tallas" [value]="t">{{t}}</option>
+    </select>
+  </label>
+  <label>
+    Talla Chandal:
+    <select formControlName="tallaChandal">
+      <option *ngFor="let t of tallas" [value]="t">{{t}}</option>
+    </select>
+  </label>
+  <label>
+    Foto:
+    <input type="text" formControlName="foto" />
+  </label>
+  <div class="edit-all-admin-botones">
+    <button type="submit" [disabled]="loading">Guardar</button>
+  </div>
+  <div *ngIf="error" class="error">{{ error }}</div>
+  <div *ngIf="success" class="success">{{ success }}</div>
+</form>
+<div *ngIf="cargandoDatos" class="cargando">Cargando datos...</div>

@@ -22,6 +22,7 @@ import { CambiarContraseniaComponent } from './components/cambiar-contrasenia/ca
 import { EntrenamientosComponent } from './components/entrenamientos/entrenamientos.component';
 import { VistaMensajesComponent } from './components/vista-mensajes/vista-mensajes.component';
 import { CreateMensajesComponent } from './components/mensajes/create-mensajes.component';
+import { EditAllAdminComponent } from './components/edit-all-admin/edit-all-admin.component';
 
 @NgModule({
   declarations: [
@@ -41,6 +42,7 @@ import { CreateMensajesComponent } from './components/mensajes/create-mensajes.c
     EntrenamientosComponent,
     VistaMensajesComponent,
     CreateMensajesComponent,
+    EditAllAdminComponent,
   ],
   imports: [
     BrowserModule,
@@ -53,7 +55,6 @@ import { CreateMensajesComponent } from './components/mensajes/create-mensajes.c
   providers: [
     provideAnimationsAsync(),
     provideHttpClient(),
-    //{ provide: HTTP_INTERCEPTORS, useClass: AuthInterceptor, multi: true },
     { provide: HTTP_INTERCEPTORS, useClass: TokenInterceptor, multi: true }
   ],
   bootstrap: [AppComponent]
