@@ -35,8 +35,7 @@ const routes: Routes = [
   { path: 'create-mensajes', component: CreateMensajesComponent },
 
   // ADMIN
-  { path: 'arbitro/create/user', component: CreateArbitroComponent },
-  { path: 'arbitro/create/admin', component: CreateArbitroComponent },
+  { path: 'crear-arbitro', component: CreateArbitroComponent },
   { path: 'arbitros-registrados', component: ArbitrosRegistradosComponent },
 
   // ENTRENADOR
