@@ -10,6 +10,7 @@ import { ArbitrosRegistradosComponent } from './components/arbitros-registrados/
 import { CreateEntrenadorComponent } from './components/create-entrenador/create-entrenador.component';
 import { EditarDatosPersonalesComponent } from './components/user-editar-datos-personales/editar-datos-personales.component';
 import { EditarEntrenadorDatosComponent } from './components/editar-entrenador-datos/editar-entrenador-datos.component';
+import { CambiarContraseniaComponent } from './components/cambiar-contrasenia/cambiar-contrasenia.component';
 
 const routes: Routes = [
   { path: '', component: HomeComponent },
@@ -21,6 +22,8 @@ const routes: Routes = [
   { path : 'user-edit', component: EditarDatosPersonalesComponent},
 
   {path: 'entrenador-edit', component: EditarEntrenadorDatosComponent},
+
+  { path: 'contrasenia', component: CambiarContraseniaComponent},
 
   // ADMIN
   { path: 'arbitro/create/user', component: CreateArbitroComponent },

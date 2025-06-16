@@ -1,0 +1,20 @@
+<form [formGroup]="form" (ngSubmit)="onSubmit()" class="cambiar-contrasenia-form">
+  <h2>Cambiar contraseña</h2>
+  <label>
+    Contraseña actual:
+    <input type="password" formControlName="oldPassword" required />
+  </label>
+  <label>
+    Nueva contraseña:
+    <input type="password" formControlName="password" required minlength="8" />
+  </label>
+  <label>
+    Repetir nueva contraseña:
+    <input type="password" formControlName="verifyPassword" required />
+  </label>
+  <div class="cambiar-contrasenia-botones">
+    <button type="submit" [disabled]="loading">Guardar</button>
+  </div>
+  <div *ngIf="error" class="error">{{ error }}</div>
+  <div *ngIf="success" class="success">{{ success }}</div>
+</form>

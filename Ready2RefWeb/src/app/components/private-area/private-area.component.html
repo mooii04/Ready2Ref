@@ -25,16 +25,20 @@
       <button routerLink="/crear-arbitro" class="crear-arbitro-btn">Crear un árbitro</button>
       <button routerLink="/arbitros-registrados" class="ver-arbitros-btn">Ver árbitros registrados</button>
       <button routerLink="/crear-entrenador" class="crear-entrenador-btn">Crear entrenador</button>
+      <button routerLink="/contrasenia" class="contrasenia-btn">Cambiar contraseña</button>
     </div>
   </div>
 
   <div *ngIf="rol === 'USER'">
     <div class="editar-datos-section">
       <button routerLink="/user-edit" class="editar-datos-btn">Editar datos personales</button>
+      
+      <button routerLink="/contrasenia" class="contrasenia-btn">Cambiar contraseña</button>
     </div>
   </div>
 
   <div *ngIf="rol === 'ENTRENADOR'">
-      <button routerLink="/entrenador-edit" class="crear-entrenador-btn">Editar datos personales</button>
+      <button routerLink="/entrenador-edit" class="editar-datos-btn">Editar datos personales</button>
+      <button routerLink="/contrasenia" class="contrasenia-btn">Cambiar contraseña</button>
   </div>
 </main>
