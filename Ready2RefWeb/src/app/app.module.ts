@@ -17,6 +17,7 @@ import { CreateArbitroComponent } from './components/create-arbitro/create-arbit
 import { ArbitrosRegistradosComponent } from './components/arbitros-registrados/arbitros-registrados.component';
 import { CreateEntrenadorComponent } from './components/create-entrenador/create-entrenador.component';
 import { EditarDatosPersonalesComponent } from './components/user-editar-datos-personales/editar-datos-personales.component';
+import { EditarEntrenadorDatosComponent } from './components/editar-entrenador-datos/editar-entrenador-datos.component';
 
 @NgModule({
   declarations: [
@@ -30,7 +31,8 @@ import { EditarDatosPersonalesComponent } from './components/user-editar-datos-p
     CreateArbitroComponent,
     ArbitrosRegistradosComponent,
     CreateEntrenadorComponent,
-    EditarDatosPersonalesComponent
+    EditarDatosPersonalesComponent,
+    EditarEntrenadorDatosComponent,
   ],
   imports: [
     BrowserModule,

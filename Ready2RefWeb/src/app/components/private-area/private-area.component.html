@@ -35,7 +35,6 @@
   </div>
 
   <div *ngIf="rol === 'ENTRENADOR'">
-    <button (click)="verEntrenamientos()">Ver Entrenamientos</button>
-    <button (click)="crearEntrenamiento()">Crear Entrenamiento</button>
+      <button routerLink="/entrenador-edit" class="crear-entrenador-btn">Editar datos personales</button>
   </div>
 </main>
