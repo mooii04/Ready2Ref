@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 
 interface Mensaje {
+  id: number; // Asegúrate de que la interfaz tenga el campo 'id'
   asunto: string;
   contenido: string;
   fechaEnvio: string;
@@ -14,7 +15,7 @@ interface Mensaje {
   styleUrls: ['./vista-mensajes.component.css']
 })
 export class VistaMensajesComponent implements OnInit {
-  mensajes: Mensaje[] = [];
+  mensajes: any[] = [];
   loading = false;
   error: string | null = null;
 
@@ -28,9 +29,33 @@ export class VistaMensajesComponent implements OnInit {
     this.cargarMensajes();
   }
 
+  marcarComoLeido(index: number, event: MouseEvent) {
+    event.stopPropagation();
+    const mensaje = this.mensajes[index];
+    if (!mensaje.leido && mensaje.id) {
+      // Para depuración, muestra el id y la URL en consola
+      console.log('Intentando marcar como leído:', mensaje.id, `http://localhost:8080/mensaje/${mensaje.id}/leido`);
+      this.http.put(`http://localhost:8080/mensaje/${mensaje.id}/leido`, {}, { responseType: 'text' }).subscribe({
+        next: () => {
+          this.mensajes[index].leido = true;
+          // Opcional: vuelve a cargar mensajes si quieres refrescar el contador global
+          // this.cargarMensajes();
+        },
+        error: (err) => {
+          this.error = 'No se pudo marcar como leído.';
+          console.error(err);
+        }
+      });
+    } else {
+      if (!mensaje.id) {
+        console.error('El mensaje no tiene id:', mensaje);
+      }
+    }
+  }
+
   cargarMensajes() {
     this.loading = true;
-    this.http.get<Mensaje[]>('http://localhost:8080/mensaje/search').subscribe({
+    this.http.get<any[]>('http://localhost:8080/mensaje/search').subscribe({
       next: (data) => {
         this.mensajes = data;
         this.loading = false;
@@ -40,9 +65,5 @@ export class VistaMensajesComponent implements OnInit {
         this.loading = false;
       }
     });
-  }
-
-  marcarComoLeido(index: number) {
-    this.mensajes[index].leido = true;
   }
 }

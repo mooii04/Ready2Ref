@@ -31,6 +31,7 @@
     Ver mensajes
     <span *ngIf="mensajesNoLeidos > 0" class="badge">{{ mensajesNoLeidos }}</span>
   </button>
+  <button routerLink="/create-mensajes">Crear mensaje</button>
   </div>
 
   <div *ngIf="rol === 'USER'">

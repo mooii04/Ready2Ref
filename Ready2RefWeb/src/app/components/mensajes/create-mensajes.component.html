@@ -1,0 +1,16 @@
+<form [formGroup]="mensajeForm" (ngSubmit)="onSubmit()" class="create-mensajes-form">
+  <h2>Crear mensaje</h2>
+  <label>
+    Asunto:
+    <input type="text" formControlName="asunto" required />
+  </label>
+  <label>
+    Contenido:
+    <textarea formControlName="contenido" required rows="5"></textarea>
+  </label>
+  <div class="create-mensajes-botones">
+    <button type="submit" [disabled]="loading">Enviar</button>
+  </div>
+  <div *ngIf="error" class="error">{{ error }}</div>
+  <div *ngIf="success" class="success">{{ success }}</div>
+</form>
