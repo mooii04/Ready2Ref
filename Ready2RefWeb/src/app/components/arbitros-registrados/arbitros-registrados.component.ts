@@ -3,6 +3,8 @@
 import { Component, OnInit } from '@angular/core';
 import { Arbitro } from '../../../model/arbitro.model';
 import { ArbitroService } from '../../../services/arbitro.service';
+import { HttpClient } from '@angular/common/http';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-arbitros-registrados',
@@ -18,7 +20,10 @@ export class ArbitrosRegistradosComponent implements OnInit {
   filtroNombre = '';
   filtroCategoria = '';
 
-  constructor(private arbitroService: ArbitroService) {}
+  // Eliminación
+  eliminandoUsername: string | null = null;
+
+  constructor(private arbitroService: ArbitroService, private http: HttpClient, private router: Router) {}
 
   ngOnInit() {
     this.cargarArbitros();
@@ -55,5 +60,28 @@ export class ArbitrosRegistradosComponent implements OnInit {
     this.filtroNombre = '';
     this.filtroCategoria = '';
     this.cargarArbitros();
+  }
+
+  abrirDialogoEliminar(username: string) {
+    this.eliminandoUsername = username;
+  }
+
+  cerrarDialogoEliminar() {
+    this.eliminandoUsername = null;
+  }
+
+  confirmarEliminar() {
+    if (this.eliminandoUsername) {
+      this.http.delete(`http://localhost:8080/delete/${this.eliminandoUsername}`).subscribe({
+        next: () => {
+          this.cerrarDialogoEliminar();
+          this.cargarArbitros();
+        },
+        error: (err) => {
+          alert('Error al eliminar el usuario: ' + (err?.error?.message || 'Error desconocido'));
+          this.cerrarDialogoEliminar();
+        }
+      });
+    }
   }
 }

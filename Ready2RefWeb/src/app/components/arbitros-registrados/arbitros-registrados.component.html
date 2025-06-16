@@ -43,11 +43,23 @@
         <td>{{ a.categoria }}</td>
         <td>{{ a.edad }}</td>
         <td>
-          <button [routerLink]="['/admin/editar', a.username]">Editar</button>
+          <button [routerLink]="['/editar-arbitro-admin', a.username]">Editar</button>
+          <button (click)="abrirDialogoEliminar(a.username)">Eliminar</button>
         </td>
       </tr>
     </tbody>
   </table>
 
   <div *ngIf="!loading && arbitros.length === 0">No hay árbitros registrados.</div>
+
+  <!-- Diálogo de confirmación simple -->
+  <div *ngIf="eliminandoUsername" class="dialogo-eliminar-backdrop">
+    <div class="dialogo-eliminar">
+      <p>¿Estás seguro de que quieres eliminar al usuario <b>{{ eliminandoUsername }}</b>? Esta acción no se puede deshacer.</p>
+      <div class="dialogo-eliminar-botones">
+        <button (click)="confirmarEliminar()">Sí, eliminar</button>
+        <button (click)="cerrarDialogoEliminar()">Cancelar</button>
+      </div>
+    </div>
+  </div>
 </div>
