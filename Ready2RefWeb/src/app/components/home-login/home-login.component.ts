@@ -10,7 +10,15 @@ import { UserProfile } from '../../../model/user.model';
   styleUrls: ['./home-login.component.css']
 })
 export class HomeLoginComponent implements OnInit {
-  nombreCompleto: string = '';
+  userName: string = 'Usuario';
+
+  accesos = [
+    { titulo: 'Entrenamientos', descripcion: 'Accede a tus entrenamientos recientes', icon: 'bi bi-activity', link: '/entrenamientos' },
+    { titulo: 'Packs de ropa', descripcion: 'Consulta tus pedidos y tallas', icon: 'bi bi-bag', link: '/packs' },
+    { titulo: 'Eventos', descripcion: 'Próximos eventos y reuniones', icon: 'bi bi-calendar-event', link: '/eventos' },
+    { titulo: 'Comunidad', descripcion: 'Conecta con otros árbitros', icon: 'bi bi-people', link: '/comunidad' },
+    { titulo: 'Perfil', descripcion: 'Gestiona tu cuenta', icon: 'bi bi-person', link: '/perfil' }
+  ];
 
   constructor(
     private authService: AuthService,
@@ -19,7 +27,9 @@ export class HomeLoginComponent implements OnInit {
   ) {}
 
   ngOnInit() {
-    
+    // Ejemplo: si guardas el nombre en localStorage tras login
+    const user = JSON.parse(localStorage.getItem('user') || '{}');
+    this.userName = user.nombre || user.username || 'Usuario';
   }
 
   logout() {

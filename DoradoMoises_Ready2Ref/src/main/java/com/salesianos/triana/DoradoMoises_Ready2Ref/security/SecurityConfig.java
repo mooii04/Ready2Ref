@@ -80,18 +80,19 @@ public class SecurityConfig {
         "/error",
         "/edit/**",
         "/mensaje/search",
-        "/swagger-ui/**"
+        "/swagger-ui/**",
+        "/me/user"
     ).permitAll()
     .requestMatchers(HttpMethod.GET, "/download/**").permitAll()
 
     // Rutas protegidas por rol
-    .requestMatchers("/me/admin", "/me/user", "/arbitro/create/**", "/entrenador/create",
+    .requestMatchers("/me/admin", "/arbitro/create/**", "/entrenador/create",
         "/arbitro/edit/admin/**", "/arbitro/search/", "/delete/**", "/mensaje/create/**", "/arbitro/admin/**"
     ).hasRole("ADMIN")
 
     .requestMatchers("/entrenador/**", "/me/entrenador", "/upload").hasRole("ENTRENADOR")
 
-    .requestMatchers("/me/user", "/arbitro/edit/user/me").hasRole("USER")
+    .requestMatchers("/arbitro/edit/user/me").hasRole("USER")
 
     // Rutas abiertas (H2 y Swagger)
     .requestMatchers("/h2-console/**", "/swagger-ui/**").permitAll()

@@ -1,0 +1,115 @@
+.pack-container {
+  background: #181f21;
+  color: #f5f6fa;
+  padding: 2.5rem 2rem 2rem 2rem;
+  box-shadow: 0 2px 24px rgba(0,0,0,0.15);
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  gap: 2.5rem;
+}
+
+.pack-container h2 {
+  font-size: 2rem;
+  color: #7fd7ff;
+  margin-bottom: 0.5rem;
+}
+
+.pack-descripcion {
+  color: #bfc9d1;
+  font-size: 1.1rem;
+  margin-bottom: 1.5rem;
+}
+
+.pack-lista {
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+}
+
+@media (min-width: 900px) {
+  .pack-lista {
+    flex-direction: row;
+    justify-content: center;
+    gap: 2.5rem;
+  }
+}
+
+.pack-card {
+  background: #232b2d;
+  border-radius: 12px;
+  padding: 2rem 1.2rem 1.5rem 1.2rem;
+  box-shadow: 0 1px 8px rgba(0,0,0,0.10);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1.2rem;
+  min-width: 220px;
+  flex: 1;
+  border: 2px solid transparent;
+  transition: transform 0.18s, border 0.18s;
+}
+
+.pack-card:hover {
+  transform: translateY(-4px) scale(1.03);
+  border: 2px solid #7fd7ff;
+  box-shadow: 0 4px 24px rgba(127,215,255,0.10);
+}
+
+.pack-card h3 {
+  color: #7fd7ff;
+  margin-bottom: 0.2rem;
+  font-size: 1.25rem;
+  letter-spacing: 0.5px;
+}
+
+.pack-precio {
+  color: #fff;
+  background: #7fd7ff;
+  border-radius: 8px;
+  padding: 0.4rem 1.2rem;
+  font-size: 1.2rem;
+  font-weight: 700;
+  margin-bottom: 0.7rem;
+  box-shadow: 0 1px 4px rgba(127,215,255,0.10);
+}
+
+.pack-card ul {
+  list-style: none;
+  padding: 0;
+  margin: 0 0 0.5rem 0;
+  color: #bfc9d1;
+  text-align: left;
+  font-size: 1rem;
+}
+
+.pack-card ul li {
+  margin-bottom: 0.4rem;
+  position: relative;
+  padding-left: 1.2em;
+}
+
+.pack-card ul li::before {
+  content: "✔";
+  color: #7fd7ff;
+  position: absolute;
+  left: 0;
+  font-size: 0.95em;
+}
+
+.pack-extra {
+  color: #7fd7ff;
+  font-size: 0.98rem;
+  margin-top: 0.5rem;
+  font-style: italic;
+}
+
+.pack-info-final {
+  margin-top: 2rem;
+  color: #bfc9d1;
+  font-size: 1.08rem;
+  background: #232b2d;
+  border-radius: 8px;
+  padding: 1rem;
+  box-shadow: 0 1px 8px rgba(0,0,0,0.08);
+}

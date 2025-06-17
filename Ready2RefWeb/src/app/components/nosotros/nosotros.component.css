@@ -1,0 +1,83 @@
+.nosotros-container {
+  background: #181f21;
+  color: #f5f6fa;
+  padding: 2.5rem 2rem 2rem 2rem;
+  box-shadow: 0 2px 24px rgba(0,0,0,0.15);
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  gap: 2.5rem;
+}
+
+.nosotros-container h2 {
+  font-size: 2rem;
+  color: #7fd7ff;
+  margin-bottom: 0.5rem;
+}
+
+.nosotros-intro {
+  color: #bfc9d1;
+  font-size: 1.1rem;
+  margin-bottom: 1.5rem;
+}
+
+.nosotros-historia, .nosotros-mision, .nosotros-equipo {
+  background: #232b2d;
+  border-radius: 12px;
+  padding: 1.5rem 1rem 1.2rem 1rem;
+  box-shadow: 0 1px 8px rgba(0,0,0,0.10);
+  text-align: left;
+  margin: 0 auto;
+  max-width: 700px;
+}
+
+.nosotros-historia h3,
+.nosotros-mision h3,
+.nosotros-equipo h3 {
+  color: #7fd7ff;
+  margin-bottom: 0.7rem;
+  font-size: 1.2rem;
+}
+
+.nosotros-historia p,
+.nosotros-equipo p {
+  color: #bfc9d1;
+  font-size: 1rem;
+  margin-bottom: 0.7rem;
+}
+
+.nosotros-mision ul,
+.nosotros-equipo ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  color: #bfc9d1;
+  font-size: 1rem;
+}
+
+.nosotros-mision ul li,
+.nosotros-equipo ul li {
+  margin-bottom: 0.5rem;
+  position: relative;
+  padding-left: 1.2em;
+}
+
+.nosotros-mision ul li::before,
+.nosotros-equipo ul li::before {
+  content: "✔";
+  color: #7fd7ff;
+  position: absolute;
+  left: 0;
+  font-size: 0.95em;
+}
+
+.nosotros-final {
+  margin-top: 2rem;
+  color: #bfc9d1;
+  font-size: 1.08rem;
+  background: #232b2d;
+  border-radius: 8px;
+  padding: 1rem;
+  box-shadow: 0 1px 8px rgba(0,0,0,0.08);
+  text-align: center;
+}

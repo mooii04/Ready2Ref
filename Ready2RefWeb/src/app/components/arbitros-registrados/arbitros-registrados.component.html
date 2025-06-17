@@ -1,4 +1,4 @@
-<!-- arbitros-registrados.component.html -->
+<app-header-private></app-header-private>
 
 <div class="arbitros-registrados-container">
   <h2>Árbitros Registrados</h2>
@@ -43,7 +43,7 @@
         <td>{{ a.categoria }}</td>
         <td>{{ a.edad }}</td>
         <td>
-          <button [routerLink]="['/editar-arbitro-admin', a.username]">Editar</button>
+          <button [routerLink]="['admin/editar/:username', a.username]">Editar</button>
           <button (click)="abrirDialogoEliminar(a.username)">Eliminar</button>
         </td>
       </tr>
@@ -63,3 +63,4 @@
     </div>
   </div>
 </div>
+<app-footer></app-footer>
