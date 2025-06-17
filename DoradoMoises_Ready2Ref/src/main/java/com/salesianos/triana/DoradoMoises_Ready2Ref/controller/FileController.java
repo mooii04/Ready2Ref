@@ -94,7 +94,7 @@ public class FileController {
             @ApiResponse(responseCode = "401", description = "No tienes permisos para acceder a este recurso", content = @Content),
             @ApiResponse(responseCode = "403", description = "No tienes permisos para acceder a este recurso", content = @Content)
     })
-    @GetMapping("/download/{id:.+}")
+    @GetMapping("/download/{id}")
     public ResponseEntity<Resource> getFile(@PathVariable String id) {
         Resource resource = storageService.loadAsResource(id);
 

@@ -1,12 +1,12 @@
 package com.salesianos.triana.DoradoMoises_Ready2Ref.service;
 
 import com.salesianos.triana.DoradoMoises_Ready2Ref.dto.mensaje.EditMensajeDto;
-import com.salesianos.triana.DoradoMoises_Ready2Ref.dto.mensaje.GetMensajeDto;
 import com.salesianos.triana.DoradoMoises_Ready2Ref.dto.mensaje.GetMensajeListadoDto;
-import com.salesianos.triana.DoradoMoises_Ready2Ref.model.Entrenador;
+import com.salesianos.triana.DoradoMoises_Ready2Ref.model.LecturaMensaje;
 import com.salesianos.triana.DoradoMoises_Ready2Ref.model.Mensaje;
 import com.salesianos.triana.DoradoMoises_Ready2Ref.model.User;
 import com.salesianos.triana.DoradoMoises_Ready2Ref.repository.EntrenadorRepository;
+import com.salesianos.triana.DoradoMoises_Ready2Ref.repository.LecturaMensajeRepository;
 import com.salesianos.triana.DoradoMoises_Ready2Ref.repository.MensajeRepository;
 import com.salesianos.triana.DoradoMoises_Ready2Ref.specification.MensajeSpecification;
 import com.salesianos.triana.DoradoMoises_Ready2Ref.specification.SearchCriteria;
@@ -18,7 +18,6 @@ import org.springframework.stereotype.Service;
 
 import java.time.LocalDate;
 import java.util.List;
-import java.util.Set;
 import java.util.UUID;
 
 @Service
@@ -27,25 +26,30 @@ public class MensajeService {
 
     private final MensajeRepository mensajeRepository;
     private final EntrenadorRepository entrenadorRepository;
+    private final LecturaMensajeRepository lecturaMensajeRepository;
 
     public Mensaje save(EditMensajeDto editMensajeDto) {
         Mensaje mensaje = Mensaje.builder()
                 .asunto(editMensajeDto.asunto())
                 .contenido(editMensajeDto.contenido())
                 .fechaEnvio(LocalDate.now())
-                .leido(false)
                 .build();
 
         return mensajeRepository.save(mensaje);
     }
 
-    public List<GetMensajeListadoDto> buscarMensajes(List<SearchCriteria> criterios) {
+    public List<GetMensajeListadoDto> buscarMensajes(List<SearchCriteria> criterios, User user) {
         MensajeSpecification specification = new MensajeSpecification(criterios);
-
         Specification<Mensaje> where = specification.build();
 
         return mensajeRepository.findAll(where).stream()
-                .map(GetMensajeListadoDto::of)
+                .map(mensaje -> {
+                    boolean leido = lecturaMensajeRepository
+                            .findByUsuarioAndMensaje(user, mensaje)
+                            .map(LecturaMensaje::isLeido)
+                            .orElse(false);
+                    return GetMensajeListadoDto.of(mensaje, leido);
+                })
                 .toList();
     }
 
@@ -54,20 +58,38 @@ public class MensajeService {
                 .asunto("Entrenamiento subido")
                 .contenido("Se ha subido un nuevo entrenamiento a la plataforma, por favor eche un vistazo")
                 .fechaEnvio(LocalDate.now())
-                .leido(false)
                 .build();
 
         mensajeRepository.save(mensaje);
     }
 
-    // Cambia el método para que devuelva Mensaje en vez de void
     @Transactional
     public Mensaje marcarMensajeComoLeido(UUID id, User user) {
         Mensaje mensaje = mensajeRepository.findById(id)
                 .orElseThrow(() -> new RuntimeException("Mensaje no encontrado"));
-        mensaje.setLeido(true);
-        mensajeRepository.save(mensaje);
+
+        LecturaMensaje lectura = lecturaMensajeRepository.findByUsuarioAndMensaje(user, mensaje)
+                .orElse(LecturaMensaje.builder()
+                        .usuario(user)
+                        .mensaje(mensaje)
+                        .leido(false)
+                        .build());
+
+        if (!lectura.isLeido()) {
+    lectura.marcarComoLeido();
+    lecturaMensajeRepository.save(lectura);
+}
+        
+
         return mensaje;
     }
+
+    public boolean comprobarSiLeidoPorUsuario(Mensaje mensaje, User user) {
+    return lecturaMensajeRepository
+            .findByUsuarioAndMensaje(user, mensaje)
+            .map(LecturaMensaje::isLeido)
+            .orElse(false);
+}
+
 
 }
