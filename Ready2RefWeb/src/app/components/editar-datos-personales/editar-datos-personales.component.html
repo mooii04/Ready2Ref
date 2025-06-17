@@ -1,7 +1,8 @@
+<app-header-private></app-header-private>
 <div class="editar-datos-container">
   <h2>Editar datos personales</h2>
   <div *ngIf="cargandoDatos">Cargando tus datos...</div>
-  <form *ngIf="!cargandoDatos" [formGroup]="datosForm" (ngSubmit)="onSubmit()">
+  <form *ngIf="!cargandoDatos" [formGroup]="datosForm" (ngSubmit)="onSubmit()" class="editar-datos-form">
     <div class="form-row">
       <label>Nombre</label>
       <input formControlName="nombre" />
@@ -52,9 +53,10 @@
       <input formControlName="foto" />
     </div>
     <div class="form-actions">
-      <button type="submit" [disabled]="loading">Guardar cambios</button>
+      <button class="guardar-btn" type="submit" [disabled]="loading">Guardar cambios</button>
     </div>
     <div *ngIf="error" class="error">{{ error }}</div>
     <div *ngIf="success" class="success">{{ success }}</div>
   </form>
 </div>
+<app-footer></app-footer>

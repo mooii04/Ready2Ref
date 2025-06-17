@@ -1,3 +1,4 @@
+<app-header-private></app-header-private>
 <form [formGroup]="form" (ngSubmit)="onSubmit()" class="cambiar-contrasenia-form">
   <h2>Cambiar contraseña</h2>
   <label>
@@ -18,3 +19,4 @@
   <div *ngIf="error" class="error">{{ error }}</div>
   <div *ngIf="success" class="success">{{ success }}</div>
 </form>
+<app-footer></app-footer>

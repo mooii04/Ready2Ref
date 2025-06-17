@@ -3,7 +3,6 @@ html, body {
   min-height: 100vh;
   margin: 0;
   padding: 0;
-  box-sizing: border-box;
   background: #121c21;
   font-family: 'Lexend', Arial, sans-serif;
 }
@@ -15,7 +14,6 @@ html, body {
   display: flex;
   flex-direction: column;
   align-items: center;
-  padding: 0 0 40px 0;
 }
 
 .r2r-main p {
@@ -26,18 +24,6 @@ html, body {
   font-weight: 700;
   letter-spacing: 0.01em;
   text-align: center;
-}
-
-.r2r-welcome {
-  margin: 48px 0 24px 0;
-  text-align: center;
-}
-
-.r2r-welcome-title {
-  color: #fff;
-  font-size: 2.5rem;
-  font-weight: 700;
-  margin-bottom: 8px;
 }
 
 .r2r-welcome-desc {

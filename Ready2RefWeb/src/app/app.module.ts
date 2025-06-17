@@ -1,4 +1,4 @@
-import { NgModule } from '@angular/core';
+import { NgModule, NO_ERRORS_SCHEMA } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -16,13 +16,17 @@ import { TokenInterceptor } from './interceptors/token.interceptor';
 import { CreateArbitroComponent } from './components/create-arbitro/create-arbitro.component';
 import { ArbitrosRegistradosComponent } from './components/arbitros-registrados/arbitros-registrados.component';
 import { CreateEntrenadorComponent } from './components/create-entrenador/create-entrenador.component';
-import { EditarDatosPersonalesComponent } from './components/user-editar-datos-personales/editar-datos-personales.component';
+import { EditarDatosPersonalesComponent } from './components/editar-datos-personales/editar-datos-personales.component';
 import { EditarEntrenadorDatosComponent } from './components/editar-entrenador-datos/editar-entrenador-datos.component';
 import { CambiarContraseniaComponent } from './components/cambiar-contrasenia/cambiar-contrasenia.component';
 import { EntrenamientosComponent } from './components/entrenamientos/entrenamientos.component';
 import { VistaMensajesComponent } from './components/vista-mensajes/vista-mensajes.component';
 import { CreateMensajesComponent } from './components/mensajes/create-mensajes.component';
 import { EditAllAdminComponent } from './components/edit-all-admin/edit-all-admin.component';
+import { PatrocinadoresComponent } from './components/patrocinadores/patrocinadores.component';
+import { PackComponent } from './components/pack/pack.component';
+import { NosotrosComponent } from './components/nosotros/nosotros.component';
+import { FooterComponent } from './components/footer/footer.component';
 
 @NgModule({
   declarations: [
@@ -43,6 +47,10 @@ import { EditAllAdminComponent } from './components/edit-all-admin/edit-all-admi
     VistaMensajesComponent,
     CreateMensajesComponent,
     EditAllAdminComponent,
+    PatrocinadoresComponent,
+    PackComponent,
+    NosotrosComponent,
+    FooterComponent
   ],
   imports: [
     BrowserModule,

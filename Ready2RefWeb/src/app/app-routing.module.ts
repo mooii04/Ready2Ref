@@ -8,13 +8,16 @@ import { AuthGuard } from './guards/auth.guard';
 import { CreateArbitroComponent } from './components/create-arbitro/create-arbitro.component';
 import { ArbitrosRegistradosComponent } from './components/arbitros-registrados/arbitros-registrados.component';
 import { CreateEntrenadorComponent } from './components/create-entrenador/create-entrenador.component';
-import { EditarDatosPersonalesComponent } from './components/user-editar-datos-personales/editar-datos-personales.component';
+import { EditarDatosPersonalesComponent } from './components/editar-datos-personales/editar-datos-personales.component';
 import { EditarEntrenadorDatosComponent } from './components/editar-entrenador-datos/editar-entrenador-datos.component';
 import { CambiarContraseniaComponent } from './components/cambiar-contrasenia/cambiar-contrasenia.component';
 import { EntrenamientosComponent } from './components/entrenamientos/entrenamientos.component';
 import { VistaMensajesComponent } from './components/vista-mensajes/vista-mensajes.component';
 import { CreateMensajesComponent } from './components/mensajes/create-mensajes.component';
 import { EditAllAdminComponent } from './components/edit-all-admin/edit-all-admin.component';
+import { PatrocinadoresComponent } from './components/patrocinadores/patrocinadores.component';
+import { PackComponent } from './components/pack/pack.component';
+import { NosotrosComponent } from './components/nosotros/nosotros.component';
 
 const routes: Routes = [
   { path: '', component: HomeComponent },
@@ -36,6 +39,11 @@ const routes: Routes = [
   { path: 'create-mensajes', component: CreateMensajesComponent },
 
   { path: 'admin/editar/:username', component: EditAllAdminComponent },
+
+  // Rutas de patrocinadores, pack y nosotros
+  { path: 'patrocinadores', component: PatrocinadoresComponent },
+  { path: 'pack', component: PackComponent },
+  { path: 'nosotros', component: NosotrosComponent },
 
   // ADMIN
   { path: 'crear-arbitro', component: CreateArbitroComponent },

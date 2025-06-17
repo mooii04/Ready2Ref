@@ -1,32 +1,121 @@
-.arbitros-registrados-container {
-  max-width: 900px;
-  margin: 2rem auto;
-  background: #fff;
-  padding: 2rem;
-  border-radius: 10px;
-  box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+body, html {
+  background: #181f21 !important;
 }
+
+.arbitros-registrados-container {
+  max-width: 1000px;
+  margin: 2.5rem auto;
+  background: #181f21;
+  padding: 2.5rem 2rem 2rem 2rem;
+  border-radius: 16px;
+  box-shadow: 0 2px 24px rgba(0,0,0,0.15);
+  color: #f5f6fa;
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+}
+
+.arbitros-registrados-container h2 {
+  color: #7fd7ff;
+  font-size: 2rem;
+  margin-bottom: 0.5rem;
+  text-align: center;
+}
+
+.filtros {
+  display: flex;
+  gap: 1rem;
+  margin-bottom: 1.5rem;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+
+.filtros input {
+  padding: 0.6rem;
+  border: 1px solid #232b2d;
+  border-radius: 6px;
+  background: #232b2d;
+  color: #f5f6fa;
+  font-size: 1rem;
+  outline: none;
+  transition: border 0.2s;
+}
+
+.filtros input:focus {
+  border: 1.5px solid #7fd7ff;
+}
+
+.filtros button {
+  padding: 0.5rem 1.2rem;
+  border: none;
+  border-radius: 6px;
+  background: #7fd7ff;
+  color: #151c1e;
+  font-weight: 600;
+  font-size: 1rem;
+  cursor: pointer;
+  transition: background 0.2s;
+}
+
+.filtros button:last-child {
+  background: #aaa;
+  color: #fff;
+}
+
+.filtros button:hover:not(:last-child) {
+  background: #5bb8e6;
+}
+
 table {
   width: 100%;
   border-collapse: collapse;
   margin-top: 1rem;
+  background: #232b2d;
+  border-radius: 10px;
+  overflow: hidden;
+  box-shadow: 0 1px 8px rgba(0,0,0,0.10);
 }
+
 th, td {
-  padding: 0.5rem;
-  border-bottom: 1px solid #ddd;
+  padding: 0.7rem 0.5rem;
+  border-bottom: 1px solid #2e3638;
   text-align: left;
 }
+
 th {
-  background: #f5f5f5;
+  background: #232b2d;
+  color: #7fd7ff;
+  font-weight: 700;
+  font-size: 1.05rem;
 }
+
+td {
+  color: #f5f6fa;
+  font-size: 1rem;
+}
+
+tr:last-child td {
+  border-bottom: none;
+}
+
+table img {
+  border-radius: 50%;
+  object-fit: cover;
+  border: 2px solid #7fd7ff;
+  background: #fff;
+}
+
 .error {
-  color: #c00;
+  color: #d32f2f;
   margin-top: 1rem;
+  font-weight: 500;
+  text-align: center;
 }
+
 .dialogo-eliminar-backdrop {
   position: fixed;
   top: 0; left: 0; right: 0; bottom: 0;
-  background: rgba(0,0,0,0.25);
+  background: rgba(0,0,0,0.35);
   display: flex;
   align-items: center;
   justify-content: center;
@@ -34,12 +123,17 @@ th {
 }
 
 .dialogo-eliminar {
-  background: #fff;
-  border-radius: 8px;
+  background: #232b2d;
+  border-radius: 12px;
   padding: 2rem;
   max-width: 350px;
   box-shadow: 0 2px 16px rgba(0,0,0,0.18);
   text-align: center;
+  color: #f5f6fa;
+}
+
+.dialogo-eliminar p {
+  margin-bottom: 1.5rem;
 }
 
 .dialogo-eliminar-botones {
@@ -52,7 +146,7 @@ th {
 .dialogo-eliminar-botones button {
   padding: 0.5rem 1.2rem;
   border: none;
-  border-radius: 4px;
+  border-radius: 6px;
   font-weight: 600;
   cursor: pointer;
   background: #d32f2f;
@@ -67,4 +161,17 @@ th {
 
 .dialogo-eliminar-botones button:hover {
   opacity: 0.9;
+}
+
+@media (max-width: 700px) {
+  .arbitros-registrados-container {
+    padding: 1rem 0.5rem;
+  }
+  table, th, td {
+    font-size: 0.95rem;
+  }
+  .filtros {
+    flex-direction: column;
+    gap: 0.7rem;
+  }
 }
