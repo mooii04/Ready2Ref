@@ -7,6 +7,7 @@ interface Mensaje {
   contenido: string;
   fechaEnvio: string;
   leido: boolean;
+  archivoEntrenamientoId?: string;
 }
 
 @Component({
@@ -31,7 +32,7 @@ export class VistaMensajesComponent implements OnInit {
 
   cargarMensajes() {
     this.loading = true;
-    this.http.get<any[]>('http://localhost:8080/mensaje/search').subscribe({
+    this.http.get<Mensaje[]>('http://localhost:8080/mensaje/search').subscribe({
       next: (data) => {
         this.mensajes = data;
         this.loading = false;
@@ -46,15 +47,12 @@ export class VistaMensajesComponent implements OnInit {
   marcarComoLeido(index: number, event: MouseEvent) {
     event.stopPropagation();
     const mensaje = this.mensajes[index];
-    if (!mensaje.leido && mensaje.id) {
+    if (!mensaje.leido) {
       this.http.put(`http://localhost:8080/mensaje/${mensaje.id}/leido`, {}).subscribe({
-        next: (res: any) => {
-          // Actualiza solo el mensaje leído en el array local para respuesta rápida
+        next: () => {
           this.mensajes[index].leido = true;
-          // Opcional: si quieres recargar todos los mensajes desde el backend, descomenta la siguiente línea
-          // this.cargarMensajes();
         },
-        error: (err) => {
+        error: () => {
           this.error = 'No se pudo marcar como leído.';
         }
       });
@@ -62,24 +60,25 @@ export class VistaMensajesComponent implements OnInit {
   }
 
   esMensajeDeEntrenamiento(mensaje: Mensaje): boolean {
-    return mensaje.asunto.toLowerCase().includes('entrenamiento');
-  }
+  return mensaje.archivoEntrenamientoId !== undefined && mensaje.archivoEntrenamientoId !== null && mensaje.archivoEntrenamientoId !== '';
+}
 
-  descargarEntrenamiento(id: number, event: MouseEvent) {
-    event.stopPropagation();
-    const url = `http://localhost:8080/download/${id}`;
-    this.http.get(url, { responseType: 'blob' }).subscribe({
-      next: (blob) => {
-        const a = document.createElement('a');
-        a.href = URL.createObjectURL(blob);
-        a.download = `entrenamiento-${id}.pdf`;
-        a.click();
-        URL.revokeObjectURL(a.href);
-      },
-      error: (err) => {
-        this.error = 'No se pudo descargar el entrenamiento.';
-        console.error(err);
-      }
-    });
-  }
+ descargarEntrenamiento(fileId: string, event: MouseEvent) {
+  event.stopPropagation();
+  const url = `http://localhost:8080/download/${encodeURIComponent(fileId)}`;
+  this.http.get(url, { responseType: 'blob' }).subscribe({
+    next: (blob) => {
+      const a = document.createElement('a');
+      a.href = URL.createObjectURL(blob);
+      a.download = fileId;
+      a.click();
+      URL.revokeObjectURL(a.href);
+    },
+    error: (err) => {
+      this.error = 'No se pudo descargar el entrenamiento.';
+      console.error(err);
+    }
+  });
+}
+
 }

@@ -38,7 +38,7 @@ const routes: Routes = [
 
   { path: 'create-mensajes', component: CreateMensajesComponent },
 
-  { path: 'admin/editar/:username', component: EditAllAdminComponent },
+  { path: 'arbitros-registrados/admin/editar/:username', component: EditAllAdminComponent },
 
   // Rutas de patrocinadores, pack y nosotros
   { path: 'patrocinadores', component: PatrocinadoresComponent },

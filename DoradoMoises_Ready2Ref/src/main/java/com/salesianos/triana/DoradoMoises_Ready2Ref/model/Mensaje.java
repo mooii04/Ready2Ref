@@ -35,6 +35,12 @@ public class Mensaje {
 @EqualsAndHashCode.Exclude
 private Set<LecturaMensaje> lecturas = new HashSet<>();
 
+@Column(name = "archivo_entrenamiento_id")
+private String archivoEntrenamientoId;
+
+@Column(name = "archivo_entrenamiento_nombre")
+private String archivoEntrenamientoNombre;
+
 
     // Métodos helpers para gestionar la relación bidireccional
     public void addArbitro(Arbitro arbitro) {

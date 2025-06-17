@@ -10,20 +10,22 @@
   <div *ngIf="!loading && mensajes.length === 0 && !error">No hay mensajes.</div>
 
   <ul *ngIf="mensajes.length > 0">
-    <li *ngFor="let mensaje of mensajes; let i = index"
-        [class.no-leido]="!mensaje.leido"
-        [class.leido]="mensaje.leido"
-        (click)="marcarComoLeido(i, $event)">
-      
-      <div class="asunto">{{ mensaje.asunto }}</div>
-      <div class="contenido">{{ mensaje.contenido }}</div>
-      <div class="fecha">{{ mensaje.fechaEnvio | date:'longDate' }}</div>
+  <li *ngFor="let mensaje of mensajes; let i = index"
+      [class.no-leido]="!mensaje.leido"
+      [class.leido]="mensaje.leido"
+      (click)="marcarComoLeido(i, $event)">
+    
+    <div class="asunto">{{ mensaje.asunto }}</div>
+    <div class="contenido">{{ mensaje.contenido }}</div>
+    <div class="fecha">{{ mensaje.fechaEnvio | date:'longDate' }}</div>
 
-      <button *ngIf="esMensajeDeEntrenamiento(mensaje)"
-              (click)="descargarEntrenamiento(mensaje.id, $event)">
-        Descargar entrenamiento
-      </button>
-    </li>
-  </ul>
+    <button *ngIf="esMensajeDeEntrenamiento(mensaje)"
+        (click)="descargarEntrenamiento(mensaje.archivoEntrenamientoId!, $event)">
+  Descargar entrenamiento
+</button>
+
+  </li>
+</ul>
+
 </div>
 <app-footer></app-footer>

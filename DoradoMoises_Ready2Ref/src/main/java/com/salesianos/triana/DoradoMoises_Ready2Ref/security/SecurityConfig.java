@@ -83,7 +83,7 @@ public class SecurityConfig {
         "/swagger-ui/**",
         "/me/user"
     ).permitAll()
-    .requestMatchers(HttpMethod.GET, "/download/**").permitAll()
+    .requestMatchers("/download/**").permitAll()
 
     // Rutas protegidas por rol
     .requestMatchers("/me/admin", "/arbitro/create/**", "/entrenador/create",
