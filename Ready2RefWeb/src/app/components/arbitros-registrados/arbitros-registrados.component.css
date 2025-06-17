@@ -28,6 +28,8 @@ body, html {
   margin-bottom: 1.5rem;
   justify-content: center;
   flex-wrap: wrap;
+  flex-direction: row;
+  flex-flow: row wrap;
 }
 
 .filtros input {
@@ -39,6 +41,7 @@ body, html {
   font-size: 1rem;
   outline: none;
   transition: border 0.2s;
+  min-width: 180px;
 }
 
 .filtros input:focus {
@@ -64,6 +67,22 @@ body, html {
 
 .filtros button:hover:not(:last-child) {
   background: #5bb8e6;
+}
+
+.filtros select {
+  min-width: 180px;
+  padding: 0.6rem;
+  border: 1px solid #232b2d;
+  border-radius: 6px;
+  background: #232b2d;
+  color: #aaa;
+  font-size: 1rem;
+  outline: none;
+  transition: border 0.2s;
+}
+
+.filtros select:focus {
+  border: 1.5px solid #7fd7ff;
 }
 
 table {
@@ -161,6 +180,37 @@ table img {
 
 .dialogo-eliminar-botones button:hover {
   opacity: 0.9;
+}
+
+.paginacion {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 0.5rem;
+  margin: 2rem 0 1rem 0;
+}
+
+.paginacion button {
+  padding: 0.4rem 1rem;
+  border: none;
+  border-radius: 6px;
+  background: #232b2d;
+  color: #7fd7ff;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background 0.2s, color 0.2s;
+}
+
+.paginacion button.activa,
+.paginacion button:hover:not(:disabled) {
+  background: #7fd7ff;
+  color: #151c1e;
+}
+
+.paginacion button:disabled {
+  background: #aaa;
+  color: #fff;
+  cursor: not-allowed;
 }
 
 @media (max-width: 700px) {

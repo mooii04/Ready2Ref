@@ -89,6 +89,24 @@
   max-width: 1200px;
   margin: 2.5rem auto 0 auto;
   padding: 0 2vw;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+.row.align-items-center.mb-5 {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-bottom: 3rem;
+}
+.col-md-8 {
+  width: 100%;
+  max-width: 600px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }
 .home-login-title {
   font-size: 2.2rem;
@@ -96,6 +114,11 @@
   color: #f5f6fa;
   margin-bottom: 2.2rem;
   margin-top: 1.5rem;
+  text-align: center;
+}
+.lead {
+  color: #bfc9d1;
+  text-align: center;
 }
 .quick-access-title {
   font-size: 1.1rem;
