@@ -1,21 +1,38 @@
+body, html {
+  background: #181f21 !important;
+}
+
 .mensajes-container {
-  background: #fff;
-  border: 1px solid #ddd;
-  border-radius: 8px;
-  padding: 2rem;
+  background: #202a33;
+  border: 1.5px solid #2c3538;
+  border-radius: 14px;
+  padding: 2.5rem 2rem 2rem 2rem;
   max-width: 600px;
-  margin: 2rem auto;
-  box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+  margin: 2.5rem auto;
+  box-shadow: 0 2px 16px rgba(0,0,0,0.13);
+  color: #eaf6fb;
+}
+
+.mensajes-title {
+  font-size: 1.5rem;
+  font-weight: 700;
+  color: #7fd7ff;
+  margin-bottom: 1.5rem;
+  text-align: center;
+  letter-spacing: 0.5px;
 }
 
 ul {
   list-style: none;
   padding: 0;
+  margin: 0;
 }
 
 li {
-  border-bottom: 1px solid #eee;
-  padding: 1rem 0;
+  border-bottom: 1px solid #26313a;
+  padding: 1.2rem 0;
+  transition: background 0.2s;
+  cursor: pointer;
 }
 
 li:last-child {
@@ -23,43 +40,63 @@ li:last-child {
 }
 
 .asunto {
-  font-weight: bold;
-  font-size: 1.1rem;
+  font-weight: 700;
+  font-size: 1.13rem;
+  color: #fff;
 }
 
 .contenido {
   margin: 0.5rem 0;
+  color: #b6c7d6;
 }
 
 .fecha {
-  color: #888;
-  font-size: 0.95rem;
+  color: #7fd7ff;
+  font-size: 0.98rem;
 }
 
 .no-leido {
-  background: #f0f2f5;
-  cursor: pointer;
-  border-left: 4px solid #1976d2;
+  background: #232b2d;
+  border-left: 4px solid #7fd7ff;
 }
 
 .leido {
-  background: #f9f9f9;
-  cursor: pointer;
-  border-left: 4px solid #bdbdbd;
-}
-
-.error {
-  color: #d32f2f;
-  font-weight: 500;
-  margin-top: 1rem;
+  background: #202a33;
+  border-left: 4px solid #4e5a67;
 }
 
 .badge {
-  background: #1976d2;
-  color: #fff;
+  background: #7fd7ff;
+  color: #151c1e;
   border-radius: 12px;
   padding: 0.2em 0.7em;
   font-size: 0.95em;
   margin-left: 0.5em;
   vertical-align: middle;
+  font-weight: 600;
+  box-shadow: 0 1px 4px rgba(127,215,255,0.13);
+}
+
+a.badge {
+  text-decoration: none;
+  color: #151c1e;
+  font-weight: 600;
+  background: #7fd7ff;
+  border-radius: 8px;
+  padding: 0.2em 0.9em;
+  margin-top: 0.5em;
+  display: inline-block;
+  transition: background 0.2s, color 0.2s;
+}
+
+a.badge:hover {
+  background: #5bb8e6;
+  color: #fff;
+}
+
+.error {
+  color: #ff4d4f;
+  font-weight: 500;
+  margin-top: 1rem;
+  text-align: center;
 }

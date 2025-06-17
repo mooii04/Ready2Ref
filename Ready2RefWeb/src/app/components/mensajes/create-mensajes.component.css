@@ -1,60 +1,102 @@
-.create-mensajes-form {
-  background: #fff;
-  border: 1px solid #ddd;
-  border-radius: 8px;
-  padding: 2rem;
-  max-width: 500px;
-  margin: 2rem auto;
-  box-shadow: 0 2px 8px rgba(0,0,0,0.08);
-  display: flex;
-  flex-direction: column;
-  gap: 1.5rem;
+body, html {
+  background: #181f21 !important;
 }
 
-.create-mensajes-form label {
+.create-mensaje-container {
+  background: #181f21;
+  border: 1px solid #232b2d;
+  border-radius: 12px;
+  padding: 2.5rem 2rem 2rem 2rem;
+  max-width: 400px;
+  margin: 2.5rem auto;
+  box-shadow: 0 2px 16px rgba(0,0,0,0.10);
   display: flex;
   flex-direction: column;
+  gap: 1.2rem;
+}
+
+.create-mensaje-container h2 {
+  font-size: 1.4rem;
+  font-weight: 700;
+  color: #f5f6fa;
+  margin-bottom: 1.2rem;
+  text-align: center;
+}
+
+form {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.form-row {
+  display: flex;
+  flex-direction: column;
+  gap: 0.3rem;
+}
+
+.form-row label {
   font-weight: 500;
-  margin-bottom: 0.5rem;
+  color: #bfc9d1;
 }
 
-.create-mensajes-form input,
-.create-mensajes-form textarea {
-  padding: 0.5rem;
-  border: 1px solid #bbb;
-  border-radius: 4px;
-  margin-top: 0.25rem;
+.form-row input,
+.form-row textarea {
+  padding: 0.6rem;
+  border: 1px solid #232b2d;
+  border-radius: 6px;
+  background: #232b2d;
+  color: #f5f6fa;
   font-size: 1rem;
+  outline: none;
+  transition: border 0.2s;
+  resize: none;
 }
 
-.create-mensajes-botones {
+.form-row input:focus,
+.form-row textarea:focus {
+  border: 1.5px solid #7fd7ff;
+}
+
+.form-actions {
   display: flex;
   gap: 1rem;
   justify-content: flex-end;
+  margin-top: 1.2rem;
 }
 
-.create-mensajes-botones button {
+.form-actions button {
   padding: 0.5rem 1.2rem;
   border: none;
-  border-radius: 4px;
-  background: #1976d2;
-  color: #fff;
+  border-radius: 6px;
+  background: #7fd7ff;
+  color: #151c1e;
   font-weight: 600;
+  font-size: 1rem;
   cursor: pointer;
   transition: background 0.2s;
 }
 
-.create-mensajes-botones button:disabled {
+.form-actions button:disabled {
   background: #aaa;
+  color: #fff;
   cursor: not-allowed;
+}
+
+.form-actions button:hover:not(:disabled) {
+  background: #5bb8e6;
 }
 
 .error {
   color: #d32f2f;
   font-weight: 500;
+  margin-top: 1rem;
+  text-align: center;
 }
 
 .success {
   color: #388e3c;
   font-weight: 500;
+  margin-top: 1rem;
+  text-align: center;
 }

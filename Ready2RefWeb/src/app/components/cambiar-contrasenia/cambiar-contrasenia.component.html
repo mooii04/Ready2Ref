@@ -2,15 +2,15 @@
   <h2>Cambiar contraseña</h2>
   <label>
     Contraseña actual:
-    <input type="password" formControlName="oldPassword" required />
+    <input type="password" formControlName="oldPassword" required placeholder="Introduce tu contraseña actual" />
   </label>
   <label>
     Nueva contraseña:
-    <input type="password" formControlName="password" required minlength="8" />
+    <input type="password" formControlName="password" required minlength="8" placeholder="Introduce la nueva contraseña" />
   </label>
   <label>
     Repetir nueva contraseña:
-    <input type="password" formControlName="verifyPassword" required />
+    <input type="password" formControlName="verifyPassword" required placeholder="Repite la nueva contraseña" />
   </label>
   <div class="cambiar-contrasenia-botones">
     <button type="submit" [disabled]="loading">Guardar</button>
