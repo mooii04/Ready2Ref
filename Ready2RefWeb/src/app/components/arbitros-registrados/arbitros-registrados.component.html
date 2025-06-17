@@ -5,8 +5,26 @@
 
   <!-- Filtros -->
   <div class="filtros">
-    <input [(ngModel)]="filtroNombre" type="text" placeholder="Filtrar por nombre" />
-    <input [(ngModel)]="filtroCategoria" type="text" placeholder="Filtrar por categoría" />
+    <input [(ngModel)]="filtroNombre" (ngModelChange)="cargarArbitros()" type="text" placeholder="Filtrar por nombre" />
+    <select [(ngModel)]="filtroCategoria" (ngModelChange)="cargarArbitros()">
+      <option value="">Filtrar por categoría</option>
+      <option value="AUXILIAR">AUXILIAR</option>
+      <option value="OFICIAL">OFICIAL</option>
+      <option value="PROVINCIAL">PROVINCIAL</option>
+      <option value="DIVISION_HONOR">DIVISION_HONOR</option>
+      <option value="ASISTENTE_3RFEF">ASISTENTE_3RFEF</option>
+      <option value="RFEF3">RFEF3</option>
+      <option value="ASISTENTE_2RFEF">ASISTENTE_2RFEF</option>
+      <option value="RFEF2">RFEF2</option>
+      <option value="ASISTENTE_1RFEF">ASISTENTE_1RFEF</option>
+      <option value="RFEF1">RFEF1</option>
+      <option value="ASISTENTE_SEGUNDA">ASISTENTE_SEGUNDA</option>
+      <option value="SEGUNDA">SEGUNDA</option>
+      <option value="ASISTENTE_PRIMERA">ASISTENTE_PRIMERA</option>
+      <option value="PRIMERA">PRIMERA</option>
+    </select>
+    <input [(ngModel)]="filtroEmail" (ngModelChange)="cargarArbitros()" type="text" placeholder="Filtrar por email" />
+    <input [(ngModel)]="filtroTelefono" (ngModelChange)="cargarArbitros()" type="text" placeholder="Filtrar por teléfono" />
     <button (click)="cargarArbitros()">Buscar</button>
     <button (click)="limpiarFiltros()">Limpiar</button>
   </div>
@@ -32,7 +50,7 @@
     <tbody>
       <tr *ngFor="let a of arbitros">
         <td>
-          <img [src]="'http://localhost:8080/uploads/' + a.foto"
+          <img src="assets/referee.png"
                alt="foto" width="50" height="50"
                style="object-fit:cover;border-radius:50%;" />
         </td>
@@ -50,6 +68,15 @@
     </tbody>
   </table>
 
+  <!-- Controles de paginación -->
+  <div *ngIf="!loading && totalPaginas > 1" class="paginacion">
+    <button (click)="paginaAnterior()" [disabled]="pagina === 0">&laquo; Anterior</button>
+    <ng-container *ngFor="let p of [].constructor(totalPaginas); let i = index">
+      <button (click)="irAPagina(i)" [class.activa]="pagina === i">{{ i + 1 }}</button>
+    </ng-container>
+    <button (click)="paginaSiguiente()" [disabled]="pagina === totalPaginas - 1">Siguiente &raquo;</button>
+  </div>
+
   <div *ngIf="!loading && arbitros.length === 0">No hay árbitros registrados.</div>
 
   <!-- Diálogo de confirmación simple -->
@@ -63,4 +90,3 @@
     </div>
   </div>
 </div>
-<app-footer></app-footer>

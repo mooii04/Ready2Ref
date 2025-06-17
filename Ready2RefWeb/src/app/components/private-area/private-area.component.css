@@ -14,6 +14,7 @@ html, body {
   display: flex;
   flex-direction: column;
   align-items: center;
+  justify-content: flex-start;
 }
 
 .r2r-main p {
@@ -24,6 +25,9 @@ html, body {
   font-weight: 700;
   letter-spacing: 0.01em;
   text-align: center;
+  width: 100%;
+  display: flex;
+  justify-content: center;
 }
 
 .r2r-welcome-desc {
@@ -35,12 +39,14 @@ html, body {
 .r2r-btn-group {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
-  gap: 40px;
+  gap: 180px 180px; /* máxima separación entre filas y columnas */
   justify-content: center;
+  align-items: center;
   margin-top: 32px;
-  width: 100%;
-  max-width: 1100px;
-  margin-bottom: 2.5rem;
+  width: auto;
+  margin-left: auto;
+  margin-right: auto;
+  max-width: none;
 }
 
 .r2r-quick-access {
@@ -124,6 +130,9 @@ html, body {
 @media (max-width: 900px) {
   .r2r-main {
     padding: 0 0 24px 0;
+  }
+  .r2r-main p {
+    font-size: 1.4rem;
   }
   .r2r-btn-group {
     grid-template-columns: 1fr;

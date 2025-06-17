@@ -1,22 +1,22 @@
 .r2r-header {
-  background: #121c21;
-  color: #fff;
-  padding: 0.5rem 0;
-  border-bottom: 2px solid #fff;
+  background: linear-gradient(90deg, #0f171b, #1e2a32);
+  padding: 1rem 0;
+  border-bottom: 2px solid #7fd7ff;
 }
+
 .r2r-header-content {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
   max-width: 1200px;
   margin: 0 auto;
   padding: 0 2rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
 }
 
 .logo-circle {
-  width: 40px;
-  height: 40px;
-  border-radius: 50%;
+  width: 80px;
+  height: 80px;
+  border-radius: 30%;
   background-color: white;
   display: flex;
   justify-content: center;
@@ -25,50 +25,53 @@
 }
 
 .r2r-logo {
-  max-width: 90%;
-  max-height: 90%;
+  height: 80px;
   object-fit: contain;
+  border-radius: 30%;
 }
 
 .r2r-logo-area {
   display: flex;
   align-items: center;
+  gap: 0.5rem;
 }
-.r2r-logo {
-  height: 40px;
-  margin-right: 10px;
-}
+
 .r2r-title {
-  font-size: 1.5rem;
+  color: #7fd7ff;
+  font-size: 1.8rem;
   font-weight: bold;
 }
+
 .r2r-nav {
   display: flex;
-  gap: 1.5rem;
-  align-items: center;
+  gap: 2rem;
 }
+
 .r2r-nav-link {
-  color: #fff;
+  color: #ffffff;
+  font-weight: 500;
   text-decoration: none;
-  font-size: 1rem;
-  transition: color 0.2s;
+  transition: color 0.3s;
 }
+
 .r2r-nav-link:hover {
   color: #ffd700;
 }
+
 .r2r-login-btn {
-  background: #ffd700;
+  background-color: #ffd700;
   color: #1a1a2e;
-  padding: 0.4rem 1rem;
-  border-radius: 20px;
-  text-decoration: none;
+  padding: 0.5rem 1rem;
+  border-radius: 25px;
+  font-weight: bold;
   display: flex;
   align-items: center;
-  gap: 0.5rem;
-  font-weight: bold;
-  transition: background 0.2s;
+  gap: 0.4rem;
+  transition: all 0.3s ease;
+  text-decoration: none;
 }
+
 .r2r-login-btn:hover {
-  background: #fff;
+  background-color: #fff;
   color: #1a1a2e;
 }

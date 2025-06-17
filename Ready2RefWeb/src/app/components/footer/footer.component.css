@@ -1,3 +1,23 @@
+/* Asegura que el footer quede siempre abajo */
+html, body {
+  height: 100%;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+app-root {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+  height: 100%;
+}
+
 .footer-container {
   background: #121c21;
   color: #bfc9d1;
@@ -9,6 +29,7 @@
   flex-direction: column;
   align-items: center;
   gap: 1.5rem;
+  margin-top: auto;
 }
 
 .footer-main {
