@@ -1,23 +1,24 @@
 package com.salesianos.triana.DoradoMoises_Ready2Ref.dto.mensaje;
 
 import com.salesianos.triana.DoradoMoises_Ready2Ref.model.Mensaje;
+
 import java.time.LocalDate;
 import java.util.UUID;
 
 public record GetMensajeListadoDto(
-        UUID id,
-        String asunto,
-        String contenido,
-        LocalDate fechaEnvio,
-        boolean leido
+    UUID id,
+    String asunto,
+    String contenido,
+    LocalDate fechaEnvio,
+    boolean leido
 ) {
-    public static GetMensajeListadoDto of(Mensaje m) {
+    public static GetMensajeListadoDto of(Mensaje m, boolean leido) {
         return new GetMensajeListadoDto(
-                m.getId(),
-                m.getAsunto(),
-                m.getContenido(),
-                m.getFechaEnvio(),
-                m.isLeido()
+            m.getId(),
+            m.getAsunto(),
+            m.getContenido(),
+            m.getFechaEnvio(),
+            leido
         );
     }
 }

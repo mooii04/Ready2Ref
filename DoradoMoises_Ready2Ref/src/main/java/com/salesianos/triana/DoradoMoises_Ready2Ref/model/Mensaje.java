@@ -23,13 +23,18 @@ public class Mensaje {
     private String asunto;
     private String contenido;
     private LocalDate fechaEnvio;
-    private boolean leido;
 
     @ManyToMany(mappedBy = "mensajesArbitro")
     private Set<Arbitro> arbitros = new HashSet<>();
 
     @ManyToMany(mappedBy = "mensajesEntrenador")
     private Set<Entrenador> entrenadores = new HashSet<>();
+
+    @OneToMany(mappedBy = "mensaje", cascade = CascadeType.ALL, orphanRemoval = true)
+@ToString.Exclude
+@EqualsAndHashCode.Exclude
+private Set<LecturaMensaje> lecturas = new HashSet<>();
+
 
     // Métodos helpers para gestionar la relación bidireccional
     public void addArbitro(Arbitro arbitro) {

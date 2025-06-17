@@ -72,7 +72,7 @@ INSERT INTO user_roles (roles, user_id) VALUES (0, '550e8400-e29b-41d4-a716-4466
 INSERT INTO user_roles (roles, user_id) VALUES (0, '550e8400-e29b-41d4-a716-446655440015');
 
 -- Inserción de mensajes
-INSERT INTO mensaje (id, asunto, contenido, fecha_envio, leido) VALUES ('990e8400-e29b-41d4-a716-446655440000', 'Entrenamiento Semana 23-29 Diciembre', 'Buenas tardes compañeros, el entreno de esta semana próxima ya esta subido a la plataforma', '2025-02-25', false);
+INSERT INTO mensaje (id, asunto, contenido, fecha_envio) VALUES ('990e8400-e29b-41d4-a716-446655440000', 'Entrenamiento Semana 23-29 Diciembre', 'Buenas tardes compañeros, el entreno de esta semana próxima ya esta subido a la plataforma', '2025-02-25');
 
 -- Inserción de arbitro_mensaje
 INSERT INTO arbitro_mensaje (arbitro_id, mensaje_id) VALUES ('550e8400-e29b-41d4-a716-446655440001', '990e8400-e29b-41d4-a716-446655440000');

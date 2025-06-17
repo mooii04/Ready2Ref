@@ -18,13 +18,20 @@ export class TokenInterceptor implements HttpInterceptor {
     const token = this.authService.getToken();
 
     // Adjunta el token si existe
-    if (token && !request.url.includes('/auth/login') && !request.url.includes('/auth/refresh/token')) {
-    request = request.clone({
-      setHeaders: {
-        Authorization: `Bearer ${token}`
-      }
-    });
-  }
+    if (
+  token &&
+  !request.url.includes('/auth/login') &&
+  !request.url.includes('/auth/refresh/token') &&
+  !request.url.includes('/download/')
+) {
+  // Solo añado token si no es login, refresh ni download
+  request = request.clone({
+    setHeaders: {
+      Authorization: `Bearer ${token}`
+    }
+  });
+}
+
 
     return next.handle(request).pipe(
       catchError((error: HttpErrorResponse) => {

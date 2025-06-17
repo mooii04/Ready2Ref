@@ -78,12 +78,11 @@ public class SecurityConfig {
         "/activate/account",
         "/auth/refresh/token",
         "/error",
-        "/download/**",
         "/edit/**",
         "/mensaje/search",
-        "/swagger-ui/**",
-        "/download/**"
+        "/swagger-ui/**"
     ).permitAll()
+    .requestMatchers(HttpMethod.GET, "/download/**").permitAll()
 
     // Rutas protegidas por rol
     .requestMatchers("/me/admin", "/me/user", "/arbitro/create/**", "/entrenador/create",
