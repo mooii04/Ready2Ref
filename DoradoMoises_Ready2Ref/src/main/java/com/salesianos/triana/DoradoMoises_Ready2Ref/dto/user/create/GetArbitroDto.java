@@ -21,11 +21,12 @@ public record GetArbitroDto(
         String tallaCamiseta,
         String tallaCalzonas,
         String tallaChandal,
-        String foto
+        String foto,
+        String activationToken
 ){
 
     public static GetArbitroDto of(Arbitro arbitro) {
-        return new GetArbitroDto(arbitro.getNombre(), arbitro.getPrimerApellido(), arbitro.getSegundoApellido(), arbitro.getUsername(), arbitro.getEmail(), arbitro.getTelefono(), arbitro.getPassword(), arbitro.getRoles().toString(), arbitro.getFechaNacimiento(), arbitro.getEdad(), arbitro.getCategoria().toString(), arbitro.getFechaInscripcion(), arbitro.getTallaBotas(), arbitro.getTallaCamiseta().toString(), arbitro.getTallaCalzonas().toString(), arbitro.getTallaChandal().toString(), arbitro.getFoto());
+        return new GetArbitroDto(arbitro.getNombre(), arbitro.getPrimerApellido(), arbitro.getSegundoApellido(), arbitro.getUsername(), arbitro.getEmail(), arbitro.getTelefono(), arbitro.getPassword(), arbitro.getRoles().toString(), arbitro.getFechaNacimiento(), arbitro.getEdad(), arbitro.getCategoria().toString(), arbitro.getFechaInscripcion(), arbitro.getTallaBotas(), arbitro.getTallaCamiseta().toString(), arbitro.getTallaCalzonas().toString(), arbitro.getTallaChandal().toString(), arbitro.getFoto(), arbitro.getActivationToken());
     }
 
 }

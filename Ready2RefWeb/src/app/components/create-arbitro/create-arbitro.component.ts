@@ -92,11 +92,31 @@ export class CreateArbitroComponent {
       ? 'http://localhost:8080/arbitro/create/user'
       : 'http://localhost:8080/arbitro/create/admin';
 
-    this.http.post(url, payload).subscribe({
+    interface CreateArbitroResponse {
+      activationToken?: string;
+      // ...otros campos si los necesitas...
+    }
+
+    this.http.post<CreateArbitroResponse>(url, payload).subscribe({
       next: (res) => {
-        this.success = 'Árbitro creado correctamente';
-        this.loading = false;
-        setTimeout(() => this.router.navigate(['/areaprivada']), 1500);
+        if (res && res.activationToken) {
+          this.http.post('http://localhost:8080/activate/account', { token: res.activationToken }).subscribe({
+            next: () => {
+              this.success = 'Árbitro creado y cuenta activada correctamente';
+              this.loading = false;
+              setTimeout(() => this.router.navigate(['/areaprivada']), 1500);
+            },
+            error: (err) => {
+              this.success = 'Árbitro creado, pero error al activar la cuenta';
+              this.error = err?.error?.message || 'Error al activar la cuenta';
+              this.loading = false;
+            }
+          });
+        } else {
+          this.success = 'Árbitro creado correctamente';
+          this.loading = false;
+          setTimeout(() => this.router.navigate(['/areaprivada']), 1500);
+        }
       },
       error: (err) => {
         this.error = err?.error?.message || 'Error al crear árbitro';
