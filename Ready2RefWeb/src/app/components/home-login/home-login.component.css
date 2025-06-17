@@ -85,3 +85,40 @@
   font-size: 1.2rem;
   font-weight: 400;
 }
+.home-login-container {
+  max-width: 1200px;
+  margin: 2.5rem auto 0 auto;
+  padding: 0 2vw;
+}
+.home-login-title {
+  font-size: 2.2rem;
+  font-weight: 700;
+  color: #f5f6fa;
+  margin-bottom: 2.2rem;
+  margin-top: 1.5rem;
+}
+.quick-access-title {
+  font-size: 1.1rem;
+  font-weight: 600;
+  color: #fff;
+  margin-bottom: 1.5rem;
+}
+.quick-access-list {
+  display: flex;
+  gap: 3.5rem;
+  flex-wrap: wrap;
+}
+.quick-access-item {
+  min-width: 180px;
+  margin-bottom: 1.5rem;
+}
+.quick-access-item-title {
+  font-size: 1rem;
+  font-weight: 600;
+  color: #fff;
+  margin-bottom: 0.2rem;
+}
+.quick-access-item-desc {
+  font-size: 0.95rem;
+  color: #bfc9d1;
+}

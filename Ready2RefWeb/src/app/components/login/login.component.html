@@ -1,26 +1,12 @@
-<header class="r2r-header">
-  <div class="r2r-header-content">
-    <div class="r2r-logo-area">
-      <img src="assets/logo.png" alt="Ready2Ref" class="r2r-logo" />
-      <span class="r2r-title">Ready2Ref</span>
-    </div>
-    <nav class="r2r-nav">
-      <a class="r2r-nav-link" routerLink="/">Inicio</a>
-      <a class="r2r-nav-link" href="#">Nosotros</a>
-      <a class="r2r-nav-link" href="#">Pack</a>
-      <a class="r2r-nav-link" href="#">Patrocinadores</a>
-      <a class="r2r-nav-link">Área Privada</a>
-    </nav>
-  </div>
-</header>
-
+<app-header-public></app-header-public>
 <main class="r2r-main">
   <section class="r2r-welcome">
     <h1 class="r2r-welcome-title">{{ welcomeMessage }}</h1>
     <p class="r2r-welcome-desc">Accede a tu cuenta de Ready2Ref</p>
   </section>
   <section class="r2r-login-form-section">
-    <form [formGroup]="loginForm" (ngSubmit)="login()" class="r2r-login-form">
+    <form [formGroup]="loginForm" (ngSubmit)="login()" class="login-form-container">
+      <h2>Iniciar sesión</h2>
       <div class="mb-3">
         <label for="username" class="form-label text-white">Usuario</label>
         <input type="text" id="username" formControlName="username" class="form-control" placeholder="Introduce tu usuario" />
@@ -29,9 +15,8 @@
         <label for="password" class="form-label text-white">Contraseña</label>
         <input type="password" id="password" formControlName="password" class="form-control" placeholder="Introduce tu contraseña" />
       </div>
-      <button type="submit" class="btn btn-primary w-100">Entrar</button>
-      <div *ngIf="loginError" class="alert alert-danger mt-3">
-        {{ loginError }}
+      <div class="login-form-botones">
+        <button type="submit" class="btn btn-primary w-100">Entrar</button>
       </div>
     </form>
   </section>

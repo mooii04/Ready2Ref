@@ -1,7 +1,8 @@
 .r2r-header {
-  background: #1a1a2e;
+  background: #121c21;
   color: #fff;
   padding: 0.5rem 0;
+  border-bottom: 2px solid #fff;
 }
 .r2r-header-content {
   display: flex;
