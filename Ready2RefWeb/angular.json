@@ -32,10 +32,12 @@
             ],
             "tsConfig": "tsconfig.app.json",
             "assets": [
-              {
-                "glob": "**/*",
-                "input": "public"
-              }
+              "src/assets",
+  "src/favicon.ico",
+  {
+    "glob": "**/*",
+    "input": "public"
+  }
             ],
             "styles": [
               "node_modules/bootstrap/dist/css/bootstrap.min.css",

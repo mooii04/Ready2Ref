@@ -12,6 +12,22 @@
   margin: 0 auto;
   padding: 0 2rem;
 }
+.logo-circle {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  background-color: white;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  overflow: hidden;
+}
+
+.r2r-logo {
+  max-width: 90%;
+  max-height: 90%;
+  object-fit: contain;
+}
 .r2r-logo-area {
   display: flex;
   align-items: center;
