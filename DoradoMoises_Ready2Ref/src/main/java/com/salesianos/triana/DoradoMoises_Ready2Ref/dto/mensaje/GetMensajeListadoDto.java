@@ -10,7 +10,8 @@ public record GetMensajeListadoDto(
     String asunto,
     String contenido,
     LocalDate fechaEnvio,
-    boolean leido
+    boolean leido,
+    String archivoEntrenamientoId
 ) {
     public static GetMensajeListadoDto of(Mensaje m, boolean leido) {
         return new GetMensajeListadoDto(
@@ -18,7 +19,8 @@ public record GetMensajeListadoDto(
             m.getAsunto(),
             m.getContenido(),
             m.getFechaEnvio(),
-            leido
+            leido,
+            m.getArchivoEntrenamientoId()
         );
     }
 }

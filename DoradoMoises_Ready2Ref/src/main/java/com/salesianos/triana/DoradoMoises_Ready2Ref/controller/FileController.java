@@ -21,7 +21,6 @@ import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
 import java.net.URI;
-import java.util.UUID;
 
 @RestController
 @RequiredArgsConstructor
@@ -46,10 +45,8 @@ public class FileController {
                                                 "type": "application/pdf",
                                                 "size": 651557
                                             }
-                    """
-                            )}
-                    )}
-            ),
+                                            """
+                            )})}),
             @ApiResponse(responseCode = "400", description = "Error en la subida del archivo", content = @Content),
             @ApiResponse(responseCode = "401", description = "No autenticado", content = @Content),
             @ApiResponse(responseCode = "403", description = "No tienes permisos para subir archivos", content = @Content)
@@ -57,15 +54,7 @@ public class FileController {
     @PostMapping("/upload")
     public ResponseEntity<?> upload(@RequestPart("file") MultipartFile file) {
 
-        FileResponse response = uploadFile(file);
-
-        mensajeService.enviarMensajeEntrenoSubido();
-
-        return ResponseEntity.created(URI.create(response.uri())).body(response);
-    }
-
-    private FileResponse uploadFile(MultipartFile multipartFile) {
-        FileMetadata fileMetadata = storageService.store(multipartFile);
+        FileMetadata fileMetadata = storageService.store(file);
 
         String uri = ServletUriComponentsBuilder.fromCurrentContextPath()
                 .path("/download/")
@@ -74,13 +63,17 @@ public class FileController {
 
         fileMetadata.setURL(uri);
 
-        return FileResponse.builder()
+        FileResponse response = FileResponse.builder()
                 .id(fileMetadata.getId())
                 .name(fileMetadata.getFilename())
-                .size(multipartFile.getSize())
-                .type(multipartFile.getContentType())
+                .size(file.getSize())
+                .type(file.getContentType())
                 .uri(uri)
                 .build();
+
+        mensajeService.enviarMensajeEntrenoSubido(fileMetadata);
+
+        return ResponseEntity.created(URI.create(response.uri())).body(response);
     }
 
     @Operation(summary = "Descargar un archivo por ID", description = "Obtiene un archivo almacenado en el servidor según su identificador único.")
@@ -99,9 +92,11 @@ public class FileController {
         Resource resource = storageService.loadAsResource(id);
 
         String mimeType = mimeTypeDetector.getMimeType(resource);
+        String filename = resource.getFilename();
 
         return ResponseEntity.status(HttpStatus.OK)
                 .header("Content-Type", mimeType)
+                .header("Content-Disposition", "attachment; filename=\"" + filename + "\"")
                 .body(resource);
     }
 

@@ -127,7 +127,7 @@ export class EditAllAdminComponent implements OnInit {
     next: () => {
       this.success = 'Datos personales actualizados correctamente';
       this.loading = false;
-      setTimeout(() => this.router.navigate(['/private-area']), 1500);
+      setTimeout(() => this.router.navigate(['/areaprivada']), 1500);
     },
     error: (err) => {
       if (err.status === 401) {

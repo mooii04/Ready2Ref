@@ -2,6 +2,7 @@ package com.salesianos.triana.DoradoMoises_Ready2Ref.service;
 
 import com.salesianos.triana.DoradoMoises_Ready2Ref.dto.mensaje.EditMensajeDto;
 import com.salesianos.triana.DoradoMoises_Ready2Ref.dto.mensaje.GetMensajeListadoDto;
+import com.salesianos.triana.DoradoMoises_Ready2Ref.model.FileMetadata;
 import com.salesianos.triana.DoradoMoises_Ready2Ref.model.LecturaMensaje;
 import com.salesianos.triana.DoradoMoises_Ready2Ref.model.Mensaje;
 import com.salesianos.triana.DoradoMoises_Ready2Ref.model.User;
@@ -53,15 +54,18 @@ public class MensajeService {
                 .toList();
     }
 
-    public void enviarMensajeEntrenoSubido() {
-        Mensaje mensaje = Mensaje.builder()
-                .asunto("Entrenamiento subido")
-                .contenido("Se ha subido un nuevo entrenamiento a la plataforma, por favor eche un vistazo")
-                .fechaEnvio(LocalDate.now())
-                .build();
+    public void enviarMensajeEntrenoSubido(FileMetadata fileMetadata) {
+    Mensaje mensaje = Mensaje.builder()
+            .asunto("Nuevo entrenamiento disponible")
+            .contenido("Se ha subido un nuevo archivo de entrenamiento.")
+            .fechaEnvio(LocalDate.now())
+            .archivoEntrenamientoId(fileMetadata.getId())
+            .archivoEntrenamientoNombre(fileMetadata.getFilename())
+            .build();
 
-        mensajeRepository.save(mensaje);
-    }
+    mensajeRepository.save(mensaje);
+}
+
 
     @Transactional
     public Mensaje marcarMensajeComoLeido(UUID id, User user) {

@@ -17,32 +17,30 @@ export class TokenInterceptor implements HttpInterceptor {
   intercept(request: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
     const token = this.authService.getToken();
 
-    // Adjunta el token si existe
+    // Sólo añadir el token si existe y la URL NO es login, refresh token ni descarga pública
     if (
-  token &&
-  !request.url.includes('/auth/login') &&
-  !request.url.includes('/auth/refresh/token') &&
-  !request.url.includes('/download/')
-) {
-  // Solo añado token si no es login, refresh ni download
-  request = request.clone({
-    setHeaders: {
-      Authorization: `Bearer ${token}`
+      token &&
+      !request.url.includes('/auth/login') &&
+      !request.url.includes('/auth/refresh/token') &&
+      !request.url.includes('/download/')
+    ) {
+      request = request.clone({
+        setHeaders: {
+          Authorization: `Bearer ${token}`
+        }
+      });
     }
-  });
-}
-
 
     return next.handle(request).pipe(
       catchError((error: HttpErrorResponse) => {
-        // Si es un 401 y el mensaje contiene "JWT expired"
+        // Manejar error 401 por token expirado
         if (error.status === 401 && error.error?.detail?.includes('JWT expired')) {
           return this.authService.refreshToken().pipe(
             switchMap((res: any) => {
-              // Guardar los nuevos tokens
+              // Guardar nuevos tokens
               this.authService.saveTokens(res.token, res.refreshToken);
 
-              // Repetir la petición original con el nuevo token
+              // Reintentar la petición original con el nuevo token
               const retryRequest = request.clone({
                 setHeaders: {
                   Authorization: `Bearer ${res.token}`
@@ -51,7 +49,7 @@ export class TokenInterceptor implements HttpInterceptor {
               return next.handle(retryRequest);
             }),
             catchError(err => {
-              // Si falla el refresh, borrar tokens y redirigir al login
+              // Si falla refresh, limpiar sesión y redirigir a login
               this.authService.logout();
               this.router.navigate(['/login']);
               return throwError(() => err);
@@ -59,7 +57,7 @@ export class TokenInterceptor implements HttpInterceptor {
           );
         }
 
-        // Si no es un 401 o no es por expiración, pasar el error
+        // Para otros errores, devolver error normal
         return throwError(() => error);
       })
     );

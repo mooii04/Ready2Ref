@@ -14,8 +14,7 @@ public record GetArbitroAdminEDto(
         String tallaCamiseta,
         String tallaCalzonas,
         String tallaChandal,
-        String foto,
-        GetDtoPack getDtoPack
+        String foto
 ) {
 
     public static GetArbitroAdminEDto of(Arbitro arbitro){
@@ -30,8 +29,7 @@ public record GetArbitroAdminEDto(
                 arbitro.getTallaCamiseta().toString(),
                 arbitro.getTallaCalzonas().toString(),
                 arbitro.getTallaChandal().toString(),
-                arbitro.getFoto(),
-                GetDtoPack.fromPack(arbitro.getPack())
+                arbitro.getFoto()
         );
     }
 
